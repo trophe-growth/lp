@@ -737,16 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
     goToStep(0);
   }
 
-  /* ---------- 13. HERO AGENDA MARQUEE ---------- */
-  const agendaGrid = document.querySelector('.agenda-week-grid');
-  if (agendaGrid) {
-    const cols = Array.from(agendaGrid.children);
-    cols.forEach(c => {
-      const clone = c.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      clone.removeAttribute('id');
-      agendaGrid.appendChild(clone);
-    });
+  });
   }
 
 });
