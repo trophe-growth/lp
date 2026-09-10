@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- 3. REVEAL ON SCROLL ---------- */
-  const revealEls = document.querySelectorAll('.reveal');
+  const revealEls = document.querySelectorAll('.reveal, .vtl-item--anim');
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -737,6 +737,16 @@ document.addEventListener('DOMContentLoaded', () => {
     goToStep(0);
   }
 
-  initJourneyStepper();
+  /* ---------- 13. HERO AGENDA MARQUEE ---------- */
+  const agendaGrid = document.querySelector('.agenda-week-grid');
+  if (agendaGrid) {
+    const cols = Array.from(agendaGrid.children);
+    cols.forEach(c => {
+      const clone = c.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.removeAttribute('id');
+      agendaGrid.appendChild(clone);
+    });
+  }
 
 });
