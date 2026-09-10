@@ -5721,4 +5721,38 @@ h1, h2, h3, h4, h5 {
     word-break: break-word !important;
     padding: 0 0.5rem !important;
   }
+  
+  /* Minimalist Dashboard Fixes */
+  .report-head > div:not(.report-icon-box) {
+    min-width: 0 !important;
+  }
+  .report-head h5, .report-sub {
+    white-space: normal !important;
+    word-break: break-word !important;
+    display: block !important;
+  }
+  .pie-leg-row {
+    white-space: normal !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+  }
+  .pie-leg-row > span, .pie-leg-row > strong {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+  .crm-toast-box {
+    background: transparent !important;
+    border: none !important;
+    border-top: 1px solid var(--border) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 1.25rem 0 0 0 !important;
+    margin-top: 1.25rem !important;
+    max-width: 100% !important;
+    align-items: flex-start !important;
+  }
+  .toast-content span, .toast-content strong {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
 }
