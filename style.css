@@ -4606,6 +4606,31 @@ h1, h2, h3, h4, h5 {
   font-weight: 600;
 }
 
+.crm-table-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-s) transparent;
+}
+
+.crm-table-scroll-wrapper::-webkit-scrollbar {
+  height: 5px;
+}
+
+.crm-table-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.crm-table-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: var(--border-s);
+  border-radius: 4px;
+}
+
+.crm-table-mobile-hint {
+  display: none;
+}
+
 /* Condição Especial no Investimento (Integrada ao Design do Bloco Ledger) */
 .price-installment {
   display: block;
@@ -5739,16 +5764,62 @@ h1, h2, h3, h4, h5 {
     gap: 1.5rem !important;
   }
   
-  .cohort-table th, .cohort-table td {
-    padding: 0.5rem 0.25rem !important;
-    font-size: 0.68rem !important;
-    word-break: break-word;
+  /* Base de Pacientes & Tabelas CRM: scroll horizontal fluido sem quebra de palavras */
+  .crm-table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    touch-action: pan-x pan-y !important;
+    scrollbar-width: thin;
+    padding-bottom: 6px !important;
+    margin: 0.25rem 0 !important;
   }
-  
+
+  .crm-table-mobile-hint {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    background: rgba(0, 0, 0, 0.035);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .crm-table-mobile-hint svg {
+    color: var(--accent);
+    animation: hintArrowMove 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes hintArrowMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(4px); }
+  }
+
   .cohort-table {
     display: table !important;
     width: 100% !important;
-    table-layout: fixed;
+    min-width: 620px !important;
+    table-layout: auto !important;
+  }
+  
+  .cohort-table th, .cohort-table td {
+    padding: 0.7rem 0.85rem !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+    word-break: normal !important;
+  }
+
+  .cohort-table td .slot-badge {
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center;
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
   }
 
   /* Fix Icon Showcase Title Cut-off */
