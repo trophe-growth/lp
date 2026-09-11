@@ -737,7 +737,6 @@ document.addEventListener('DOMContentLoaded', () => {
     goToStep(0);
   }
 
-  });
-  }
+  initJourneyStepper();
 
 });
