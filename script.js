@@ -395,9 +395,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const reviewSpecs = document.querySelectorAll('.review-location-city');
       const specialities = [
-        'Nutrição Clínica & Metabólica',
-        'Nutrição Esportiva & Performance',
-        'Saúde da Mulher & Fertilidade'
+        'Harmonização Facial & Estética Avançada',
+        'Nutrição Clínica & Performance',
+        'Odontologia & Reabilitação Oral',
+        'Clínica Médica Especializada'
       ];
 
       reviewSpecs.forEach((el, i) => {
