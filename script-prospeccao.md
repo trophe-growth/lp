@@ -138,19 +138,19 @@ Após ler a página ou perguntar pelo WhatsApp, conduza com essas respostas:
 
 *(Gere o PDF em `orcamento.html` e envie junto com esta mensagem):*
 
-> 📄 *(Anexo: Orcamento_Trophe_NomeDaClinica.pdf)*  
+> *(Anexo: Orcamento_Trophe_NomeDaClinica.pdf)*  
 > 
 > "Doutor(a), segue a sua **Nota de Orçamento Executiva (#TRP-2026-001)**.  
 > 
 > Nela você encontra:  
-> ✅ O que está incluso (anúncios, triagem, treinamento da secretária e resgate da base);  
-> ✅ O cronograma real dos primeiros 60 dias com suporte contínuo;  
-> ✅ A nossa garantia sem fidelidade (contrato mês a mês, sem multa de cancelamento);  
-> ✅ Os dados para pagamento.  
+> - O que está incluso (anúncios, triagem, treinamento da secretária e resgate da base);  
+> - O cronograma real dos primeiros 60 dias com suporte contínuo;  
+> - A nossa garantia sem fidelidade (contrato mês a mês, sem multa de cancelamento);  
+> - Os dados para pagamento.  
 > 
 > **Para iniciarmos:**  
-> • **À vista no PIX:** R$ 2.000,00 (Chave Celular: `11957622191` · Lucas Fernandes)  
-> • **No Cartão:** Em até 12x de R$ 248,80 (me avise se preferir o link seguro do cartão).  
+> • **À vista no PIX:** R$ 2.000,00 (Chave CPF: `450.297.108.17` · Lucas Fernandes)  
+> • **No Cartão:** Em até 12x de R$ 248,80 via link seguro do Mercado Pago (me avise se preferir o parcelamento).  
 > 
 > Me enviando o comprovante por aqui, eu já crio o nosso grupo de trabalho e combinamos o onboarding dos primeiros dias!"
 
@@ -160,10 +160,10 @@ Após ler a página ou perguntar pelo WhatsApp, conduza com essas respostas:
 
 Assim que o cliente pagar:
 
-> "Excelente, [Dra. / Dr.]! Seja muito bem-vindo(a). Já registrei o início do seu projeto por aqui! 🚀  
+> "Excelente, [Dra. / Dr.]! Seja muito bem-vindo(a). Já registrei o início do seu projeto por aqui.  
 > 
 > Vou criar o nosso grupo no WhatsApp agora. Para os próximos passos:  
 > 1. Me passe o contato da sua secretária para eu incluí-la no grupo;  
 > 2. Qual o melhor horário amanhã para eu bater um papo rápido de 15 minutos com ela para alinhar o atendimento?  
 > 
-> Vamos juntos lotar essa agenda de pacientes particulares!"
+> Vamos juntos colocar novos pacientes particulares na sua agenda!"

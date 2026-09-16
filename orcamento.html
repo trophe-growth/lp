@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nota de Orçamento & Termo de Implantação · TROPHÉ</title>
+  <title>Nota de Orçamento Executiva · TROPHÉ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #F8F6F0;
+      --bg: #F9F9FB;
       --card-bg: #FFFFFF;
-      --ink: #181715;
-      --ink-muted: #5C5850;
-      --border: #E5E0D4;
-      --accent: #D05E3B;
-      --accent-soft: rgba(208, 94, 59, 0.08);
-      --success: #1E6B48;
-      --success-soft: rgba(30, 107, 72, 0.08);
+      --ink: #141416;
+      --ink-secondary: #47474F;
+      --ink-muted: #71717A;
+      --border: #E4E4E7;
+      --border-subtle: #F1F1F4;
+      --accent: #27272A;
+      --highlight: #09090B;
     }
 
     * {
@@ -27,7 +27,7 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--ink);
       line-height: 1.5;
@@ -35,18 +35,21 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* BARRA DE IMPRESSÃO SUPERIOR */
     .toolbar {
-      max-width: 820px;
+      max-width: 800px;
       margin: 0 auto 1.5rem auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
     }
 
     .toolbar-info {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .btn-print {
@@ -54,33 +57,29 @@
       align-items: center;
       gap: 0.5rem;
       background: var(--ink);
-      color: #FFF;
-      border: none;
-      padding: 0.75rem 1.4rem;
-      border-radius: 9999px;
-      font-family: 'Outfit', sans-serif;
+      color: #FFFFFF;
+      border: 1px solid var(--ink);
+      padding: 0.65rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
       font-weight: 600;
-      font-size: 0.92rem;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      transition: all 0.2s ease;
+      transition: background 0.15s ease;
     }
 
     .btn-print:hover {
-      background: #2a2926;
-      transform: translateY(-1px);
+      background: #27272A;
     }
 
     /* FOLHA A4 PRINCIPAL */
     .proposal-sheet {
-      max-width: 820px;
+      max-width: 800px;
       margin: 0 auto;
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem 3.5rem;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
-      position: relative;
+      border-radius: 8px;
+      padding: 3.5rem 3.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     }
 
     /* HEADER */
@@ -88,70 +87,73 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
       margin-bottom: 2rem;
     }
 
-    .brand-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--ink);
+    .brand-area {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .brand-logo {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .brand-sub {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      font-weight: 700;
-      margin-top: 0.2rem;
+      letter-spacing: 0.06em;
+      font-weight: 500;
     }
 
     .doc-meta {
       text-align: right;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--ink-muted);
+      line-height: 1.6;
     }
 
     .doc-meta strong {
       color: var(--ink);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-    }
-
-    .badge-pilot {
-      display: inline-block;
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid rgba(208, 94, 59, 0.2);
-      padding: 0.25rem 0.65rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-top: 0.4rem;
     }
 
-    /* CLIENT BOX */
-    .client-card {
-      background: #FAF8F5;
+    .doc-tag {
+      display: inline-block;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.2rem 1.5rem;
-      margin-bottom: 2rem;
+      background: #FAFAFA;
+      color: var(--ink-secondary);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-top: 0.35rem;
+    }
+
+    /* CLIENT CARD */
+    .client-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 2.2rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1.4fr 1.2fr 1fr;
       gap: 1rem;
-      font-size: 0.88rem;
+      background: #FAFAFB;
     }
 
     .client-field label {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--ink-muted);
@@ -160,53 +162,56 @@
     }
 
     .client-field span {
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--ink);
+      outline: none;
+    }
+
+    .client-field span[contenteditable="true"]:hover {
+      background: #FFFFFF;
+      box-shadow: 0 0 0 1px #CBD5E1;
+      border-radius: 2px;
     }
 
     /* SECTION TITLE */
-    .sec-heading {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
+    .sec-title {
+      font-size: 0.92rem;
       font-weight: 700;
       color: var(--ink);
-      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.85rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .sec-heading::before {
-      content: "";
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
+    .sec-title svg {
+      color: var(--ink-muted);
     }
 
     /* TABLE */
     .table-scope {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 2rem;
-      font-size: 0.88rem;
+      margin-bottom: 2.2rem;
+      font-size: 0.86rem;
     }
 
     .table-scope th {
-      background: #FAF8F5;
-      color: var(--ink-muted);
       text-align: left;
-      padding: 0.75rem 1rem;
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-bottom: 1px solid var(--border);
-      border-top: 1px solid var(--border);
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      padding: 0.65rem 0.5rem;
+      border-bottom: 1px solid var(--ink);
+      font-weight: 600;
     }
 
     .table-scope td {
-      padding: 0.9rem 1rem;
+      padding: 0.95rem 0.5rem;
       border-bottom: 1px solid var(--border);
       vertical-align: top;
     }
@@ -215,175 +220,209 @@
       display: block;
       color: var(--ink);
       font-weight: 600;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
     }
 
     .table-scope td p {
-      font-size: 0.82rem;
-      color: var(--ink-muted);
+      font-size: 0.80rem;
+      color: var(--ink-secondary);
+      line-height: 1.45;
       margin: 0;
     }
 
     .table-scope .col-price {
       text-align: right;
       white-space: nowrap;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-    }
-
-    .price-struck {
-      text-decoration: line-through;
-      color: #9E988D;
       font-size: 0.85rem;
+      color: var(--ink-muted);
     }
 
-    /* PRICING CALLOUT LEDGER */
-    .ledger-summary {
-      background: #FAF8F5;
+    .price-strike {
+      text-decoration: line-through;
+      color: #A1A1AA;
+    }
+
+    /* LEDGER FINANCIAL SUMMARY */
+    .ledger-box {
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem 1.8rem;
-      margin-bottom: 2rem;
+      border-radius: 6px;
+      padding: 1.3rem 1.5rem;
+      margin-bottom: 2.2rem;
+      background: #FAFAFA;
     }
 
-    .ledger-row {
+    .ledger-line {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.55rem 0;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
-    .ledger-row.total-market {
-      border-bottom: 1px dashed var(--border);
+    .ledger-line.market {
       color: var(--ink-muted);
-      padding-bottom: 0.8rem;
-    }
-
-    .ledger-row.special-setup {
-      padding-top: 0.9rem;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--ink);
-    }
-
-    .ledger-row.special-recorr {
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--ink);
-      border-bottom: 1px dashed var(--border);
-      padding-bottom: 0.9rem;
-    }
-
-    .price-tag-big {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-
-    .pix-discount-tag {
-      background: #EBF5EE;
-      color: var(--success);
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
       font-size: 0.82rem;
-      font-weight: 700;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.8rem;
     }
 
-    /* CRONOGRAMA 60 DIAS */
+    .ledger-line.main-item {
+      padding-top: 0.75rem;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .ledger-line.recurr {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .ledger-line.pix-special {
+      padding-top: 0.85rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .val-highlight {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .val-pix {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0F766E;
+    }
+
+    /* TIMELINE */
     .timeline-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.8rem;
-      margin-bottom: 2rem;
+      gap: 0.75rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .timeline-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.85rem;
+      background: #FFFFFF;
     }
 
     .timeline-step {
-      background: #FFF;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.9rem;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
     }
 
-    .timeline-step strong {
+    .timeline-card strong {
       display: block;
-      font-family: 'Outfit', sans-serif;
-      color: var(--accent);
-      font-size: 0.88rem;
-      margin-bottom: 0.25rem;
+      font-size: 0.82rem;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+      line-height: 1.35;
     }
 
-    /* GUARANTEE SEAL LEVE E SEGURA */
-    .guarantee-box {
-      background: var(--success-soft);
-      border: 1px solid rgba(30, 107, 72, 0.25);
-      border-radius: 10px;
-      padding: 1.2rem 1.5rem;
-      margin-bottom: 2rem;
+    .timeline-card p {
+      font-size: 0.75rem;
+      color: var(--ink-secondary);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* GUARANTEE BOX MINIMALISTA */
+    .guarantee-minimal {
+      border: 1px solid #D4D4D8;
+      border-left: 3px solid var(--ink);
+      border-radius: 4px;
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 2.2rem;
+      background: #FAFAFA;
       display: flex;
       gap: 1rem;
       align-items: flex-start;
     }
 
-    .guarantee-icon {
-      font-size: 1.5rem;
-      line-height: 1;
+    .guarantee-minimal svg {
+      color: var(--ink);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
     }
 
-    .guarantee-text h4 {
-      font-family: 'Outfit', sans-serif;
-      color: var(--success);
-      font-size: 0.98rem;
+    .guarantee-title {
+      font-size: 0.88rem;
       font-weight: 700;
+      color: var(--ink);
       margin-bottom: 0.25rem;
     }
 
-    .guarantee-text p {
-      font-size: 0.82rem;
-      color: #2D4A3A;
+    .guarantee-text {
+      font-size: 0.80rem;
+      color: var(--ink-secondary);
       line-height: 1.45;
     }
 
     /* PAYMENT DATA */
-    .payment-box {
+    .payment-grid {
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.2rem 1.5rem;
-      background: #FFF;
-      margin-bottom: 2.2rem;
+      border-radius: 6px;
+      padding: 1.3rem 1.4rem;
+      margin-bottom: 2.4rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
-      font-size: 0.85rem;
+      background: #FFFFFF;
     }
 
-    .payment-col strong {
-      display: block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.92rem;
+    .payment-opt-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
       color: var(--ink);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
     }
 
-    .payment-col p {
+    .payment-opt-title svg {
       color: var(--ink-muted);
+    }
+
+    .payment-desc {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
       line-height: 1.5;
+    }
+
+    .payment-key {
+      display: inline-block;
+      background: #F4F4F5;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0.35rem 0;
     }
 
     /* FOOTER & SIGNATURES */
     .proposal-footer {
       border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
+      padding-top: 1.6rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      font-size: 0.8rem;
+      font-size: 0.80rem;
       color: var(--ink-muted);
     }
 
@@ -392,28 +431,27 @@
     }
 
     .signature-line {
-      width: 220px;
+      width: 200px;
       border-bottom: 1px solid var(--ink);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
       display: inline-block;
     }
 
     .sign-name {
       font-weight: 700;
       color: var(--ink);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .sign-role {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--ink-muted);
     }
 
     /* PRINT SPECIFICS */
     @media print {
       body {
-        background: #FFF;
+        background: #FFFFFF;
         padding: 0;
       }
 
@@ -424,7 +462,7 @@
       .proposal-sheet {
         border: none;
         box-shadow: none;
-        padding: 1.5cm 1.5cm;
+        padding: 1cm 1cm;
         max-width: 100%;
         border-radius: 0;
       }
@@ -437,31 +475,32 @@
 </head>
 <body>
 
-  <!-- BARRA SUPERIOR DE AÇÕES -->
+  <!-- BARRA DE IMPRESSÃO SUPERIOR (OCULTA NO PDF) -->
   <div class="toolbar">
     <div class="toolbar-info">
-      📄 <strong>Nota de Orçamento Executiva</strong> · Pronta para imprimir ou exportar em PDF
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Documento Executivo de Proposta · TROPHÉ
     </div>
     <button class="btn-print" onclick="window.print()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       Salvar em PDF / Imprimir
     </button>
   </div>
 
-  <!-- DOCUMENTO OFICIAL -->
+  <!-- FOLHA A4 PRINCIPAL -->
   <main class="proposal-sheet">
     
     <!-- HEADER -->
     <header class="header">
-      <div>
-        <h1 class="brand-title">TROPHÉ</h1>
-        <p class="brand-sub">Sistema de Atração e Retenção para Clínicas Particulares</p>
+      <div class="brand-area">
+        <img src="images/trophe-logo.png" alt="TROPHÉ" class="brand-logo" />
+        <span class="brand-sub">Sistema de Atração e Retenção Clínica</span>
       </div>
       <div class="doc-meta">
         <strong>PROPOSTA Nº #TRP-2026-001</strong><br />
         <span>Emissão: 16 de Setembro de 2026</span><br />
         <span>Validade: 48 horas</span><br />
-        <span class="badge-pilot">Condição Especial · 1ª Clínica em Matão</span>
+        <span class="doc-tag">Condição Especial · 1ª Clínica em Matão</span>
       </div>
     </header>
 
@@ -476,125 +515,142 @@
         <span contenteditable="true">Dra. / Dr. Responsável</span>
       </div>
       <div class="client-field">
-        <label>Cidade / Praça</label>
+        <label>Praça / Cidade</label>
         <span contenteditable="true">Matão e Região - SP</span>
       </div>
     </section>
 
-    <!-- ESCOPO DAS 4 CAMADAS EM LINGUAGEM CLARA -->
+    <!-- ESCOPO TÉCNICO -->
     <section>
-      <h2 class="sec-heading">O Que Está Incluso no Nosso Trabalho</h2>
+      <h2 class="sec-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Escopo dos Serviços Inclusos
+      </h2>
       <table class="table-scope">
         <thead>
           <tr>
-            <th style="width: 75%;">Etapa & Entregáveis</th>
-            <th style="width: 25%; text-align: right;">Valor de Tabela</th>
+            <th style="width: 76%;">Módulo & Entregáveis</th>
+            <th style="width: 24%; text-align: right;">Valor de Tabela</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <strong>1. Captação de Novos Pacientes Particulares na Cidade</strong>
-              <p>Criação e gestão de anúncios no Instagram, Facebook e Google focados no público que paga consultas e procedimentos particulares em Matão e região.</p>
+              <strong>1. Captação de Novos Pacientes Particulares</strong>
+              <p>Criação e gestão contínua de anúncios locais no Instagram, Facebook e Google focados no público de procedimentos particulares em Matão e cidades vizinhas.</p>
             </td>
-            <td class="col-price"><span class="price-struck">R$ 3.000</span></td>
+            <td class="col-price"><span class="price-strike">R$ 3.000</span></td>
           </tr>
           <tr>
             <td>
-              <strong>2. Triagem Rápida no WhatsApp (Filtro de Curiosos)</strong>
-              <p>Perguntas automáticas rápidas para filtrar quem procura convênio ou preço antes de passar o contato para a sua recepção.</p>
+              <strong>2. Triagem e Qualificação no WhatsApp</strong>
+              <p>Estruturação de perguntas objetivas para filtrar quem procura convênio ou preço antes de repassar o contato para a recepção.</p>
             </td>
-            <td class="col-price"><span class="price-struck">R$ 2.000</span></td>
+            <td class="col-price"><span class="price-strike">R$ 2.000</span></td>
           </tr>
           <tr>
             <td>
-              <strong>3. Treinamento da Recepção & Confirmação Anti-Falta</strong>
-              <p>Scripts humanizados para a secretária responder rápido sem dar preço solto, além de mensagens automáticas com mapa para evitar faltas.</p>
+              <strong>3. Treinamento da Recepção & Prevenção de Faltas</strong>
+              <p>Scripts humanizados de acolhimento rápido para a secretária e confirmação de presença 24h antes com mapa de rota para evitar faltas.</p>
             </td>
-            <td class="col-price"><span class="price-struck">R$ 1.500</span></td>
+            <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
           </tr>
           <tr>
             <td>
-              <strong>4. Resgate dos Prontuários Antigos & Retornos Periódicos</strong>
-              <p>Campanha para reativar pacientes que não voltam há mais de 6 meses (dinheiro no caixa logo no primeiro mês) + rotina de lembretes preventivos.</p>
+              <strong>4. Resgate de Pacientes Antigos & Retornos Periódicos</strong>
+              <p>Ação direta para reativar prontuários inativos há mais de 6 meses (gerando receita rápida) + rotina de lembretes preventivos.</p>
             </td>
-            <td class="col-price"><span class="price-struck">R$ 1.500</span></td>
+            <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
           </tr>
         </tbody>
       </table>
     </section>
 
-    <!-- RESUMO FINANCEIRO ANCORADO -->
-    <section class="ledger-summary">
-      <div class="ledger-row total-market">
+    <!-- RESUMO FINANCEIRO -->
+    <section class="ledger-box">
+      <div class="ledger-line market">
         <span>Valor oficial se contratado separadamente:</span>
-        <span class="price-struck">R$ 8.000,00</span>
+        <span class="price-strike">R$ 8.000,00</span>
       </div>
-      <div class="ledger-row special-setup">
-        <span>Taxa Única de Configuração e Início (Setup):</span>
-        <span class="price-tag-big">R$ 2.500,00 <small style="font-size:0.85rem;color:var(--ink-muted);font-weight:500;">(em até 12x)</small></span>
+      <div class="ledger-line main-item">
+        <span>Taxa de Configuração & Início (Setup de Implantação):</span>
+        <span class="val-highlight">R$ 2.500,00 <span style="font-size:0.78rem;font-weight:400;color:var(--ink-muted);">(em até 12x no cartão)</span></span>
       </div>
-      <div class="ledger-row special-recorr">
-        <span>Acompanhamento, Anúncios & Suporte Contínuo:</span>
-        <span class="price-tag-big">R$ 1.000,00 <small style="font-size:0.85rem;color:var(--ink-muted);font-weight:500;">/mês</small></span>
+      <div class="ledger-line recurr">
+        <span>Gestão, Otimização & Suporte Contínuo:</span>
+        <span class="val-highlight">R$ 1.000,00 <span style="font-size:0.78rem;font-weight:400;color:var(--ink-muted);">/mês</span></span>
       </div>
-      <div class="pix-discount-tag">
-        <span>💎 Condição Especial à Vista no PIX para a 1ª Clínica:</span>
-        <strong>R$ 2.000,00 (Desconto de R$ 500 no Setup)</strong>
+      <div class="ledger-line pix-special">
+        <span>Condição Especial à Vista via PIX:</span>
+        <span class="val-pix">R$ 2.000,00 <span style="font-size:0.78rem;font-weight:500;color:var(--ink-muted);">(Desconto direto de R$ 500)</span></span>
       </div>
     </section>
 
-    <!-- CRONOGRAMA REAL DE 60 DIAS -->
+    <!-- CRONOGRAMA 60 DIAS -->
     <section>
-      <h2 class="sec-heading">Cronograma Real de 60 Dias (Com Suporte Contínuo)</h2>
+      <h2 class="sec-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Cronograma de 60 Dias com Acompanhamento
+      </h2>
       <div class="timeline-grid">
-        <div class="timeline-step">
-          <strong>Dias 01 a 15</strong>
-          Onboarding simples, alinhamento com a recepção e disparo do resgate na base antiga.
+        <div class="timeline-card">
+          <div class="timeline-step">Dias 01 a 15</div>
+          <strong>Onboarding & Resgate</strong>
+          <p>Alinhamento com recepção, acessos e disparo da ação de resgate na base antiga.</p>
         </div>
-        <div class="timeline-step">
-          <strong>Dias 16 a 30</strong>
-          Subida e otimização dos anúncios locais no Instagram e Google para atração de novos pacientes.
+        <div class="timeline-card">
+          <div class="timeline-step">Dias 16 a 30</div>
+          <strong>Anúncios no Ar</strong>
+          <p>Subida das campanhas locais no Instagram/Google para entrada de novos pacientes.</p>
         </div>
-        <div class="timeline-step">
-          <strong>Dias 31 a 45</strong>
-          Ajustes na triagem do WhatsApp e implementação dos fluxos de confirmação anti-falta.
+        <div class="timeline-card">
+          <div class="timeline-step">Dias 31 a 45</div>
+          <strong>Ajustes de Triagem</strong>
+          <p>Calibração dos filtros de mensagem e rotina de confirmação anti-falta.</p>
         </div>
-        <div class="timeline-step">
-          <strong>Dias 46 a 60</strong>
-          Consolidação da rotina de retornos periódicos e alinhamento mensal dos resultados.
+        <div class="timeline-card">
+          <div class="timeline-step">Dias 46 a 60</div>
+          <strong>Rotina Consolidada</strong>
+          <p>Estruturação de retornos periódicos e alinhamento mensal dos resultados.</p>
         </div>
       </div>
     </section>
 
-    <!-- GARANTIA LEVE E SEGURA (SEM AMARRAS) -->
-    <section class="guarantee-box">
-      <div class="guarantee-icon">🛡️</div>
-      <div class="guarantee-text">
-        <h4>Compromisso Sem Fidelidade: Contrato Mês a Mês</h4>
-        <p>
-          Você não fica preso a nenhum contrato longo de 6 ou 12 meses. O nosso acordo é <strong>mês a mês</strong>. Se no primeiro mês você não gostar do nosso atendimento, do suporte ou do movimento no seu WhatsApp, você pode encerrar o serviço a qualquer momento, <strong>sem pagar nenhum centavo de multa ou taxa de cancelamento</strong>.
-        </p>
+    <!-- GARANTIA SEM FIDELIDADE -->
+    <section class="guarantee-minimal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div>
+        <div class="guarantee-title">Compromisso Sem Fidelidade: Contrato Mês a Mês</div>
+        <div class="guarantee-text">
+          Você não fica preso a contratos longos de 6 ou 12 meses. O nosso acordo é <strong>mês a mês</strong>. Se no primeiro mês você não estiver satisfeito com o nosso suporte ou movimento gerado, você pode encerrar o serviço a qualquer momento, <strong>sem pagar nenhuma multa ou taxa de cancelamento</strong>.
+        </div>
       </div>
     </section>
 
     <!-- DADOS PARA RESERVA E PAGAMENTO -->
-    <section class="payment-box">
-      <div class="payment-col">
-        <strong>Opção 01: À vista via PIX (R$ 2.000)</strong>
-        <p>
-          Chave PIX (Telefone/WhatsApp):<br />
-          <strong style="color:var(--accent); font-size:1rem;">(11) 95762-2191</strong><br />
+    <section class="payment-grid">
+      <div>
+        <div class="payment-opt-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Opção 01: À Vista via PIX (R$ 2.000)
+        </div>
+        <div class="payment-desc">
+          Chave PIX (CPF):<br />
+          <span class="payment-key">450.297.108.17</span><br />
           Favorecido: Lucas Fernandes<br />
           Envio do comprovante direto no WhatsApp.
-        </p>
+        </div>
       </div>
-      <div class="payment-col">
-        <strong>Opção 02: Cartão de Crédito (até 12x de R$ 248,80)</strong>
-        <p>
-          Link seguro de pagamento via InfinitePay.<br />
-          Solicite o link no WhatsApp para parcelamento em até 12 vezes sem burocracia.
-        </p>
+      <div>
+        <div class="payment-opt-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Opção 02: Cartão (até 12x via Mercado Pago)
+        </div>
+        <div class="payment-desc">
+          Parcelamento em até 12x de R$ 248,80.<br />
+          Link seguro gerado diretamente pelo <strong>Mercado Pago</strong>.<br />
+          Solicite o link no WhatsApp para parcelar no cartão corporativo.
+        </div>
       </div>
     </section>
 
