@@ -6,18 +6,18 @@
   <title>Nota de Orçamento Executiva · TROPHÉ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #F9F9FB;
+      --bg: #F4F4F6;
       --card-bg: #FFFFFF;
-      --ink: #141416;
-      --ink-secondary: #47474F;
+      --ink: #111113;
+      --ink-secondary: #3F3F46;
       --ink-muted: #71717A;
       --border: #E4E4E7;
-      --border-subtle: #F1F1F4;
-      --accent: #27272A;
-      --highlight: #09090B;
+      --border-subtle: #F4F4F5;
+      --accent: #18181B;
+      --success-dark: #065F46;
     }
 
     * {
@@ -30,38 +30,39 @@
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--ink);
-      line-height: 1.5;
-      padding: 2.5rem 1rem;
+      line-height: 1.4;
+      padding: 1.5rem 1rem;
       -webkit-font-smoothing: antialiased;
+      font-size: 11.5px;
     }
 
-    /* BARRA DE IMPRESSÃO SUPERIOR */
+    /* BARRA DE AÇÕES (APENAS TELA) */
     .toolbar {
-      max-width: 800px;
-      margin: 0 auto 1.5rem auto;
+      max-width: 794px;
+      margin: 0 auto 1rem auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .toolbar-info {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--ink-muted);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .btn-print {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       background: var(--ink);
       color: #FFFFFF;
       border: 1px solid var(--ink);
-      padding: 0.65rem 1.25rem;
+      padding: 0.5rem 1rem;
       border-radius: 6px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.15s ease;
@@ -71,59 +72,58 @@
       background: #27272A;
     }
 
-    /* FOLHA A4 PRINCIPAL */
+    /* FOLHA A4 ÚNICA (794px de largura = ~210mm a 96DPI) */
     .proposal-sheet {
-      max-width: 800px;
+      max-width: 794px;
       margin: 0 auto;
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 3.5rem 3.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
     }
 
-    /* HEADER */
+    /* HEADER COMPACTO */
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
     }
 
     .brand-area {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.25rem;
     }
 
     .brand-logo {
-      height: 38px;
+      height: 32px;
       width: auto;
       object-fit: contain;
       display: block;
     }
 
     .brand-sub {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--ink-muted);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 500;
+      letter-spacing: 0.05em;
+      font-weight: 600;
     }
 
     .doc-meta {
       text-align: right;
-      font-size: 0.82rem;
+      font-size: 0.74rem;
       color: var(--ink-muted);
-      line-height: 1.6;
+      line-height: 1.45;
     }
 
     .doc-meta strong {
       color: var(--ink);
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 0.82rem;
     }
 
     .doc-tag {
@@ -131,38 +131,38 @@
       border: 1px solid var(--border);
       background: #FAFAFA;
       color: var(--ink-secondary);
-      padding: 0.2rem 0.55rem;
+      padding: 0.15rem 0.45rem;
       border-radius: 4px;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
-      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+      margin-top: 0.2rem;
     }
 
-    /* CLIENT CARD */
-    .client-card {
+    /* CLIENT BAR COMPACTA */
+    .client-bar {
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 1.2rem 1.4rem;
-      margin-bottom: 2.2rem;
+      padding: 0.65rem 0.9rem;
+      margin-bottom: 1rem;
       display: grid;
-      grid-template-columns: 1.4fr 1.2fr 1fr;
-      gap: 1rem;
+      grid-template-columns: 1.3fr 1.2fr 1fr;
+      gap: 0.8rem;
       background: #FAFAFB;
     }
 
     .client-field label {
       display: block;
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       color: var(--ink-muted);
       font-weight: 600;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.1rem;
     }
 
     .client-field span {
-      font-size: 0.88rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--ink);
       outline: none;
@@ -174,66 +174,61 @@
       border-radius: 2px;
     }
 
-    /* SECTION TITLE */
+    /* TÍTULOS DE SEÇÃO */
     .sec-title {
-      font-size: 0.92rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--ink);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.85rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
     }
 
-    .sec-title svg {
-      color: var(--ink-muted);
-    }
-
-    /* TABLE */
+    /* TABELA DE ESCOPO */
     .table-scope {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 2.2rem;
-      font-size: 0.86rem;
+      margin-bottom: 1rem;
+      font-size: 0.78rem;
     }
 
     .table-scope th {
       text-align: left;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--ink-muted);
-      padding: 0.65rem 0.5rem;
+      padding: 0.35rem 0.3rem;
       border-bottom: 1px solid var(--ink);
       font-weight: 600;
     }
 
     .table-scope td {
-      padding: 0.95rem 0.5rem;
-      border-bottom: 1px solid var(--border);
+      padding: 0.48rem 0.3rem;
+      border-bottom: 1px solid var(--border-subtle);
       vertical-align: top;
     }
 
     .table-scope td strong {
-      display: block;
       color: var(--ink);
       font-weight: 600;
-      margin-bottom: 0.2rem;
+      font-size: 0.78rem;
     }
 
     .table-scope td p {
-      font-size: 0.80rem;
+      font-size: 0.72rem;
       color: var(--ink-secondary);
-      line-height: 1.45;
-      margin: 0;
+      line-height: 1.35;
+      margin: 0.05rem 0 0 0;
     }
 
     .table-scope .col-price {
       text-align: right;
       white-space: nowrap;
-      font-size: 0.85rem;
+      font-size: 0.76rem;
       color: var(--ink-muted);
     }
 
@@ -242,187 +237,171 @@
       color: #A1A1AA;
     }
 
-    /* LEDGER FINANCIAL SUMMARY */
-    .ledger-box {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.3rem 1.5rem;
-      margin-bottom: 2.2rem;
-      background: #FAFAFA;
+    /* GRID DE 2 COLUNAS PARA OTIMIZAR ESPAÇO VERTICAL */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
-    .ledger-line {
+    /* COLUNA DA ESQUERDA: FINANCEIRO & PAGAMENTO */
+    .box-block {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.8rem 0.95rem;
+      background: #FAFAFA;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .ledger-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.55rem 0;
-      font-size: 0.88rem;
+      font-size: 0.76rem;
     }
 
-    .ledger-line.market {
+    .ledger-row.market {
       color: var(--ink-muted);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.75rem;
-      font-size: 0.82rem;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 0.4rem;
+      font-size: 0.72rem;
     }
 
-    .ledger-line.main-item {
-      padding-top: 0.75rem;
+    .ledger-row.main-setup {
+      color: var(--ink);
+      font-weight: 600;
+      padding-top: 0.15rem;
+    }
+
+    .ledger-row.recurr {
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 0.45rem;
       color: var(--ink);
       font-weight: 600;
     }
 
-    .ledger-line.recurr {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.75rem;
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .ledger-line.pix-special {
-      padding-top: 0.85rem;
+    .ledger-row.pix-row {
       color: var(--ink);
       font-weight: 700;
-    }
-
-    .val-highlight {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--ink);
+      padding-top: 0.15rem;
     }
 
     .val-pix {
-      font-size: 1.1rem;
       font-weight: 700;
-      color: #0F766E;
+      color: var(--success-dark);
+      font-size: 0.9rem;
     }
 
-    /* TIMELINE */
-    .timeline-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
-      margin-bottom: 2.2rem;
-    }
-
-    .timeline-card {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.85rem;
-      background: #FFFFFF;
-    }
-
-    .timeline-step {
+    /* BLOCO DE PAGAMENTO INLINE */
+    .payment-subbox {
+      border-top: 1px solid var(--border);
+      padding-top: 0.6rem;
+      margin-top: 0.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
       font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--ink-muted);
-      font-weight: 700;
-      margin-bottom: 0.35rem;
     }
 
-    .timeline-card strong {
+    .pay-item strong {
       display: block;
-      font-size: 0.82rem;
       color: var(--ink);
-      margin-bottom: 0.3rem;
-      line-height: 1.35;
+      font-size: 0.73rem;
     }
 
-    .timeline-card p {
-      font-size: 0.75rem;
-      color: var(--ink-secondary);
-      line-height: 1.4;
-      margin: 0;
-    }
-
-    /* GUARANTEE BOX MINIMALISTA */
-    .guarantee-minimal {
-      border: 1px solid #D4D4D8;
-      border-left: 3px solid var(--ink);
-      border-radius: 4px;
-      padding: 1.1rem 1.3rem;
-      margin-bottom: 2.2rem;
-      background: #FAFAFA;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .guarantee-minimal svg {
-      color: var(--ink);
-      flex-shrink: 0;
-      margin-top: 0.15rem;
-    }
-
-    .guarantee-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.25rem;
-    }
-
-    .guarantee-text {
-      font-size: 0.80rem;
-      color: var(--ink-secondary);
-      line-height: 1.45;
-    }
-
-    /* PAYMENT DATA */
-    .payment-grid {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.3rem 1.4rem;
-      margin-bottom: 2.4rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+    .pay-item span.key {
+      display: inline-block;
       background: #FFFFFF;
-    }
-
-    .payment-opt-title {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.8rem;
       font-weight: 700;
       color: var(--ink);
-      margin-bottom: 0.5rem;
+      margin: 0.15rem 0;
+    }
+
+    /* COLUNA DA DIREITA: CRONOGRAMA & GARANTIA */
+    .timeline-compact {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 0.45rem;
     }
 
-    .payment-opt-title svg {
-      color: var(--ink-muted);
+    .timeline-item {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      font-size: 0.72rem;
+      line-height: 1.35;
     }
 
-    .payment-desc {
-      font-size: 0.82rem;
-      color: var(--ink-secondary);
-      line-height: 1.5;
-    }
-
-    .payment-key {
-      display: inline-block;
-      background: #F4F4F5;
+    .t-badge {
+      background: #FFFFFF;
       border: 1px solid var(--border);
-      padding: 0.25rem 0.6rem;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .t-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .t-text span {
+      color: var(--ink-secondary);
+    }
+
+    /* GARANTIA MINIMALISTA INLINE */
+    .guarantee-card {
+      border: 1px solid #CBD5E1;
+      border-left: 3px solid var(--ink);
       border-radius: 4px;
-      font-family: monospace;
-      font-size: 0.92rem;
+      padding: 0.6rem 0.75rem;
+      background: #FFFFFF;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      margin-top: 0.4rem;
+    }
+
+    .guarantee-card svg {
+      flex-shrink: 0;
+      color: var(--ink);
+      margin-top: 0.1rem;
+    }
+
+    .guarantee-card h4 {
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--ink);
-      margin: 0.35rem 0;
+      margin-bottom: 0.15rem;
     }
 
-    /* FOOTER & SIGNATURES */
+    .guarantee-card p {
+      font-size: 0.70rem;
+      color: var(--ink-secondary);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    /* FOOTER & ASSINATURA COMPACTO */
     .proposal-footer {
       border-top: 1px solid var(--border);
-      padding-top: 1.6rem;
+      padding-top: 0.85rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      font-size: 0.80rem;
+      font-size: 0.72rem;
       color: var(--ink-muted);
     }
 
@@ -431,28 +410,38 @@
     }
 
     .signature-line {
-      width: 200px;
+      width: 170px;
       border-bottom: 1px solid var(--ink);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.25rem;
       display: inline-block;
     }
 
     .sign-name {
       font-weight: 700;
       color: var(--ink);
-      font-size: 0.85rem;
+      font-size: 0.78rem;
     }
 
     .sign-role {
-      font-size: 0.76rem;
+      font-size: 0.68rem;
       color: var(--ink-muted);
     }
 
-    /* PRINT SPECIFICS */
+    /* IMPRESSÃO RIGOROSA: 1 PÁGINA A4 APENAS */
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+
     @media print {
-      body {
-        background: #FFFFFF;
-        padding: 0;
+      html, body {
+        background: #FFFFFF !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       .toolbar {
@@ -460,29 +449,30 @@
       }
 
       .proposal-sheet {
-        border: none;
-        box-shadow: none;
-        padding: 1cm 1cm;
-        max-width: 100%;
-        border-radius: 0;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
       }
 
       .btn-print {
-        display: none;
+        display: none !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA DE IMPRESSÃO SUPERIOR (OCULTA NO PDF) -->
+  <!-- BARRA DE AÇÕES (NÃO SAI NO PDF) -->
   <div class="toolbar">
     <div class="toolbar-info">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      Documento Executivo de Proposta · TROPHÉ
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Nota de Orçamento Executiva · Ajustada para 1 Página A4
     </div>
     <button class="btn-print" onclick="window.print()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       Salvar em PDF / Imprimir
     </button>
   </div>
@@ -498,14 +488,13 @@
       </div>
       <div class="doc-meta">
         <strong>PROPOSTA Nº #TRP-2026-001</strong><br />
-        <span>Emissão: 16 de Setembro de 2026</span><br />
-        <span>Validade: 48 horas</span><br />
+        <span>Emissão: 16 de Setembro de 2026 · Validade: 48h</span><br />
         <span class="doc-tag">Condição Especial · 1ª Clínica em Matão</span>
       </div>
     </header>
 
     <!-- CLIENTE -->
-    <section class="client-card">
+    <section class="client-bar">
       <div class="client-field">
         <label>Consultório / Clínica</label>
         <span contenteditable="true">Clínica & Consultório Particular</span>
@@ -520,45 +509,45 @@
       </div>
     </section>
 
-    <!-- ESCOPO TÉCNICO -->
+    <!-- ESCOPO COMPACTO -->
     <section>
       <h2 class="sec-title">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Escopo dos Serviços Inclusos
       </h2>
       <table class="table-scope">
         <thead>
           <tr>
-            <th style="width: 76%;">Módulo & Entregáveis</th>
-            <th style="width: 24%; text-align: right;">Valor de Tabela</th>
+            <th style="width: 78%;">Módulo & Entregáveis Técnicos</th>
+            <th style="width: 22%; text-align: right;">Tabela</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
               <strong>1. Captação de Novos Pacientes Particulares</strong>
-              <p>Criação e gestão contínua de anúncios locais no Instagram, Facebook e Google focados no público de procedimentos particulares em Matão e cidades vizinhas.</p>
+              <p>Anúncios geolocalizados no Instagram, Facebook e Google focados no público particular de Matão e região.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 3.000</span></td>
           </tr>
           <tr>
             <td>
-              <strong>2. Triagem e Qualificação no WhatsApp</strong>
-              <p>Estruturação de perguntas objetivas para filtrar quem procura convênio ou preço antes de repassar o contato para a recepção.</p>
+              <strong>2. Triagem e Qualificação Rápida no WhatsApp</strong>
+              <p>Perguntas automáticas para filtrar quem procura convênio ou preço antes de repassar o contato para a recepção.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 2.000</span></td>
           </tr>
           <tr>
             <td>
               <strong>3. Treinamento da Recepção & Prevenção de Faltas</strong>
-              <p>Scripts humanizados de acolhimento rápido para a secretária e confirmação de presença 24h antes com mapa de rota para evitar faltas.</p>
+              <p>Scripts humanizados de acolhimento rápido para a secretária e confirmação de presença 24h antes com mapa de rota.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
           </tr>
           <tr>
             <td>
-              <strong>4. Resgate de Pacientes Antigos & Retornos Periódicos</strong>
-              <p>Ação direta para reativar prontuários inativos há mais de 6 meses (gerando receita rápida) + rotina de lembretes preventivos.</p>
+              <strong>4. Resgate de Prontuários Antigos & Retornos Periódicos</strong>
+              <p>Ação direta de reativação da base inativa há mais de 6 meses (receita rápida no caixa) + rotina de lembretes preventivos.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
           </tr>
@@ -566,95 +555,85 @@
       </table>
     </section>
 
-    <!-- RESUMO FINANCEIRO -->
-    <section class="ledger-box">
-      <div class="ledger-line market">
-        <span>Valor oficial se contratado separadamente:</span>
-        <span class="price-strike">R$ 8.000,00</span>
-      </div>
-      <div class="ledger-line main-item">
-        <span>Taxa de Configuração & Início (Setup de Implantação):</span>
-        <span class="val-highlight">R$ 2.500,00 <span style="font-size:0.78rem;font-weight:400;color:var(--ink-muted);">(em até 12x no cartão)</span></span>
-      </div>
-      <div class="ledger-line recurr">
-        <span>Gestão, Otimização & Suporte Contínuo:</span>
-        <span class="val-highlight">R$ 1.000,00 <span style="font-size:0.78rem;font-weight:400;color:var(--ink-muted);">/mês</span></span>
-      </div>
-      <div class="ledger-line pix-special">
-        <span>Condição Especial à Vista via PIX:</span>
-        <span class="val-pix">R$ 2.000,00 <span style="font-size:0.78rem;font-weight:500;color:var(--ink-muted);">(Desconto direto de R$ 500)</span></span>
-      </div>
-    </section>
+    <!-- GRID SPLIT: INVESTIMENTO/PAGAMENTO (ESQ) + CRONOGRAMA/GARANTIA (DIR) -->
+    <div class="split-grid">
+      
+      <!-- COLUNA ESQUERDA: FINANCEIRO & PAGAMENTO -->
+      <div class="box-block">
+        <div class="sec-title" style="margin-bottom:0.2rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Condições Financeiras
+        </div>
 
-    <!-- CRONOGRAMA 60 DIAS -->
-    <section>
-      <h2 class="sec-title">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Cronograma de 60 Dias com Acompanhamento
-      </h2>
-      <div class="timeline-grid">
-        <div class="timeline-card">
-          <div class="timeline-step">Dias 01 a 15</div>
-          <strong>Onboarding & Resgate</strong>
-          <p>Alinhamento com recepção, acessos e disparo da ação de resgate na base antiga.</p>
+        <div class="ledger-row market">
+          <span>Tabela oficial se contratado separadamente:</span>
+          <span class="price-strike">R$ 8.000,00</span>
         </div>
-        <div class="timeline-card">
-          <div class="timeline-step">Dias 16 a 30</div>
-          <strong>Anúncios no Ar</strong>
-          <p>Subida das campanhas locais no Instagram/Google para entrada de novos pacientes.</p>
+        <div class="ledger-row main-setup">
+          <span>Taxa Única de Configuração (Setup):</span>
+          <span>R$ 2.500,00 <small style="font-weight:400;color:var(--ink-muted);">(até 12x)</small></span>
         </div>
-        <div class="timeline-card">
-          <div class="timeline-step">Dias 31 a 45</div>
-          <strong>Ajustes de Triagem</strong>
-          <p>Calibração dos filtros de mensagem e rotina de confirmação anti-falta.</p>
+        <div class="ledger-row recurr">
+          <span>Gestão & Suporte Contínuo:</span>
+          <span>R$ 1.000,00 <small style="font-weight:400;color:var(--ink-muted);">/mês</small></span>
         </div>
-        <div class="timeline-card">
-          <div class="timeline-step">Dias 46 a 60</div>
-          <strong>Rotina Consolidada</strong>
-          <p>Estruturação de retornos periódicos e alinhamento mensal dos resultados.</p>
+        <div class="ledger-row pix-row">
+          <span>Condição Especial à Vista via PIX:</span>
+          <span class="val-pix">R$ 2.000,00</span>
         </div>
-      </div>
-    </section>
 
-    <!-- GARANTIA SEM FIDELIDADE -->
-    <section class="guarantee-minimal">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <div>
-        <div class="guarantee-title">Compromisso Sem Fidelidade: Contrato Mês a Mês</div>
-        <div class="guarantee-text">
-          Você não fica preso a contratos longos de 6 ou 12 meses. O nosso acordo é <strong>mês a mês</strong>. Se no primeiro mês você não estiver satisfeito com o nosso suporte ou movimento gerado, você pode encerrar o serviço a qualquer momento, <strong>sem pagar nenhuma multa ou taxa de cancelamento</strong>.
+        <!-- PAGAMENTO -->
+        <div class="payment-subbox">
+          <div class="pay-item">
+            <strong>Opção 01: À Vista via PIX (R$ 2.000)</strong>
+            <span>Chave CPF:</span> <span class="key">450.297.108.17</span> <span>· Lucas Fernandes</span>
+          </div>
+          <div class="pay-item">
+            <strong>Opção 02: Cartão de Crédito (até 12x de R$ 248,80)</strong>
+            <span>Link seguro emitido via <strong>Mercado Pago</strong> (solicite no WhatsApp).</span>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- DADOS PARA RESERVA E PAGAMENTO -->
-    <section class="payment-grid">
-      <div>
-        <div class="payment-opt-title">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Opção 01: À Vista via PIX (R$ 2.000)
+      <!-- COLUNA DIREITA: CRONOGRAMA 60D & GARANTIA -->
+      <div class="box-block">
+        <div class="sec-title" style="margin-bottom:0.2rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Cronograma dos 60 Dias & Suporte
         </div>
-        <div class="payment-desc">
-          Chave PIX (CPF):<br />
-          <span class="payment-key">450.297.108.17</span><br />
-          Favorecido: Lucas Fernandes<br />
-          Envio do comprovante direto no WhatsApp.
-        </div>
-      </div>
-      <div>
-        <div class="payment-opt-title">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          Opção 02: Cartão (até 12x via Mercado Pago)
-        </div>
-        <div class="payment-desc">
-          Parcelamento em até 12x de R$ 248,80.<br />
-          Link seguro gerado diretamente pelo <strong>Mercado Pago</strong>.<br />
-          Solicite o link no WhatsApp para parcelar no cartão corporativo.
-        </div>
-      </div>
-    </section>
 
-    <!-- ASSINATURAS -->
+        <div class="timeline-compact">
+          <div class="timeline-item">
+            <span class="t-badge">01 a 15d</span>
+            <div class="t-text"><strong>Onboarding & Resgate:</strong> <span>alinhamento, acessos e disparo nos contatos antigos.</span></div>
+          </div>
+          <div class="timeline-item">
+            <span class="t-badge">16 a 30d</span>
+            <div class="t-text"><strong>Anúncios no Ar:</strong> <span>campanhas no Instagram e Google ativadas para novos pacientes.</span></div>
+          </div>
+          <div class="timeline-item">
+            <span class="t-badge">31 a 45d</span>
+            <div class="t-text"><strong>Calibração:</strong> <span>ajuste do filtro no WhatsApp e mensagens anti-falta com mapa.</span></div>
+          </div>
+          <div class="timeline-item">
+            <span class="t-badge">46 a 60d</span>
+            <div class="t-text"><strong>Consolidação:</strong> <span>rotina de retornos preventivos e prestação de contas mensal.</span></div>
+          </div>
+        </div>
+
+        <!-- GARANTIA -->
+        <div class="guarantee-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <h4>Acordo Mês a Mês (Sem Fidelidade)</h4>
+            <p>Você não fica preso a contratos longos. Se no 1º mês você não estiver satisfeito com o nosso suporte ou movimento gerado, pode encerrar a qualquer momento <strong>sem nenhuma multa</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER & ASSINATURA -->
     <footer class="proposal-footer">
       <div>
         <strong>TROPHÉ TECNOLOGIA & ATRAÇÃO CLÍNICA</strong><br />
