@@ -1,100 +1,169 @@
-# Script de Prospecção Ativa: Auditoria dos 3 Sangramentos
-## Abordagem, Diagnóstico Financeiro e Fechamento da Infraestrutura TROPHÉ de Receita Clínica
-### Baseado na Metodologia de Engenharia de Receita e Quantificação da Dor (Kelvin Cleto Framework)
-
-> **Princípio Fundamental de Aplicação:**  
-> Você não é um vendedor de agência oferecendo "tráfego pago" ou "postzinho no Instagram". Você atua como um **Arquiteto de Receita Clínica**. Sua missão é diagnosticar onde o dinheiro está escorrendo pelo ralo na operação de front-office da clínica e quantificar esse prejuízo em reais antes de qualquer conversa sobre preço ou ferramentas.
-> Envie uma mensagem por vez no WhatsApp e aguarde a resposta natural do profissional ou da secretária.
+# Playbook Operacional de Vendas & Entrega · TROPHÉ
+## Da Prospecção no WhatsApp ao Fechamento e Entrega de 60 Dias
+### Comunicação 100% Humana, Direta e Sem Jargões Técnicos
 
 ---
 
-## Fase 1: Abordagem Inicial no WhatsApp
+# PARTE 1: OS PROCESSOS DE ENTREGA (COMO ATENDER O CLIENTE NA PRÁTICA)
 
-### Opção A: Abordagem Direta para o Dono / Doutor(a) (Recomendada)
-> "Oi [Dra. Fernanda / Dr. Lucas], tudo bem? Me chamo Lucas, atuo aqui em Matão e na nossa região com engenharia de receita para consultórios e clínicas particulares.
-> Reparei na excelência técnica do seu espaço e gostaria de te fazer uma pergunta rápida e sincera sobre a rotina da sua clínica: você sabe com precisão quanto dinheiro a sua recepção e a sua base de prontuários inativos deixam na mesa todo mês?"
+Como você ainda não tem um software fechado, você vende a **solução do problema** e entrega através de um serviço próximo e estruturado. Para garantir que o cliente fique feliz e renove mês a mês, você precisa de **5 processos simples**:
 
-### Opção B: Abordagem pelo Contato da Recepção / Secretária
-> "Olá, tudo bem? Me chamo Lucas, falo aqui da região de Matão. Gostaria de uma orientação rápida da recepção: quem é o responsável pela gestão e pelas decisões de crescimento do consultório do(a) [Dr. Nome]? 
-> Queria enviar um raio-x gratuito de 15 minutos sobre estancamento de faltas e reativação de prontuários que montamos para clínicas da nossa cidade. Com quem posso falar diretamente?"
+```
+[1. Onboarding Rápido] ──► [2. Treinamento da Secretária] ──► [3. Resgate da Base Antiga] ──► [4. Anúncios Locais] ──► [5. Suporte & Relatório Semanal]
+```
 
-### Se não responder em 24h (Follow-up Único e Elegante):
-> "Imagino que a rotina entre atendimentos e procedimentos esteja intensa por aí. Sem problemas! Se em algum momento fizer sentido fazermos uma auditoria rápida de 15 minutos para mapear os 3 sangramentos invisíveis de receita da clínica, estou à disposição. Um abraço e excelente semana!"
+### Processo 1: Onboarding Sem Fricção (Dias 01 a 07)
+*O objetivo é pegar o que você precisa sem sobrecarregar o médico.*
+* **Crie um grupo no WhatsApp:** `[Nome da Clínica] + Lucas | TROPHÉ` (coloque o médico e a secretária).
+* **Colete apenas o essencial (por mensagem ou formulário de 5 perguntas):**
+  1. Quais são os 2 procedimentos mais lucrativos que o doutor mais gosta de fazer? (Ex: implante, botox, harmonização).
+  2. Qual o valor médio ou faixa de preço desses procedimentos?
+  3. Quem responde o WhatsApp no dia a dia? (Nome da secretária).
+  4. Horários de atendimento e fotos bonitas do consultório/doutor.
+* **Acesso às Contas:** Peça acesso ao Instagram da clínica e ao Gerenciador de Anúncios do Facebook (ou ajude a secretária a te colocar como administrador).
 
----
+### Processo 2: Alinhamento da Secretária (Dias 07 a 10)
+*O maior gargalo de clínica é secretária que demora ou responde seco.*
+* Faça um áudio ou ligação de 15 minutos com a secretária: elogie o trabalho dela e mostre que você veio para **ajudá-la**, não para fiscalizá-la.
+* Entregue o **Script de Atendimento Rápido (1 página):**
+  - Como responder em menos de 5 minutos;
+  - O que responder quando a pessoa pergunta *"quanto custa?"* (acolher a queixa, explicar o benefício e convidar para uma avaliação sem assustar com o preço);
+  - Mensagem de confirmação 24h antes com a localização no Google Maps para evitar faltas.
 
-## Fase 2: Diagnóstico Numérico & As Perguntas de Sangramento
+### Processo 3: Resgate da Base Antiga (Dias 10 a 20) — *Dinheiro Rápido no Caixa*
+*Este é o seu maior trunfo: gera receita antes mesmo dos anúncios começarem a gastar.*
+* Peça para a secretária exportar uma lista de contatos que foram atendidos nos últimos 6 a 12 meses e não voltaram mais.
+* Passe uma mensagem simples e ética de retorno:  
+  > *"Olá [Nome], tudo bem? Aqui é a [Nome da Secretária] da clínica do(a) [Dr. Nome]. O doutor pediu para verificar como está a sua rotina pós-procedimento. Ele reservou alguns horários nesta quinta e sexta para revisão preventiva dos nossos pacientes. Gostaria que eu reservasse um horário para você?"*
+* A secretária dispara para 15 a 20 pessoas por dia. Pacientes agendam e o cliente já vê dinheiro entrando no caixa logo nas primeiras duas semanas.
 
-Quando o interlocutor responder ("Oi, pode falar", "Do que se trata?", "Como funciona?"), assuma a postura de auditor de front-office e faça o diagnóstico:
+### Processo 4: Captação de Novos Pacientes (Dias 20 a 45)
+* Suba anúncios simples e diretos no Instagram/Facebook focados em Matão e região.
+* Use fotos reais do consultório e do doutor (anúncio com cara de "post de banco de imagens" não converte em cidade do interior).
+* O anúncio direciona para o WhatsApp da clínica com mensagem automática de interesse.
 
-> "Perfeito, [Dra. / Dr.]! A grande maioria das clínicas que faturam entre R$ 35k e R$ 100k/mês aqui na nossa região perdem mais de R$ 25.000 todo mês sem perceber por 3 falhas de processo que a secretária chama de 'curioso'.
-> Para eu te mostrar exatamente onde o dinheiro está escorrendo aí dentro, me responda só 3 números rápidos:
-> 
-> 1. Quantas pessoas chamam no seu WhatsApp por mês querendo informações ou agendamento? (Aproximadamente)
-> 2. Quantos pacientes você estima que tem cadastrados no prontuário/software que não pisam no consultório há mais de 6 meses?
-> 3. Em média, quantas faltas ou desmarcações de última hora acontecem na sua agenda por semana?"
-
-### Se o lead hesitar ou achar que a clínica dele está 100% redonda (A Pergunta-Armadilha):
-> "Vou te dar um exemplo real: se eu mandar uma mensagem no WhatsApp da sua clínica agora às 14h querendo fazer um procedimento de R$ 1.800 particular, em quantos minutos a sua recepção responde e o que ela diz?
-> Na prática, 8 de cada 10 secretárias demoram 40 minutos e respondem seco: 'Fica a partir de R$ 1.800, quer agendar?'. A paciente já fechou com o concorrente que respondeu em 1 minuto, e a secretária diz ao médico: 'Doutor, era só mais uma curiosa que sumiu'. Isso custa R$ 10.000 por mês."
-
----
-
-## Fase 3: A Devolutiva Matemática (Apresentação do Sangramento)
-
-Assim que o lead responder (mesmo com estimativas aproximadas como "umas 40 mensagens", "uns 300 prontuários", "umas 2 faltas"), envie o cálculo do prejuízo:
-
-> "Veja que interessante (e assustador) esses números na prática da sua clínica:
-> 
-> 🔴 **1. No Ralo da Recepção (~R$ 10.000/mês):** Pelos seus 40 a 50 contatos mensais, sem triagem inteligente e acolhimento em menos de 1 minuto, a taxa de fechamento fica travada em 10%–15%. São cerca de 8 a 10 pacientes particulares perdidos todo mês que vão para concorrentes porque a recepção demorou ou jogou o preço seco.
-> 
-> 🔴 **2. No Desperdício da Base Antiga (~R$ 12.000/mês):** Nesses 300+ pacientes parados no seu prontuário que já confiam em você, sem uma régua ativa de retorno e revisão preventiva, a clínica deixa de reativar 12 a 16 procedimentos por mês. Dinheiro limpo parado com R$ 0 de tráfego.
-> 
-> 🔴 **3. No Custo Invisível do No-Show (~R$ 4.000/mês):** Essas 2 faltas semanais somam 8 a 10 horários nobres perdidos. Com o custo fixo de sala, equipe e hora clínica correndo, você queima mais de R$ 4.000 em custo de oportunidade.
-> 
-> **Somando tudo:** A sua clínica está deixando cerca de **R$ 26.000 todo mês na mesa**. Em 12 meses, são **mais de R$ 312.000 de dinheiro que deveria estar no seu caixa**."
+### Processo 5: Suporte Contínuo & Relatório Mensal Sem Encheção de Saco (Mês a Mês)
+* **Toda segunda-feira:** Mande uma mensagem rápida no grupo: *"Bom dia! Passando para ver como foi o movimento da semana passada. Quantas pessoas chamaram e quantas conseguimos agendar?"*
+* **Final do Mês:** Mande um áudio de 2 minutos para o médico:  
+  > *"Doutor, fechando o nosso primeiro mês: investimos R$ 600 em anúncios no Meta, tivemos 38 contatos no WhatsApp, a recepção agendou 9 avaliações e tivemos 7 presenças confirmadas. Para o próximo mês, vamos focar no procedimento Y que teve a melhor procura."*
 
 ---
 
-## Fase 4: Apresentação da Solução (Infraestrutura TROPHÉ de Receita)
+# PARTE 2: SCRIPT DE PROSPECÇÃO & FECHAMENTO NO WHATSAPP
 
-Após o impacto dos números, o cliente naturalmente perguntará: *"E como resolve isso?"* ou *"O que vocês fazem?"*.
-
-### Mensagem 1: O Que é a Infraestrutura
-> "Nós não vendemos 'anúncio solto' nem 'ferramenta de chatbot'. Nós instalamos a **Infraestrutura TROPHÉ de Receita Clínica**, que conecta 4 camadas proprietárias:
-> 1. **Demanda Qualificada:** Anúncios no Meta e Google Ads que atraem quem tem poder aquisitivo para atendimento particular.
-> 2. **Triagem Inteligente 24x7:** Filtro que barra quem quer convênio ou preço baixo antes de chamar a recepção.
-> 3. **Processo Comercial da Recepção & Anti-Falta:** Acolhimento em < 1 minuto + confirmação com rota no Google Maps para zerar no-show.
-> 4. **Motor de Retorno & Reativação:** Régua contínua de 30 a 180 dias + campanha de resgate na base antiga já na primeira semana."
-
-### Mensagem 2: Apresentação dos Valores e Condição para a 1ª Cliente
-> "A nossa tabela oficial de implantação da infraestrutura custa **R$ 8.000 de setup** e **R$ 2.500/mês de gestão e inteligência** — o que representa menos de 5% dos R$ 300.000 que a clínica recupera no ano.
-> 
-> Porém, como estamos selecionando a **nossa primeira cliente parceira aqui em Matão e região** para validar e documentar esse estudo de caso, liberamos uma condição única:
-> - **Setup de Implantação:** De R$ 8.000 por **R$ 2.500 em até 12x no cartão** (ou **R$ 2.000 à vista no PIX**).
-> - **Gestão e Otimização Mensal:** **R$ 1.000/mês** (sem fidelidade contratual abusiva).
-> 
-> A contrapartida que pedimos é apenas a autorização dos dados anônimos para o nosso case e um depoimento em vídeo após os primeiros 60 dias."
-
-### Mensagem 3: A Garantia Blindada
-> "E o risco financeiro fica 100% sob a nossa responsabilidade: se em 30 dias nós não gerarmos pelo menos 30 contatos qualificados no seu WhatsApp, você fica isenta da próxima mensalidade e nós trabalhamos de graça até atingir a meta.
-> Ou seja: se a infraestrutura trouxer apenas 1 ou 2 procedimentos particulares no mês, o investimento já está totalmente pago."
-
-### Mensagem 4: Fechamento / Chamada para Ação
-> "Prefere que eu já reserve a vaga de 1ª parceira para a sua especialidade aqui na cidade e te envie o cronograma técnico de instalação, ou prefere fazermos uma ligação rápida de 10 minutos para tirar dúvidas da recepção?"
+### 💬 Regra de Ouro da Comunicação:
+* **Zero jargões:** Proibido usar *"turnkey"*, *"SLA"*, *"front-office"*, *"LTV"*, *"parceira fundadora"*, *"lead scoring"*.
+* **Use a linguagem do médico:** *"paciente particular"*, *"agenda cheia"*, *"evitar faltas"*, *"secretária treinada"*, *"pacientes antigos que sumiram"*, *"deixo tudo pronto pra você"*.
 
 ---
 
-## Fase 5: Tratamento Estratégico de Objeções (Kelvin Cleto Mindset)
+## 1. Abordagem Inicial para Lead Frio (TEXTO CURTO)
 
-### Objeção 1: "Já contratei agência de tráfego antes e só vieram curiosos."
-> "Te entendo perfeitamente, e isso é o padrão de mercado. Agências comuns vendem ferramentas soltas para 10 nichos diferentes. Elas colocam um anúncio no ar e jogam todo mundo desqualificado no WhatsApp da sua secretária. Isso não gera receita, gera sobrecarga. A nossa entrega é uma **Infraestrutura Proprietária com Filtro Anti-Curioso e Processo de Vendas**, onde nós assumimos a responsabilidade do resultado de ponta a ponta. E se não gerarmos 30 contatos qualificados, você nem paga a próxima mensalidade."
+O objetivo é que o médico (ou a secretária) leia em 5 segundos e sinta vontade de responder, sem achar que é spam de agência:
 
-### Objeção 2: "Está caro / Não tenho essa verba de setup agora."
-> "Compreendo a cautela. Mas veja a matemática: a sua clínica está perdendo cerca de R$ 26.000 todo mês sem essa infraestrutura. Manter a clínica como está hoje custa R$ 312.000 por ano de faturamento não realizado. O setup de R$ 2.000 no PIX (ou parcelado em 12x) representa menos de 1% do dinheiro que está escorrendo da sua mesa. Com 1 ou 2 procedimentos de rotina, a infraestrutura se paga no primeiro mês. O que custa caro de verdade é continuar com a porta de saída aberta."
+### Opção A (Direto para o Doutor / Doutora):
+> "Oi [Dra. Camila / Dr. Lucas], tudo bem? Me chamo Lucas, falo aqui da região de Matão.  
+> Vi o perfil do seu consultório e achei o seu trabalho impecável. Queria te fazer uma pergunta rápida e sincera:  
+> Você já tem alguma rotina hoje para trazer de volta os pacientes antigos que passaram com você no último ano e nunca mais retornaram?"
 
-### Objeção 3: "E sobre a verba de anúncios do Meta e Google?"
-> "100% transparente: recomendamos uma verba de R$ 600 a R$ 1.000 por mês. Esse valor é debitado diretamente nas plataformas (Meta e Google) no cartão corporativo da clínica. Não passa pela TROPHÉ, não há comissão escondida e você tem acesso ao painel de prestação de contas em tempo real."
+### Opção B (Focando na Dor da Recepção):
+> "Oi [Dra. Camila / Dr. Lucas], tudo bem? Me chamo Lucas, atuo aqui na nossa região de Matão com consultórios particulares.  
+> Sei que a sua rotina clínica é corrida, mas queria te fazer uma pergunta rápida: você já percebeu quanto paciente particular a sua recepção acaba perdendo todo mês simplesmente porque a pessoa pede preço no WhatsApp e some?"
 
-### Objeção 4: "Preciso alinhar com meu sócio / marido / pensar com calma."
-> "Perfeito e faz todo sentido. Para te ajudar a apresentar os números com clareza para ele, quer que eu te envie um resumo de 1 página com o cálculo dos 3 sangramentos da clínica e a estrutura das 4 camadas, ou prefere que a gente faça uma call rápida de 10 minutos os três juntos para que eu tire as dúvidas técnicas?"
+*Se quem responder for a secretária:*
+> "Olá! Tudo bem? Me chamo Lucas, falo aqui da nossa região de Matão. Gostaria de uma ajuda rápida da recepção: quem cuida das decisões de crescimento e agenda do consultório do(a) [Dr. Nome]? Queria apresentar uma ideia rápida para reativar pacientes antigos que temos rodado aqui na região."
+
+---
+
+## 2. Quando o Lead Responder: O Diagnóstico em 3 Perguntas (TEXTO)
+
+Assim que responder (*"Oi Lucas, tudo bem? Como assim?", "A gente não faz nada com os antigos", "Do que se trata?"*):
+
+> "Perfeito, [Dra. / Dr.]! A maioria dos consultórios particulares aqui da nossa região perdem muito dinheiro sem perceber por 3 coisas simples: demora na resposta da recepção, falta de contato com quem já foi paciente e desmarcações em cima da hora.  
+> Para eu te mostrar onde o seu consultório pode melhorar rápido, me passa só 3 números por cima:
+> 
+> 1. Mais ou menos quantas pessoas chamam no seu WhatsApp por mês querendo informações ou agendar?  
+> 2. Quantos pacientes você estima que já atendeu no último ano e que estão há mais de 6 meses sem voltar?  
+> 3. Costuma ter muita falta ou desmarcação na semana?"
+
+---
+
+## 3. Apresentação dos Números + Link da Página (TEXTO + ÁUDIO)
+
+Quando ele passar os números (mesmo que aproximados):
+
+**1. Mande a conta em texto:**
+> "Veja que interessante na realidade do seu consultório:  
+> 🔴 **Na recepção:** Se entram 40 a 50 contatos no mês e a resposta demora ou joga só o preço seco, pelo menos 8 pacientes particulares vão fechar com outro consultório.  
+> 🔴 **Nos pacientes antigos:** Se você tem 300 pacientes na sua base que já confiam em você e a gente reativar só 10 deles por mês para revisão, é receita limpa entrando com custo zero de anúncio.  
+> 🔴 **Nas faltas:** 2 desmarcações por semana são 8 horários nobres perdidos no mês com ar-condicionado e secretária pagos."
+
+**2. Imediatamente após, mande este áudio curto:**
+> 🎙️ **Áudio (35s · Tom tranquilo e prestativo):**  
+> *"Doutor(a), te mandei esse resumo porque o meu trabalho aqui na região é justamente resolver essas pontas. A gente monta uma estrutura completa para a clínica: traz pacientes particulares novos pelos anúncios, treina a secretária com scripts que fecham, cria um sistema para evitar faltas e reativa os pacientes antigos que estão parados.*  
+> *Eu preparei uma página rápida que explica tudo em detalhes, inclusive o plano de 60 dias para colocar até 20 novos pacientes particulares na sua agenda. Dá uma olhada rápida que já te explico como funciona o início:"*  
+> *(Envie o link da sua página)*
+
+---
+
+## 4. A Tríade de Fechamento (As 3 Perguntas Reais)
+
+Após ler a página ou perguntar pelo WhatsApp, conduza com essas respostas:
+
+### Pergunta 1: "Como funciona na prática? O que eu preciso fazer?"
+> 🎙️ **Áudio (45s):**  
+> *"Doutor(a), funciona de forma bem leve para você. Você não vai precisar virar especialista em marketing nem perder tempo gerenciando ferramentas.*  
+> *Eu cuido de toda a parte estratégica: crio os anúncios no Instagram e Google para atrair pacientes da nossa cidade, monto o fluxo de triagem no WhatsApp para a secretária não perder tempo com quem quer convênio ou preço baixo, e acompanho a sua equipe toda semana.*  
+> *A única coisa que você e a sua secretária precisam fazer é atender bem as pessoas que chegarem, seguindo as mensagens que eu mesmo vou deixar prontas. A sua rotina continua focada 100% no atendimento clínico."*
+
+### Pergunta 2: "Como é o início? Quais os passos dos 60 dias?"
+*(Mande em TEXTO organizado e fácil de ler)*
+
+> "O nosso cronograma de 60 dias é dividido de forma bem prática:
+> 
+> 📋 **Primeiros 10 dias (Onboarding & Início Rápido):** A gente faz um alinhamento rápido com você e sua secretária, pega os acessos básicos e já roda a **mensagem de resgate nos seus pacientes antigos**. Isso já começa a colocar dinheiro no caixa logo nas primeiras semanas.  
+> 🎯 **Dias 11 a 30 (Novos Anúncios no Ar):** Colocamos as campanhas para rodar no Instagram e Google para Matão e região, trazendo pessoas novas querendo procedimentos particulares.  
+> ⚙️ **Dias 31 a 60 (Ajustes & Rotina Contínua):** Calibramos o filtro do WhatsApp para a secretária receber contatos cada vez mais qualificados, ativamos os lembretes para evitar faltas e acompanhamos o resultado semana a semana.  
+> 🤝 **Suporte Contínuo:** Eu fico em contato direto com você e sua secretária no WhatsApp durante todo o processo para tirar dúvidas e otimizar a agenda."
+
+### Pergunta 3: "E sobre valores e contrato? Como a gente fecha?"
+> 🎙️ **Áudio (40s):**  
+> *"Doutor(a), como estou abrindo essa condição especial para a primeira clínica de Matão neste ciclo, eu reduzi o valor de início de R$ 8.000 para R$ 2.000 no PIX à vista (ou em até 12x no cartão), e o acompanhamento mensal fica por R$ 1.000.*  
+> *E o melhor de tudo: você não tem nenhum contrato de fidelidade de 6 ou 12 meses preso com a gente. O nosso acordo é mês a mês. Se no primeiro mês você não gostar do suporte ou do movimento gerado, você pode encerrar sem pagar nenhuma multa.*  
+> *Vou te mandar aqui em PDF a nossa **Nota de Orçamento Executiva** com todo esse escopo e o cronograma formalizado. Dá uma olhada:"*
+
+---
+
+## 5. Envio da Nota de Orçamento em PDF (TEXTO + ARQUIVO)
+
+*(Gere o PDF em `orcamento.html` e envie junto com esta mensagem):*
+
+> 📄 *(Anexo: Orcamento_Trophe_NomeDaClinica.pdf)*  
+> 
+> "Doutor(a), segue a sua **Nota de Orçamento Executiva (#TRP-2026-001)**.  
+> 
+> Nela você encontra:  
+> ✅ O que está incluso (anúncios, triagem, treinamento da secretária e resgate da base);  
+> ✅ O cronograma real dos primeiros 60 dias com suporte contínuo;  
+> ✅ A nossa garantia sem fidelidade (contrato mês a mês, sem multa de cancelamento);  
+> ✅ Os dados para pagamento.  
+> 
+> **Para iniciarmos:**  
+> • **À vista no PIX:** R$ 2.000,00 (Chave Celular: `11957622191` · Lucas Fernandes)  
+> • **No Cartão:** Em até 12x de R$ 248,80 (me avise se preferir o link seguro do cartão).  
+> 
+> Me enviando o comprovante por aqui, eu já crio o nosso grupo de trabalho e combinamos o onboarding dos primeiros dias!"
+
+---
+
+## 6. Onboarding Imediato pós-Pagamento (TEXTO)
+
+Assim que o cliente pagar:
+
+> "Excelente, [Dra. / Dr.]! Seja muito bem-vindo(a). Já registrei o início do seu projeto por aqui! 🚀  
+> 
+> Vou criar o nosso grupo no WhatsApp agora. Para os próximos passos:  
+> 1. Me passe o contato da sua secretária para eu incluí-la no grupo;  
+> 2. Qual o melhor horário amanhã para eu bater um papo rápido de 15 minutos com ela para alinhar o atendimento?  
+> 
+> Vamos juntos lotar essa agenda de pacientes particulares!"
