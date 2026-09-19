@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Prontuário Médico, Sinais Vitais & LTV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+    .prontuario-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 16px;
+      height: 100%;
+    }
+    .patient-profile-card {
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-subtle);
+    }
+    .vitals-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .vital-box {
+      background: var(--trophe-subtle);
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .vital-label {
+      font-size: 10px;
+      color: var(--trophe-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .vital-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--trophe-dark);
+    }
+    .prontuario-tabs {
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-subtle);
+      overflow-y: auto;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 14px;
+      border-left: 2px solid var(--trophe-border);
+      padding-left: 14px;
+      margin-left: 6px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--trophe-indigo);
+      border: 2px solid #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge">14</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge">38</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">3 novas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="parent">Prontuários</span>
+            <span class="sep">/</span>
+            <span class="current">Carolina Lima Prado (#4082)</span>
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <button class="trophe-btn-lime">
+            <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Nova Evolução Clínica</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CORPO DA TELA (SCROLL) -->
+      <div class="trophe-body-scroll">
+        <div class="prontuario-grid">
+          
+          <!-- COLUNA ESQUERDA: PERFIL DO PACIENTE E SINAIS VITAIS -->
+          <div class="patient-profile-card">
+            <div style="text-align:center; padding-bottom:12px; border-bottom:1px solid var(--trophe-border-subtle);">
+              <div style="width:54px; height:54px; border-radius:50%; background:#EFF6FF; color:var(--trophe-indigo); font-size:18px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 8px auto; border:2px solid var(--trophe-indigo-border);">
+                CL
+              </div>
+              <div style="font-size:14px; font-weight:700; color:var(--trophe-dark);">Carolina Lima Prado</div>
+              <div style="font-size:11px; color:var(--trophe-muted);">34 anos · Matão/SP · Particular VIP</div>
+            </div>
+
+            <!-- LTV & Retorno -->
+            <div style="background:var(--trophe-subtle); padding:10px 12px; border-radius:var(--radius-md); border:1px solid var(--trophe-border-subtle); display:flex; justify-content:space-between;">
+              <div>
+                <div style="font-size:10px; color:var(--trophe-muted); text-transform:uppercase;">LTV Acumulado</div>
+                <div style="font-size:14px; font-weight:700; color:var(--trophe-dark);">R$ 4.850,00</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:10px; color:var(--trophe-muted); text-transform:uppercase;">Visitas Totais</div>
+                <div style="font-size:14px; font-weight:700; color:var(--trophe-indigo);">4 consultas</div>
+              </div>
+            </div>
+
+            <!-- Sinais Vitais com Ortografia Perfeita -->
+            <div>
+              <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--trophe-muted); margin-bottom:8px;">
+                Sinais Vitais Cadastrados
+              </div>
+              <div class="vitals-grid">
+                <div class="vital-box">
+                  <span class="vital-label">Altura</span>
+                  <span class="vital-value">168 cm</span>
+                </div>
+                <div class="vital-box">
+                  <span class="vital-label">Peso Corporal</span>
+                  <span class="vital-value">58 kg</span>
+                </div>
+                <div class="vital-box">
+                  <span class="vital-label">Índice IMC</span>
+                  <span class="vital-value">20,5</span>
+                </div>
+                <div class="vital-box">
+                  <span class="vital-label">Pressão Arterial</span>
+                  <span class="vital-value">120/80</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contato Rápido -->
+            <div style="font-size:11px; color:var(--trophe-muted); display:flex; flex-direction:column; gap:6px;">
+              <div><strong>Telefone:</strong> (16) 99841-2099</div>
+              <div><strong>E-mail:</strong> carolina.prado@exemplo.com.br</div>
+              <div><strong>Canal de Origem:</strong> Meta Ads (Instagram)</div>
+            </div>
+          </div>
+
+          <!-- COLUNA DIREITA: TIMELINE DE CONSULTAS & EVOLUÇÃO -->
+          <div class="prontuario-tabs">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--trophe-border-subtle); padding-bottom:10px;">
+              <div style="font-size:13px; font-weight:700; color:var(--trophe-dark);">Histórico Clínico & Procedimentos Realizados</div>
+              <span class="status-pill confirmed">Ciclo de 6 Meses em Dia</span>
+            </div>
+
+            <!-- Timeline -->
+            <div style="display:flex; flex-direction:column; gap:16px; margin-top:8px;">
+              <div class="timeline-item">
+                <div style="display:flex; flex-direction:column; gap:4px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:12px; font-weight:700; color:var(--trophe-dark);">Consulta de Avaliação & Protocolo Estético</span>
+                    <span style="font-size:10px; color:var(--trophe-muted);">Hoje às 10:30</span>
+                  </div>
+                  <p style="font-size:11.5px; color:var(--trophe-slate); line-height:1.4;">
+                    Paciente retornou para conferência dos resultados pós-procedimento. Ótima cicatrização e simetria atingida. Agendado ciclo preventivo para daqui a 180 dias.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div style="display:flex; flex-direction:column; gap:4px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:12px; font-weight:700; color:var(--trophe-dark);">Procedimento de Harmonização Facial (Sessão 1)</span>
+                    <span style="font-size:10px; color:var(--trophe-muted);">15 de Janeiro de 2024</span>
+                  </div>
+                  <p style="font-size:11.5px; color:var(--trophe-slate); line-height:1.4;">
+                    Aplicação realizada conforme planejado. Prescrito repouso e hidratação. Mensagem automática pós-atendimento disparada 24h depois com satisfação nota 5/5.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

@@ -1,4 +1,14 @@
-downloaded.html
-original.html
-test.html
+# Dependencies
+node_modules/
+
+# OS and IDE Files
+.DS_Store
+Thumbs.db
 .gemini/
+.idea/
+.vscode/
+
+# Logs & scratch
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

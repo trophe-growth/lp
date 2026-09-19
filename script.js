@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     if (ctx) {
       const colors = [
-        { color: 'rgba(255, 255, 255, 0.98)', weight: 35 }, /* Branco puro brilhante */
-        { color: 'rgba(52, 211, 153, 0.35)', weight: 25 },  /* Esmeralda suave luminoso */
-        { color: 'rgba(16, 185, 129, 0.25)', weight: 20 },  /* Mint translúcido */
-        { color: 'rgba(240, 253, 244, 0.90)', weight: 20 }  /* Crystalline white-green */
+        { color: 'rgba(255, 255, 255, 0.92)', weight: 40 }, /* Pérola suave luminoso */
+        { color: 'rgba(230, 232, 2, 0.16)', weight: 25 },   /* Aura TROPHÉ ouro/lime sutil */
+        { color: 'rgba(226, 214, 200, 0.42)', weight: 20 }, /* Tom areia quente editorial */
+        { color: 'rgba(255, 252, 248, 0.95)', weight: 15 }  /* Marfim quente puro */
       ];
 
       const state = {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rows: 0,
         size: 0,
         time: 0,
-        speed: 0.012,
+        speed: 0.007,
         density: 28,
         frameId: 0,
         inView: true
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isMobile = w < 640;
         state.density = isMobile ? 18 : 28;
-        state.speed = isMobile ? 0.016 : 0.012;
+        state.speed = isMobile ? 0.009 : 0.007;
         state.size = Math.min(w, h) / state.density;
         state.cols = Math.ceil(w / state.size) + 1;
         state.rows = Math.ceil(h / state.size) + 1;
@@ -69,13 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = state.cols * state.rows;
         state.grid = new Array(total);
         for (let i = 0; i < total; i++) {
-          const rand = Math.random();
-          let shape = 'square';
-          if (rand > 0.6) shape = 'circle';
-          else if (rand > 0.3) shape = 'rhombus';
           state.grid[i] = {
             colorIndex: getRandomColorIndex(),
-            shape: shape
+            shape: 'circle'
           };
         }
       }
@@ -115,22 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const midX = posX + half;
             const midY = posY + half;
 
-            if (cell.shape === 'square') {
-              ctx.fillRect(posX + (o - size) / 2, posY + (o - size) / 2, size, size);
-            } else if (cell.shape === 'rhombus') {
-              ctx.beginPath();
-              const z = size * 0.4 * 1.414;
-              ctx.moveTo(midX, midY - z);
-              ctx.lineTo(midX + z, midY);
-              ctx.lineTo(midX, midY + z);
-              ctx.lineTo(midX - z, midY);
-              ctx.closePath();
-              ctx.fill();
-            } else {
-              ctx.beginPath();
-              ctx.arc(midX, midY, size * 0.45, 0, Math.PI * 2);
-              ctx.fill();
-            }
+            ctx.beginPath();
+            ctx.arc(midX, midY, size * 0.42, 0, Math.PI * 2);
+            ctx.fill();
           }
         }
       }
@@ -347,6 +330,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- 10. DYNAMIC CITY & REGIONAL ENGINE ---------- */
   function initDynamicCity() {
+    // Mapa de normalização de acentos para cidades brasileiras comuns
+    const cityAccents = {
+      'matao': 'Matão',
+      'matão': 'Matão',
+      'sao paulo': 'São Paulo',
+      'são paulo': 'São Paulo',
+      'sao carlos': 'São Carlos',
+      'são carlos': 'São Carlos',
+      'ribeirao preto': 'Ribeirão Preto',
+      'ribeirão preto': 'Ribeirão Preto',
+      'taquaritinga': 'Taquaritinga',
+      'araraquara': 'Araraquara',
+      'sertaozinho': 'Sertãozinho',
+      'sertãozinho': 'Sertãozinho',
+      'jaboticabal': 'Jaboticabal',
+      'ibate': 'Ibaté',
+      'ibaté': 'Ibaté',
+      'jau': 'Jaú',
+      'bauru': 'Bauru',
+      'campinas': 'Campinas',
+      'sao jose do rio preto': 'São José do Rio Preto',
+      'franca': 'Franca'
+    };
+
+    function normalizeCity(rawName) {
+      if (!rawName) return 'Matão';
+      const clean = rawName.trim();
+      const lower = clean.toLowerCase();
+      if (cityAccents[lower]) {
+        return cityAccents[lower];
+      }
+      return clean.replace(/\b\w/g, l => l.toUpperCase());
+    }
+
     // Clusters de cidades vizinhas para prova social do Google
     const regionalClusters = {
       'matão': ['Araraquara', 'São Carlos', 'Taquaritinga'],
@@ -360,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function applyCity(cityName) {
-      const city = (cityName || 'Matão').trim();
+      const city = normalizeCity(cityName);
       const cityKey = city.toLowerCase();
 
       // REGRA: Em toda a página, manter APENAS a localização EXATA do lead (ex: "Matão")
@@ -408,10 +425,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Default: Matão (depoimentos em Araraquara, São Carlos e Taquaritinga)
+    // 1. Default: Matão
     applyCity('Matão');
 
-    // Geo-IP detection com cache em sessionStorage
+    // 2. Leitura de URL parameter ?cidade=X
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramCity = urlParams.get('cidade') || urlParams.get('city');
+    if (paramCity) {
+      sessionStorage.setItem('lead_user_city', paramCity);
+      applyCity(paramCity);
+      return;
+    }
+
+    // 3. Geo-IP detection com cache em sessionStorage
     const cachedCity = sessionStorage.getItem('lead_user_city');
     if (cachedCity) {
       applyCity(cachedCity);

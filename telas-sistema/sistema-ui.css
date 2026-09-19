@@ -1,0 +1,682 @@
+/* ==========================================================================
+   TROPHÉ OS / SYSTEM DESIGN SYSTEM (G-MED + HUGO SAAS REFINED)
+   Fidelidade extrema, proporções compactas, minimalismo tech e ortografia perfeita (pt-BR)
+   ========================================================================== */
+
+:root {
+  /* Cores Base */
+  --trophe-canvas: #F4F6FB;
+  --trophe-surface: #FFFFFF;
+  --trophe-subtle: #F8FAFD;
+  --trophe-hover: #F1F4F9;
+  
+  /* Cores de Destaque */
+  --trophe-lime: #DAFB59;
+  --trophe-lime-hover: #C6EC43;
+  --trophe-indigo: #4F6AF6;
+  --trophe-indigo-soft: #EEF2FF;
+  --trophe-indigo-border: #DDE3FC;
+  
+  /* Cores Neutras / Tipografia */
+  --trophe-dark: #12141A;
+  --trophe-slate: #334155;
+  --trophe-muted: #64748B;
+  --trophe-subtle-txt: #94A3B8;
+  
+  /* Bordas Refinadas e Linhas Tech */
+  --trophe-border: #E2E8F0;
+  --trophe-border-subtle: #EDF2F7;
+  --trophe-border-focus: #CBD5E1;
+  
+  /* Badges Semânticos Suaves */
+  --badge-green-bg: #ECFDF5;
+  --badge-green-txt: #059669;
+  --badge-orange-bg: #FFF7ED;
+  --badge-orange-txt: #D97706;
+  --badge-blue-bg: #EFF6FF;
+  --badge-blue-txt: #2563EB;
+  --badge-red-bg: #FEF2F2;
+  --badge-red-txt: #DC2626;
+  --badge-purple-bg: #FAF5FF;
+  --badge-purple-txt: #7C3AED;
+  
+  /* Raios e Sombras */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 9999px;
+  
+  --shadow-subtle: 0 1px 3px rgba(18, 20, 26, 0.04), 0 1px 2px rgba(18, 20, 26, 0.02);
+  --shadow-card: 0 4px 16px -2px rgba(18, 20, 26, 0.05), 0 2px 6px -1px rgba(18, 20, 26, 0.02);
+}
+
+/* Reset dentro do contêiner do sistema */
+.trophe-app-viewport {
+  width: 100%;
+  height: 100%;
+  background-color: var(--trophe-canvas);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--trophe-dark);
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+.trophe-app-viewport *,
+.trophe-app-viewport *::before,
+.trophe-app-viewport *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   BARRA LATERAL ESQUERDA (SIDEBAR INTEGRADA - ESTILO HUGO SAAS)
+   ========================================================================== */
+.trophe-sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: #FFFFFF;
+  border-right: 1px solid var(--trophe-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 14px;
+  z-index: 20;
+}
+
+.trophe-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 18px 8px;
+  border-bottom: 1px solid var(--trophe-border-subtle);
+  margin-bottom: 14px;
+}
+
+.trophe-sidebar-brand img {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+}
+
+.trophe-sidebar-brand .brand-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--trophe-indigo-soft);
+  color: var(--trophe-indigo);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.trophe-nav-group {
+  margin-bottom: 18px;
+}
+
+.trophe-nav-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--trophe-subtle-txt);
+  padding: 0 8px 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trophe-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trophe-nav-item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 9px;
+  border-radius: var(--radius-md);
+  color: var(--trophe-slate);
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.trophe-nav-item a:hover {
+  background: var(--trophe-subtle);
+  color: var(--trophe-dark);
+}
+
+.trophe-nav-item.active a {
+  background: var(--trophe-dark);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.trophe-nav-item.active a svg {
+  stroke: #FFFFFF;
+}
+
+.trophe-nav-item a .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.trophe-nav-item a svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--trophe-muted);
+  flex-shrink: 0;
+}
+
+.trophe-nav-item a .nav-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  background: var(--trophe-subtle);
+  color: var(--trophe-muted);
+}
+
+.trophe-nav-item.active a .nav-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.trophe-nav-item a .nav-badge.live-dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--trophe-lime);
+  box-shadow: 0 0 8px var(--trophe-lime);
+}
+
+/* Usuário no rodapé da Sidebar */
+.trophe-sidebar-footer {
+  border-top: 1px solid var(--trophe-border-subtle);
+  padding-top: 12px;
+}
+
+.trophe-user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: var(--radius-md);
+  background: var(--trophe-subtle);
+  border: 1px solid var(--trophe-border-subtle);
+}
+
+.trophe-user-info {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  overflow: hidden;
+}
+
+.trophe-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--trophe-dark);
+  flex-shrink: 0;
+  border: 1.5px solid #FFFFFF;
+}
+
+.trophe-user-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.trophe-user-name {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--trophe-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trophe-user-role {
+  font-size: 10px;
+  color: var(--trophe-muted);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL (MAIN BODY & TOPBAR)
+   ========================================================================== */
+.trophe-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--trophe-canvas);
+}
+
+/* Topbar Tech & Compacta */
+.trophe-topbar {
+  height: 52px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--trophe-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.trophe-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.trophe-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.trophe-breadcrumb .parent {
+  color: var(--trophe-muted);
+}
+
+.trophe-breadcrumb .sep {
+  color: var(--trophe-subtle-txt);
+}
+
+.trophe-breadcrumb .current {
+  color: var(--trophe-dark);
+  font-weight: 600;
+}
+
+.trophe-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--trophe-subtle);
+  border: 1px solid var(--trophe-border);
+  border-radius: var(--radius-md);
+  padding: 5px 12px;
+  width: 240px;
+  color: var(--trophe-muted);
+  font-size: 12px;
+}
+
+.trophe-search-box svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--trophe-muted);
+}
+
+.trophe-search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 12px;
+  color: var(--trophe-dark);
+  width: 100%;
+}
+
+.trophe-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trophe-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--trophe-border);
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--trophe-slate);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.trophe-icon-btn:hover {
+  background: var(--trophe-subtle);
+  border-color: var(--trophe-border-focus);
+}
+
+.trophe-icon-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+}
+
+/* Botão de Destaque Lime Principal */
+.trophe-btn-lime {
+  background: var(--trophe-lime);
+  color: var(--trophe-dark);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease;
+}
+
+.trophe-btn-lime:hover {
+  background: var(--trophe-lime-hover);
+  transform: translateY(-1px);
+}
+
+.trophe-btn-lime svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--trophe-dark);
+  stroke-width: 2.5;
+}
+
+/* View Switcher (Lista / Grade) */
+.trophe-view-toggle {
+  display: flex;
+  background: var(--trophe-subtle);
+  border: 1px solid var(--trophe-border);
+  border-radius: var(--radius-md);
+  padding: 2px;
+}
+
+.trophe-toggle-btn {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--trophe-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.trophe-toggle-btn.active {
+  background: #FFFFFF;
+  color: var(--trophe-dark);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   ÁREA DE ROLAGEM E CONTEÚDO DA TELA
+   ========================================================================== */
+.trophe-body-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   CARDS DE MÉTRICAS (KPIs COMPACTOS & ELEGANTES ESTILO HUGO)
+   ========================================================================== */
+.trophe-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.trophe-kpi-card {
+  background: #FFFFFF;
+  border: 1px solid var(--trophe-border);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.trophe-kpi-card:hover {
+  border-color: var(--trophe-border-focus);
+}
+
+.trophe-kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trophe-kpi-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--trophe-muted);
+}
+
+.trophe-kpi-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trophe-kpi-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--trophe-dark);
+  letter-spacing: -0.02em;
+}
+
+.trophe-kpi-subtext {
+  font-size: 11px;
+  color: var(--trophe-subtle-txt);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   BARRA DE FILTROS & AÇÕES COMPACTA
+   ========================================================================== */
+.trophe-filter-bar {
+  background: #FFFFFF;
+  border: 1px solid var(--trophe-border);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.trophe-filter-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trophe-chip {
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--trophe-border);
+  background: var(--trophe-subtle);
+  color: var(--trophe-slate);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.12s;
+}
+
+.trophe-chip:hover {
+  border-color: var(--trophe-border-focus);
+  background: #FFFFFF;
+}
+
+.trophe-chip.active {
+  background: var(--trophe-dark);
+  color: #FFFFFF;
+  border-color: var(--trophe-dark);
+}
+
+.trophe-chip-count {
+  font-size: 10px;
+  opacity: 0.8;
+  padding: 0 3px;
+}
+
+/* ==========================================================================
+   TABELAS DE DADOS ULTRA REFINADAS
+   ========================================================================== */
+.trophe-table-container {
+  background: #FFFFFF;
+  border: 1px solid var(--trophe-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+}
+
+.trophe-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.trophe-table thead th {
+  background: var(--trophe-subtle);
+  color: var(--trophe-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--trophe-border);
+  white-space: nowrap;
+}
+
+.trophe-table tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--trophe-border-subtle);
+  color: var(--trophe-dark);
+  vertical-align: middle;
+}
+
+.trophe-table tbody tr:hover {
+  background: #FAFCFE;
+}
+
+.trophe-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.patient-avatar-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #E2E8F0;
+  border: 1px solid var(--trophe-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--trophe-slate);
+}
+
+.patient-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-name {
+  font-weight: 600;
+  color: var(--trophe-dark);
+}
+
+.patient-sub {
+  font-size: 10.5px;
+  color: var(--trophe-muted);
+}
+
+/* Status Badges */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-pill.confirmed {
+  background: var(--badge-green-bg);
+  color: var(--badge-green-txt);
+}
+
+.status-pill.pending {
+  background: var(--badge-orange-bg);
+  color: var(--badge-orange-txt);
+}
+
+.status-pill.canceled {
+  background: var(--badge-red-bg);
+  color: var(--badge-red-txt);
+}
+
+.status-pill.blue {
+  background: var(--badge-blue-bg);
+  color: var(--badge-blue-txt);
+}
+
+.status-pill.purple {
+  background: var(--badge-purple-bg);
+  color: var(--badge-purple-txt);
+}
+
+.dot-indicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}

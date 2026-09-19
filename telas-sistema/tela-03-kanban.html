@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Funil Kanban de Aquisição & Triagem de Pacientes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+    /* Estilos do Kanban Board */
+    .kanban-board-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      flex: 1;
+      height: 100%;
+      overflow-x: auto;
+    }
+    .kanban-col {
+      background: var(--trophe-subtle);
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-height: 570px;
+    }
+    .kanban-col-header {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--trophe-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .kanban-col-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--trophe-dark);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .kanban-col-badge {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      background: var(--trophe-canvas);
+      color: var(--trophe-muted);
+    }
+    .kanban-col-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    /* Card do Paciente no Kanban */
+    .kanban-card {
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.15s ease;
+      cursor: grab;
+    }
+    .kanban-card:hover {
+      border-color: var(--trophe-border-focus);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-1px);
+    }
+    .k-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .k-tag-origin {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+    }
+    .k-tag-origin.meta {
+      background: #EFF6FF;
+      color: #1D4ED8;
+    }
+    .k-tag-origin.google {
+      background: #FEF3C7;
+      color: #B45309;
+    }
+    .k-card-sla {
+      font-size: 10px;
+      color: var(--trophe-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .k-card-sla.fast {
+      color: #059669;
+      font-weight: 600;
+    }
+    .k-patient-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .k-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--trophe-slate);
+    }
+    .k-patient-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--trophe-dark);
+    }
+    .k-proc-badge {
+      background: var(--trophe-subtle);
+      border: 1px solid var(--trophe-border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 4px 8px;
+      font-size: 11px;
+      color: var(--trophe-slate);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .k-proc-val {
+      font-weight: 600;
+      color: var(--trophe-dark);
+    }
+    .k-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--trophe-border-subtle);
+      padding-top: 6px;
+      font-size: 10.5px;
+      color: var(--trophe-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge">14</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">3 novas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="current">Funil Kanban de Pacientes</span>
+          </div>
+          <div class="trophe-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Filtrar paciente no pipeline..." readonly value="">
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <div class="trophe-view-toggle">
+            <button class="trophe-toggle-btn active">
+              <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              Kanban
+            </button>
+            <button class="trophe-toggle-btn">
+              <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+              Lista
+            </button>
+          </div>
+
+          <button class="trophe-btn-lime">
+            <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Novo Contato</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CORPO DA TELA (SCROLL) -->
+      <div class="trophe-body-scroll">
+        
+        <!-- BARRA DE FILTROS & PIPELINE TOTAL -->
+        <div class="trophe-filter-bar">
+          <div class="trophe-filter-chips">
+            <span class="trophe-chip active">Todos os Canais <span class="trophe-chip-count">(38)</span></span>
+            <span class="trophe-chip">Meta Ads (Instagram) <span class="trophe-chip-count">(24)</span></span>
+            <span class="trophe-chip">Google Busca Matão <span class="trophe-chip-count">(14)</span></span>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="font-size:11.5px; color:var(--trophe-muted);">
+              Pipeline em Aberto: <strong style="color:var(--trophe-dark);">R$ 54.200,00</strong>
+            </div>
+            <span class="status-pill blue"><span class="dot-indicator"></span>Taxa de Conversão: 41,8%</span>
+          </div>
+        </div>
+
+        <!-- 4 COLUNAS KANBAN DENSO & ESTRUTURADO -->
+        <div class="kanban-board-grid">
+          
+          <!-- COLUNA 1: NOVOS LEADS -->
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <div class="kanban-col-title">
+                <span class="dot-indicator" style="background:#3B82F6;"></span>
+                <span>Novos Contatos</span>
+              </div>
+              <span class="kanban-col-badge">12</span>
+            </div>
+
+            <div class="kanban-col-body">
+              <!-- Card 1 -->
+              <div class="kanban-card">
+                <div class="k-card-top">
+                  <span class="k-tag-origin meta">Meta Ads</span>
+                  <span class="k-card-sla fast">⚡ Atendido em 28s</span>
+                </div>
+                <div class="k-patient-row">
+                  <div class="k-avatar">MG</div>
+                  <span class="k-patient-name">Mariana Guimarães</span>
+                </div>
+                <div class="k-proc-badge">
+                  <span>Harmonização Facial</span>
+                  <span class="k-proc-val">R$ 2.400</span>
+                </div>
+                <div class="k-card-footer">
+                  <span>Hoje às 10:14</span>
+                  <span style="color:var(--trophe-indigo); font-weight:600;">Aguardando Resposta</span>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="kanban-card">
+                <div class="k-card-top">
+                  <span class="k-tag-origin google">Google Ads</span>
+                  <span class="k-card-sla fast">⚡ Atendido em 41s</span>
+                </div>
+                <div class="k-patient-row">
+                  <div class="k-avatar" style="background:#FEF3C7; color:#B45309;">LS</div>
+                  <span class="k-patient-name">Lucas Silveira</span>
+                </div>
+                <div class="k-proc-badge">
+                  <span>Implante Protocolo</span>
+                  <span class="k-proc-val">R$ 4.800</span>
+                </div>
+                <div class="k-card-footer">
+                  <span>Hoje às 09:48</span>
+                  <span style="color:var(--trophe-indigo); font-weight:600;">Acolhimento Ativo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUNA 2: TRIAGEM ANTI-CURIOSO -->
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <div class="kanban-col-title">
+                <span class="dot-indicator" style="background:#F59E0B;"></span>
+                <span>Triagem Anti-Curioso</span>
+              </div>
+              <span class="kanban-col-badge">8</span>
+            </div>
+
+            <div class="kanban-col-body">
+              <div class="kanban-card">
+                <div class="k-card-top">
+                  <span class="k-tag-origin meta">Meta Ads</span>
+                  <span class="k-card-sla" style="color:#059669;">✓ Particular Validado</span>
+                </div>
+                <div class="k-patient-row">
+                  <div class="k-avatar" style="background:#EDE9FE; color:#6D28D9;">VN</div>
+                  <span class="k-patient-name">Vanessa Nogueira</span>
+                </div>
+                <div class="k-proc-badge">
+                  <span>Lentes em Resina</span>
+                  <span class="k-proc-val">R$ 3.600</span>
+                </div>
+                <div class="k-card-footer">
+                  <span>Secretária enviou opções</span>
+                  <span class="status-pill pending" style="padding:1px 6px; font-size:10px;">Em análise</span>
+                </div>
+              </div>
+
+              <div class="kanban-card">
+                <div class="k-card-top">
+                  <span class="k-tag-origin meta">Meta Ads</span>
+                  <span class="k-card-sla" style="color:#059669;">✓ Renda Compatível</span>
+                </div>
+                <div class="k-patient-row">
+                  <div class="k-avatar" style="background:#E0F2FE; color:#0369A1;">TC</div>
+                  <span class="k-patient-name">Thiago Castanho</span>
+                </div>
+                <div class="k-proc-badge">
+                  <span>Avaliação Cirúrgica</span>
+                  <span class="k-proc-val">R$ 600</span>
+                </div>
+                <div class="k-card-footer">
+                  <span>Ontem às 18:22</span>
+                  <span style="color:var(--trophe-slate);">Pronto p/ Agendar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUNA 3: AVALIAÇÃO CONFIRMADA -->
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <div class="kanban-col-title">
+                <span class="dot-indicator" style="background:#10B981;"></span>
+                <span>Avaliação Confirmada</span>
+              </div>
+              <span class="kanban-col-badge">11</span>
+            </div>
+
+            <div class="kanban-col-body">
+              <div class="kanban-card">
+                <div class="k-card-top">
+                  <span class="k-tag-origin google">Google Ads</span>
+                  <span class="k-card-sla" style="color:#059669; font-weight:600;">✓ Rota Maps Enviada</span>
+                </div>
+                <div class="k-patient-row">
+                  <div class="k-avatar" style="background:#DCFCE7; color:#15803D;">CL</div>
+                  <span class="k-patient-name">Carolina Lima Prado</span>
+                </div>
+                <div class="k-proc-badge">
+                  <span>Consulta Particular</span>
+                  <span class="k-proc-val">R$ 450</span>
+                </div>
+                <div class="k-card-footer">
+                  <span>Hoje às 09:30</span>
+                  <span class="status-pill confirmed" style="padding:1px 6px; font-size:10px;">Presença 100%</span>
+                </div>
+              </div>
+
+              <div class="kanban-card">
+                <div class="k-card-top">
+                  <span class="k-tag-origin meta">Meta Ads</span>
+                  <span class="k-card-sla" style="color:#059669; font-weight:600;">✓ Lembrete 24h OK</span>
+                </div>
+                <div class="k-patient-row">
+                  <div class="k-avatar" style="background:#FEF3C7; color:#B45309;">MR</div>
+                  <span class="k-patient-name">Marcos Silveira</span>
+                </div>
+                <div class="k-proc-badge">
+                  <span>Harmonização (Sessão 2)</span>
+                  <span class="k-proc-val">R$ 2.400</span>
+                </div>
+                <div class="k-card-footer">
+                  <span>Hoje às 10:30</span>
+                  <span class="status-pill confirmed" style="padding:1px 6px; font-size:10px;">Confirmado</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUNA 4: PROCEDIMENTO FECHADO -->
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <div class="kanban-col-title">
+                <span class="dot-indicator" style="background:#8B5CF6;"></span>
+                <span>Procedimento Fechado</span>
+              </div>
+              <span class="kanban-col-badge">7</span>
+            </div>
+
+            <div class="kanban-col-body">
+              <div class="kanban-card" style="border-left: 3px solid #8B5CF6;">
+                <div class="k-card-top">
+                  <span class="status-pill purple" style="padding:2px 6px; font-size:10px;">Contrato Assinado</span>
+                  <span style="font-weight:700; color:#059669; font-size:11px;">R$ 8.600</span>
+                </div>
+                <div class="k-patient-row">
+                  <div class="k-avatar" style="background:#F3E8FF; color:#7E22CE;">ED</div>
+                  <span class="k-patient-name">Eduardo Dias de Morais</span>
+                </div>
+                <div class="k-proc-badge">
+                  <span>Tratamento Integrado + Implantes</span>
+                  <span class="k-proc-val">À vista</span>
+                </div>
+                <div class="k-card-footer">
+                  <span>Agendado para 18/Mar</span>
+                  <span style="color:#059669; font-weight:600;">Garantia Ativa</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

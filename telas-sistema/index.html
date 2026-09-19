@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Visualizador Interativo de Telas do CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --card-bg: #161D2F;
+      --border: #242E47;
+      --lime: #DAFB59;
+      --indigo: #6179FA;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    header {
+      background: #0F1626;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-wrap img {
+      height: 24px;
+      width: auto;
+    }
+    .brand-wrap span {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .screen-tabs {
+      display: flex;
+      background: #090D16;
+      padding: 4px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      gap: 4px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover {
+      color: #FFFFFF;
+    }
+    .tab-btn.active {
+      background: var(--lime);
+      color: #0B0F19;
+    }
+    .preview-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: auto;
+      background: radial-gradient(circle at center, #131B2E 0%, #0B0F19 100%);
+    }
+    .frame-wrapper {
+      width: 1200px;
+      height: 760px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #FFFFFF;
+      transform-origin: center center;
+      transition: transform 0.2s ease;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .scale-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .scale-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-wrap">
+      <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ">
+      <span>· Design System Nativo em Alta Fidelidade (HTML/CSS)</span>
+    </div>
+
+    <!-- Abas para alternar entre as telas integradas -->
+    <nav class="screen-tabs">
+      <button class="tab-btn active" onclick="loadScreen('./tela-01-dashboard.html', this)">
+        <span>01 · Dashboard Executivo</span>
+      </button>
+      <button class="tab-btn" onclick="loadScreen('./tela-02-agenda.html', this)">
+        <span>02 · Agenda No-Show Shield</span>
+      </button>
+      <button class="tab-btn" onclick="loadScreen('./tela-03-kanban.html', this)">
+        <span>03 · Funil Kanban</span>
+      </button>
+      <button class="tab-btn" onclick="loadScreen('./tela-04-whatsapp.html', this)">
+        <span>04 · Central WhatsApp & Playbook</span>
+      </button>
+      <button class="tab-btn" onclick="loadScreen('./tela-05-prontuario.html', this)">
+        <span>05 · Prontuário & LTV</span>
+      </button>
+    </nav>
+
+    <div class="scale-controls">
+      <span style="font-size:11px; color:var(--muted);">Zoom:</span>
+      <button class="scale-btn" onclick="setScale(0.85)">85%</button>
+      <button class="scale-btn" onclick="setScale(0.95)">95%</button>
+      <button class="scale-btn" onclick="setScale(1.0)">100%</button>
+    </div>
+  </header>
+
+  <main class="preview-container">
+    <div class="frame-wrapper" id="frameWrap">
+      <iframe id="screenFrame" src="./tela-01-dashboard.html"></iframe>
+    </div>
+  </main>
+
+  <script>
+    function loadScreen(url, btn) {
+      document.getElementById('screenFrame').src = url;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function setScale(val) {
+      document.getElementById('frameWrap').style.transform = `scale(${val})`;
+    }
+
+    // Auto-ajuste para telas comuns
+    window.addEventListener('load', () => {
+      const availH = window.innerHeight - 100;
+      if (availH < 780) {
+        const ratio = Math.max(0.75, availH / 780);
+        setScale(ratio.toFixed(2));
+      }
+    });
+  </script>
+
+</body>
+</html>

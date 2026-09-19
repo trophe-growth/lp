@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Construtor Visual de Automações Clínicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+    /* Canvas Visual com Malha Pontilhada Tech */
+    .flow-canvas-wrapper {
+      flex: 1;
+      background-color: #FAFCFE;
+      background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-subtle);
+    }
+    .flow-chain {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: auto 0;
+    }
+    .flow-node-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      width: 180px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .flow-node-card.active-step {
+      border-color: var(--trophe-indigo);
+      box-shadow: 0 6px 18px rgba(79, 106, 246, 0.15);
+    }
+    .flow-node-badge {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      width: fit-content;
+    }
+    .flow-node-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--trophe-dark);
+      line-height: 1.3;
+    }
+    .flow-node-desc {
+      font-size: 10.5px;
+      color: var(--trophe-muted);
+      line-height: 1.35;
+    }
+    .flow-node-metric {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--badge-green-txt);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border-top: 1px solid var(--trophe-border-subtle);
+      padding-top: 6px;
+    }
+    /* Conector de Linha com Pulso */
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--trophe-indigo);
+      width: 32px;
+      justify-content: center;
+      position: relative;
+    }
+    .flow-arrow::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: var(--trophe-indigo);
+    }
+    .flow-arrow svg {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      z-index: 2;
+      background: #FAFCFE;
+      color: var(--trophe-indigo);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge">14</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge">38</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">3 novas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="parent">Automações</span>
+            <span class="sep">/</span>
+            <span class="current">Régua Completa · Aquisição & Retenção</span>
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <span class="status-pill confirmed"><span class="dot-indicator"></span>Fluxo Ativo em Produção</span>
+          <button class="trophe-btn-lime">
+            <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Novo Gatilho</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CORPO COM O CANVAS VISUAL DE AUTOMAÇÃO -->
+      <div class="trophe-body-scroll" style="padding: 16px;">
+        <div class="flow-canvas-wrapper">
+          
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:13px; font-weight:700; color:var(--trophe-dark);">Fluxo Inteligente de 5 Etapas</div>
+              <div style="font-size:11px; color:var(--trophe-muted);">Gatilho inicial no anúncio até a coleta de review 5 estrelas no Google.</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <span class="status-pill blue">⚡ 284 execuções esta semana</span>
+              <span class="status-pill confirmed">0 falhas de entrega</span>
+            </div>
+          </div>
+
+          <!-- Cadeia de Nós -->
+          <div class="flow-chain">
+            
+            <!-- Nó 1: Anúncio -->
+            <div class="flow-node-card">
+              <span class="flow-node-badge" style="background:#EFF6FF; color:#1D4ED8;">1. Gatilho</span>
+              <div class="flow-node-title">Anúncio Meta / Google</div>
+              <div class="flow-node-desc">Paciente clica e envia mensagem com interesse particular.</div>
+              <div class="flow-node-metric">✓ 100% Capturado</div>
+            </div>
+
+            <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+
+            <!-- Nó 2: Triagem -->
+            <div class="flow-node-card">
+              <span class="flow-node-badge" style="background:#FEF3C7; color:#B45309;">2. Filtro</span>
+              <div class="flow-node-title">Triagem Anti-Curioso</div>
+              <div class="flow-node-desc">3 perguntas rápidas para qualificar procedimento e renda.</div>
+              <div class="flow-node-metric">✓ 82% Qualificados</div>
+            </div>
+
+            <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+
+            <!-- Nó 3: Acolhimento -->
+            <div class="flow-node-card active-step">
+              <span class="flow-node-badge" style="background:#ECFDF5; color:#059669;">3. Acolhimento</span>
+              <div class="flow-node-title">Atendimento &lt; 45s</div>
+              <div class="flow-node-desc">Secretária acionada com sugestão de horários nobres.</div>
+              <div class="flow-node-metric">⚡ SLA Médio: 38s</div>
+            </div>
+
+            <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+
+            <!-- Nó 4: No-Show Shield -->
+            <div class="flow-node-card">
+              <span class="flow-node-badge" style="background:#F5F3FF; color:#7C3AED;">4. Anti-Falta</span>
+              <div class="flow-node-title">Lembrete + Rota Maps</div>
+              <div class="flow-node-desc">Confirmação 24h com link direto de GPS do consultório.</div>
+              <div class="flow-node-metric">✓ 96,4% Presença</div>
+            </div>
+
+            <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+
+            <!-- Nó 5: Reputação -->
+            <div class="flow-node-card">
+              <span class="flow-node-badge" style="background:var(--trophe-lime); color:var(--trophe-dark);">5. Retenção</span>
+              <div class="flow-node-title">Google 5★ & Manutenção</div>
+              <div class="flow-node-desc">Convite de avaliação e agendamento preventivo de 180d.</div>
+              <div class="flow-node-metric">⭐ Nota 5.0 Google</div>
+            </div>
+
+          </div>
+
+          <div style="background:#FFFFFF; border:1px solid var(--trophe-border); padding:10px 14px; border-radius:var(--radius-md); font-size:11px; color:var(--trophe-muted); display:flex; justify-content:space-between; align-items:center;">
+            <span>💡 <strong>Observação Operacional:</strong> Todas as mensagens são disparadas com tom afetuoso e humanizado pela API Oficial.</span>
+            <span style="font-weight:600; color:var(--trophe-indigo);">Tempo médio de ciclo: 4 minutos até agendamento</span>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

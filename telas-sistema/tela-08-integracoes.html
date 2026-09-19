@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Hub de Conexões & Integrações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+    .integrations-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .int-card {
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow-subtle);
+    }
+    .int-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .int-brand-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .int-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .int-brand-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--trophe-dark);
+    }
+    .int-brand-sub {
+      font-size: 10.5px;
+      color: var(--trophe-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge">14</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge">38</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">3 novas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                  <span>Integrações</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="parent">Configurações</span>
+            <span class="sep">/</span>
+            <span class="current">Hub de Conexões & Integrações</span>
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <span class="status-pill confirmed"><span class="dot-indicator"></span>Todos os Serviços Operando 100%</span>
+        </div>
+      </header>
+
+      <!-- CORPO DA TELA (SCROLL) -->
+      <div class="trophe-body-scroll">
+        
+        <div style="margin-bottom:8px;">
+          <h2 style="font-size:15px; font-weight:700; color:var(--trophe-dark);">Ecossistema Conectado sob Gestão Única TROPHÉ</h2>
+          <p style="font-size:12px; color:var(--trophe-muted);">Canais de aquisição, atendimento e prontuário operando integrados em tempo real.</p>
+        </div>
+
+        <div class="integrations-grid">
+          
+          <!-- Meta Ads -->
+          <div class="int-card">
+            <div>
+              <div class="int-card-top">
+                <div class="int-brand-box">
+                  <div class="int-icon-wrap" style="background:#EFF6FF; color:#1D4ED8;">
+                    <svg style="width:20px; height:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.79-4 4-4s4 1.79 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                  </div>
+                  <div>
+                    <div class="int-brand-name">Meta Ads (Instagram & Facebook)</div>
+                    <div class="int-brand-sub">Campanhas locais geolocalizadas em Matão</div>
+                  </div>
+                </div>
+                <span class="status-pill confirmed"><span class="dot-indicator"></span>Conectado</span>
+              </div>
+              <p style="font-size:11px; color:var(--trophe-slate); margin-top:10px; line-height:1.4;">
+                Pixel ativo e otimizado para conversão direta no WhatsApp. Anúncios de Harmonização, Implantes e Consultas Particulares.
+              </p>
+            </div>
+            <div style="font-size:10px; color:var(--trophe-muted); border-top:1px solid var(--trophe-border-subtle); padding-top:8px;">
+              Última sincronização: Há 2 minutos · 38 leads capturados
+            </div>
+          </div>
+
+          <!-- Google Ads / Maps -->
+          <div class="int-card">
+            <div>
+              <div class="int-card-top">
+                <div class="int-brand-box">
+                  <div class="int-icon-wrap" style="background:#FEF3C7; color:#B45309;">
+                    <svg style="width:20px; height:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  </div>
+                  <div>
+                    <div class="int-brand-name">Google Busca & Maps Local</div>
+                    <div class="int-brand-sub">Presença destacada e Rota Maps Oficial</div>
+                  </div>
+                </div>
+                <span class="status-pill confirmed"><span class="dot-indicator"></span>Nota 5.0 ★</span>
+              </div>
+              <p style="font-size:11px; color:var(--trophe-slate); margin-top:10px; line-height:1.4;">
+                Perfil verificado com link automático de rota no Google Maps injetado na mensagem de confirmação 24h.
+              </p>
+            </div>
+            <div style="font-size:10px; color:var(--trophe-muted); border-top:1px solid var(--trophe-border-subtle); padding-top:8px;">
+              142 avaliações 5 estrelas ativas no consultório
+            </div>
+          </div>
+
+          <!-- WhatsApp Cloud API -->
+          <div class="int-card">
+            <div>
+              <div class="int-card-top">
+                <div class="int-brand-box">
+                  <div class="int-icon-wrap" style="background:#ECFDF5; color:#059669;">
+                    <svg style="width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  </div>
+                  <div>
+                    <div class="int-brand-name">WhatsApp Business Cloud API</div>
+                    <div class="int-brand-sub">Linha oficial com número fixo da clínica</div>
+                  </div>
+                </div>
+                <span class="status-pill confirmed"><span class="dot-indicator"></span>Verificado</span>
+              </div>
+              <p style="font-size:11px; color:var(--trophe-slate); margin-top:10px; line-height:1.4;">
+                Conexão oficial estável sem risco de banimento. Suporte a botões rápidos, localização GPS e mensagens programadas.
+              </p>
+            </div>
+            <div style="font-size:10px; color:var(--trophe-muted); border-top:1px solid var(--trophe-border-subtle); padding-top:8px;">
+              SLA médio de 38 segundos operacional
+            </div>
+          </div>
+
+          <!-- Prontuário & LTV -->
+          <div class="int-card">
+            <div>
+              <div class="int-card-top">
+                <div class="int-brand-box">
+                  <div class="int-icon-wrap" style="background:#F5F3FF; color:#7C3AED;">
+                    <svg style="width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  </div>
+                  <div>
+                    <div class="int-brand-name">Motor de LTV & Prontuários</div>
+                    <div class="int-brand-sub">Base ativa de 354 pacientes particulares</div>
+                  </div>
+                </div>
+                <span class="status-pill confirmed"><span class="dot-indicator"></span>Sincronizado</span>
+              </div>
+              <p style="font-size:11px; color:var(--trophe-slate); margin-top:10px; line-height:1.4;">
+                Histórico completo de procedimentos, exames e ciclos de manutenção de 30 a 180 dias rastreados automaticamente.
+              </p>
+            </div>
+            <div style="font-size:10px; color:var(--trophe-muted); border-top:1px solid var(--trophe-border-subtle); padding-top:8px;">
+              Backup seguro criptografado com conformidade LGPD
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

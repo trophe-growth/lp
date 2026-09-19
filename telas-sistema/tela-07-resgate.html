@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Motor de Resgate Ético de Inativos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge">14</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge">38</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">3 novas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="parent">Gestão Clínica</span>
+            <span class="sep">/</span>
+            <span class="current">Resgate Ético de Inativos</span>
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <button class="trophe-btn-lime">
+            <svg viewBox="0 0 24 24" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <span>Disparar Campanha de Cuidado</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CORPO DA TELA (SCROLL) -->
+      <div class="trophe-body-scroll">
+        
+        <!-- KPIS DO RESGATE -->
+        <div class="trophe-kpi-grid">
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">Receita Resgatada (10 dias)</span>
+              <span class="trophe-kpi-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">Sem anúncio</span>
+            </div>
+            <div class="trophe-kpi-value">R$ 18.200,00</div>
+            <div class="trophe-kpi-subtext">
+              <span>Direto no caixa da clínica</span>
+            </div>
+          </div>
+
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">Taxa de Conversão</span>
+              <span class="trophe-kpi-badge" style="background:var(--badge-blue-bg); color:var(--badge-blue-txt);">Alta</span>
+            </div>
+            <div class="trophe-kpi-value">24,3%</div>
+            <div class="trophe-kpi-subtext">
+              <span>1 a cada 4 pacientes retornam</span>
+            </div>
+          </div>
+
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">Pacientes Reativados</span>
+              <span class="trophe-kpi-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">+18 este mês</span>
+            </div>
+            <div class="trophe-kpi-value">42 consultas</div>
+            <div class="trophe-kpi-subtext">
+              <span>Pacientes com mais de 120 dias ausentes</span>
+            </div>
+          </div>
+
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">Custo de Aquisição (CAC)</span>
+              <span class="trophe-kpi-badge" style="background:var(--trophe-lime); color:var(--trophe-dark);">R$ 0,00</span>
+            </div>
+            <div class="trophe-kpi-value">Zero Mídia</div>
+            <div class="trophe-kpi-subtext">
+              <span>Ativação exclusiva da base de prontuários</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILTRO E TABELA DE PACIENTES PRONTOS PARA RESGATE -->
+        <div class="trophe-filter-bar">
+          <div class="trophe-filter-chips">
+            <span class="trophe-chip active">Inativos há 180+ dias <span class="trophe-chip-count">(28)</span></span>
+            <span class="trophe-chip">Inativos 90 a 180 dias <span class="trophe-chip-count">(34)</span></span>
+            <span class="trophe-chip">Procedimentos de Manutenção <span class="trophe-chip-count">(19)</span></span>
+          </div>
+          <span style="font-size:11px; color:var(--trophe-muted);">Pretexto Clínico: <strong>Reavaliação Preventiva Sem Custo Adicional</strong></span>
+        </div>
+
+        <div class="trophe-table-container">
+          <table class="trophe-table">
+            <thead>
+              <tr>
+                <th>Paciente</th>
+                <th>Última Consulta</th>
+                <th>Procedimento Realizado</th>
+                <th>LTV Histórico</th>
+                <th>Status do Cuidado</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="patient-cell">
+                    <div class="patient-avatar-img" style="background:#FEF3C7; color:#B45309;">PL</div>
+                    <div class="patient-meta">
+                      <span class="patient-name">Patrícia L. Alexandre</span>
+                      <span class="patient-sub">Matão/SP · (16) 99712-4011</span>
+                    </div>
+                  </div>
+                </td>
+                <td>18 de Outubro de 2023 (152 dias)</td>
+                <td>Bioestimulador de Colágeno</td>
+                <td style="font-weight:700;">R$ 3.800,00</td>
+                <td><span class="status-pill confirmed"><span class="dot-indicator"></span>Pronta p/ Retoque 180d</span></td>
+                <td><button class="trophe-btn-lime" style="padding:4px 10px; font-size:11px;">Reconvocar</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="patient-cell">
+                    <div class="patient-avatar-img" style="background:#EDE9FE; color:#6D28D9;">MG</div>
+                    <div class="patient-meta">
+                      <span class="patient-name">Marcos Gomes Silveira</span>
+                      <span class="patient-sub">Matão/SP · (16) 99632-1109</span>
+                    </div>
+                  </div>
+                </td>
+                <td>05 de Novembro de 2023 (134 dias)</td>
+                <td>Reabilitação / Check-up Geral</td>
+                <td style="font-weight:700;">R$ 2.400,00</td>
+                <td><span class="status-pill blue"><span class="dot-indicator"></span>Manutenção Preventiva</span></td>
+                <td><button class="trophe-btn-lime" style="padding:4px 10px; font-size:11px;">Reconvocar</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="patient-cell">
+                    <div class="patient-avatar-img" style="background:#E0F2FE; color:#0369A1;">FL</div>
+                    <div class="patient-meta">
+                      <span class="patient-name">Fernanda Lins Camargo</span>
+                      <span class="patient-sub">Matão/SP · (16) 99882-9011</span>
+                    </div>
+                  </div>
+                </td>
+                <td>12 de Setembro de 2023 (188 dias)</td>
+                <td>Harmonização Facial</td>
+                <td style="font-weight:700;">R$ 4.200,00</td>
+                <td><span class="status-pill purple"><span class="dot-indicator"></span>Ciclo Semestral Atrasado</span></td>
+                <td><button class="trophe-btn-lime" style="padding:4px 10px; font-size:11px;">Reconvocar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

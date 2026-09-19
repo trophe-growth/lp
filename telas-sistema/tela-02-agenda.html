@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Agenda Médica Semanal & No-Show Shield</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+    /* Estilos Específicos da Agenda */
+    .calendar-week-container {
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+    }
+    .calendar-week-header {
+      display: grid;
+      grid-template-columns: 60px repeat(5, 1fr);
+      border-bottom: 1px solid var(--trophe-border);
+      background: var(--trophe-subtle);
+    }
+    .col-header {
+      padding: 10px 8px;
+      text-align: center;
+      border-right: 1px solid var(--trophe-border-subtle);
+    }
+    .col-header:last-child {
+      border-right: none;
+    }
+    .col-header .day-name {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--trophe-muted);
+      letter-spacing: 0.05em;
+    }
+    .col-header .day-number {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--trophe-dark);
+      margin-top: 2px;
+    }
+    .col-header.active-day {
+      background: #FFFFFF;
+      border-bottom: 2px solid var(--trophe-indigo);
+    }
+    .col-header.active-day .day-name {
+      color: var(--trophe-indigo);
+    }
+    .col-header.active-day .day-number {
+      color: var(--trophe-indigo);
+    }
+    /* Grade de Horários */
+    .calendar-week-body {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .calendar-row {
+      display: grid;
+      grid-template-columns: 60px repeat(5, 1fr);
+      min-height: 52px;
+      border-bottom: 1px solid var(--trophe-border-subtle);
+    }
+    .time-col {
+      padding: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--trophe-subtle-txt);
+      text-align: center;
+      border-right: 1px solid var(--trophe-border-subtle);
+      background: var(--trophe-subtle);
+    }
+    .slot-cell {
+      border-right: 1px solid var(--trophe-border-subtle);
+      padding: 4px 6px;
+      position: relative;
+    }
+    .slot-cell:last-child {
+      border-right: none;
+    }
+    /* Eventos Compactos */
+    .cal-event {
+      border-radius: var(--radius-sm);
+      padding: 5px 8px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 3px solid;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+    .cal-event.confirmed {
+      background: #EFF6FF;
+      border-left-color: var(--trophe-indigo);
+      color: var(--trophe-dark);
+    }
+    .cal-event.vip {
+      background: #F5F3FF;
+      border-left-color: #8B5CF6;
+      color: var(--trophe-dark);
+    }
+    .cal-event.scheduled {
+      background: #F0FDF4;
+      border-left-color: #10B981;
+      color: var(--trophe-dark);
+    }
+    .cal-event-title {
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cal-event-sub {
+      font-size: 9.5px;
+      color: var(--trophe-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    /* Hachura de Almoço / Intervalo */
+    .cal-lunch {
+      background: repeating-linear-gradient(
+        45deg,
+        #F8FAFC,
+        #F8FAFC 8px,
+        #F1F5F9 8px,
+        #F1F5F9 16px
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--trophe-subtle-txt);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge">38</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">3 novas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="current">Agenda Semanal</span>
+          </div>
+          <div class="trophe-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Buscar horário, paciente..." readonly value="">
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <!-- Seletor de Semana Atual -->
+          <div style="display:flex; align-items:center; gap:6px; background:var(--trophe-subtle); border:1px solid var(--trophe-border); padding:4px 10px; border-radius:var(--radius-md); font-size:12px; font-weight:600;">
+            <button style="border:none; background:none; cursor:pointer; display:flex; align-items:center; color:var(--trophe-muted);">
+              <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <span>11 a 15 de Março de 2024</span>
+            <button style="border:none; background:none; cursor:pointer; display:flex; align-items:center; color:var(--trophe-muted);">
+              <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+
+          <button class="trophe-btn-lime">
+            <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Bloquear / Novo Horário</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CORPO DA TELA -->
+      <div class="trophe-body-scroll">
+        
+        <!-- BARRA RESUMO ANTI-FALTA -->
+        <div class="trophe-filter-bar">
+          <div class="trophe-filter-chips">
+            <span class="trophe-chip active">Semana Completa <span class="trophe-chip-count">(28)</span></span>
+            <span class="trophe-chip">Consultas Particulares <span class="trophe-chip-count">(22)</span></span>
+            <span class="trophe-chip">Retornos Blindados <span class="trophe-chip-count">(6)</span></span>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:11.5px; color:var(--trophe-muted);">No-Show Shield:</span>
+            <span class="status-pill confirmed"><span class="dot-indicator"></span>96,4% Presença Confirmada</span>
+          </div>
+        </div>
+
+        <!-- GRADE SEMANAL COMPLETA -->
+        <div class="calendar-week-container">
+          
+          <!-- Cabeçalho de Dias da Semana com Ortografia Rigorosa (Segunda a Sexta) -->
+          <div class="calendar-week-header">
+            <div class="col-header" style="background:var(--trophe-subtle);">
+              <span class="day-name">Hora</span>
+            </div>
+            <div class="col-header">
+              <span class="day-name">Segunda</span>
+              <div class="day-number">11</div>
+            </div>
+            <div class="col-header">
+              <span class="day-name">Terça</span>
+              <div class="day-number">12</div>
+            </div>
+            <div class="col-header">
+              <span class="day-name">Quarta</span>
+              <div class="day-number">13</div>
+            </div>
+            <div class="col-header">
+              <span class="day-name">Quinta</span>
+              <div class="day-number">14</div>
+            </div>
+            <div class="col-header active-day">
+              <span class="day-name">Sexta (Hoje)</span>
+              <div class="day-number">15</div>
+            </div>
+          </div>
+
+          <!-- Linhas de Horário -->
+          <div class="calendar-week-body">
+            
+            <!-- 08:00 -->
+            <div class="calendar-row">
+              <div class="time-col">08:00</div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event confirmed">
+                  <span class="cal-event-title">Lucas M. Duarte</span>
+                  <span class="cal-event-sub">✓ Confirmado (WhatsApp)</span>
+                </div>
+              </div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event scheduled">
+                  <span class="cal-event-title">Ana Paula Rios</span>
+                  <span class="cal-event-sub">Avaliação Inicial</span>
+                </div>
+              </div>
+              <div class="slot-cell"></div>
+            </div>
+
+            <!-- 09:30 -->
+            <div class="calendar-row">
+              <div class="time-col">09:30</div>
+              <div class="slot-cell">
+                <div class="cal-event confirmed">
+                  <span class="cal-event-title">Gabriel Souza</span>
+                  <span class="cal-event-sub">✓ Presença Confirmada</span>
+                </div>
+              </div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event vip">
+                  <span class="cal-event-title">Juliana Fontes</span>
+                  <span class="cal-event-sub">Procedimento Especial (VIP)</span>
+                </div>
+              </div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event confirmed" style="background:#EFF6FF; border-left-color:var(--trophe-indigo);">
+                  <span class="cal-event-title">Carolina Lima Prado</span>
+                  <span class="cal-event-sub">✓ Rota Maps Enviada (34 min)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10:30 -->
+            <div class="calendar-row">
+              <div class="time-col">10:30</div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event confirmed">
+                  <span class="cal-event-title">Renato Martins</span>
+                  <span class="cal-event-sub">Harmonização Facial</span>
+                </div>
+              </div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event confirmed">
+                  <span class="cal-event-title">Clara V. Prado</span>
+                  <span class="cal-event-sub">✓ Confirmado WhatsApp</span>
+                </div>
+              </div>
+              <div class="slot-cell">
+                <div class="cal-event vip">
+                  <span class="cal-event-title">Marcos Silveira Rezende</span>
+                  <span class="cal-event-sub">Harmonização (Sessão 2)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 12:00 ALMOÇO (HACHURADO) -->
+            <div class="calendar-row">
+              <div class="time-col">12:00</div>
+              <div class="slot-cell cal-lunch" style="grid-column: 2 / 7;">
+                Intervalo Clínico & Almoço da Equipe
+              </div>
+            </div>
+
+            <!-- 14:00 -->
+            <div class="calendar-row">
+              <div class="time-col">14:00</div>
+              <div class="slot-cell">
+                <div class="cal-event confirmed">
+                  <span class="cal-event-title">Felipe Augusto</span>
+                  <span class="cal-event-sub">Consulta de Retorno</span>
+                </div>
+              </div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event scheduled">
+                  <span class="cal-event-title">Camila Nogueira</span>
+                  <span class="cal-event-sub">Primeira Consulta</span>
+                </div>
+              </div>
+              <div class="slot-cell"></div>
+              <div class="slot-cell">
+                <div class="cal-event confirmed">
+                  <span class="cal-event-title">Rodrigo Ferreira Neto</span>
+                  <span class="cal-event-sub">Implante Protocolo</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

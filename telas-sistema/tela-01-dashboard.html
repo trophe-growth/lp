@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Dashboard Executivo & Saúde Clínica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+    /* Estilos específicos do Dashboard */
+    .dash-main-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 16px;
+    }
+    .card-box {
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-subtle);
+    }
+    .card-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .card-box-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--trophe-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-box-action {
+      font-size: 11px;
+      color: var(--trophe-indigo);
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    /* Hero Card Score */
+    .hero-score-card {
+      background: linear-gradient(135deg, #1B1E27 0%, #242938 100%);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      color: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .hero-score-card::after {
+      content: '';
+      position: absolute;
+      right: -30px;
+      top: -30px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(218, 251, 89, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-score-left h3 {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--trophe-lime);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .hero-score-left .score-big {
+      font-size: 32px;
+      font-weight: 800;
+      font-family: 'Urbanist', sans-serif;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .hero-score-left .score-total {
+      font-size: 14px;
+      color: #94A3B8;
+      font-weight: 500;
+    }
+    .hero-score-left p {
+      font-size: 11.5px;
+      color: #CBD5E1;
+      margin-top: 4px;
+    }
+    .hero-score-metrics {
+      display: flex;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      backdrop-filter: blur(8px);
+    }
+    .hero-mini-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-mini-stat span:first-child {
+      font-size: 10px;
+      color: #94A3B8;
+      text-transform: uppercase;
+    }
+    .hero-mini-stat span:last-child {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    /* Gráfico Tech em Linhas e Barras */
+    .chart-container {
+      height: 120px;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      padding-top: 10px;
+    }
+    .chart-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .chart-bar-wrap {
+      width: 100%;
+      height: 90px;
+      display: flex;
+      align-items: flex-end;
+      background: var(--trophe-subtle);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .chart-bar {
+      width: 100%;
+      background: #CBD5E1;
+      border-radius: 4px 4px 0 0;
+      transition: height 0.3s;
+    }
+    .chart-col.peak .chart-bar {
+      background: var(--trophe-indigo);
+    }
+    .chart-col.current .chart-bar {
+      background: var(--trophe-lime);
+    }
+    .chart-label {
+      font-size: 10px;
+      color: var(--trophe-muted);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport" id="trophe-app">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge">14</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge">38</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">3 novas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="current">Dashboard Executivo</span>
+          </div>
+          <div class="trophe-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Buscar paciente, prontuário..." readonly value="">
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <div class="trophe-view-toggle">
+            <button class="trophe-toggle-btn active">
+              <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              Lista
+            </button>
+            <button class="trophe-toggle-btn">
+              <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              Grade
+            </button>
+          </div>
+
+          <button class="trophe-icon-btn" title="Notificações">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          </button>
+
+          <button class="trophe-btn-lime">
+            <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Novo Agendamento</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CORPO DA TELA (SCROLL) -->
+      <div class="trophe-body-scroll">
+        
+        <!-- CARDS DE KPIS COMPACTOS & ELEGANTES -->
+        <div class="trophe-kpi-grid">
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">Faturamento Mensal</span>
+              <span class="trophe-kpi-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">+14,2%</span>
+            </div>
+            <div class="trophe-kpi-value">R$ 86.400,00</div>
+            <div class="trophe-kpi-subtext">
+              <span>Meta de R$ 90.000 (96% atingida)</span>
+            </div>
+          </div>
+
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">Receita Recuperada (No-Show)</span>
+              <span class="trophe-kpi-badge" style="background:var(--badge-blue-bg); color:var(--badge-blue-txt);">18 vagas</span>
+            </div>
+            <div class="trophe-kpi-value">R$ 22.800,00</div>
+            <div class="trophe-kpi-subtext">
+              <span>Blindagem em 1 toque via WhatsApp</span>
+            </div>
+          </div>
+
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">Taxa de Presença Confirmada</span>
+              <span class="trophe-kpi-badge" style="background:var(--badge-green-bg); color:var(--badge-green-txt);">Alta</span>
+            </div>
+            <div class="trophe-kpi-value">96,4%</div>
+            <div class="trophe-kpi-subtext">
+              <span>Apenas 2 faltas justificadas no mês</span>
+            </div>
+          </div>
+
+          <div class="trophe-kpi-card">
+            <div class="trophe-kpi-header">
+              <span class="trophe-kpi-title">SLA Médio de Recepção</span>
+              <span class="trophe-kpi-badge" style="background:var(--trophe-indigo-soft); color:var(--trophe-indigo);">Meta: 45s</span>
+            </div>
+            <div class="trophe-kpi-value">38s</div>
+            <div class="trophe-kpi-subtext">
+              <span>Playbook ágil ativo na recepção</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO SCORE + GRÁFICO E LISTA PRINCIPAL -->
+        <div class="dash-main-grid">
+          
+          <!-- COLUNA ESQUERDA -->
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            
+            <!-- Hero Score Card -->
+            <div class="hero-score-card">
+              <div class="hero-score-left">
+                <h3>TROPHÉ Medical Index · Score Clínico</h3>
+                <div class="score-big">
+                  4.9
+                  <span class="score-total">/ 5.0</span>
+                </div>
+                <p>Desempenho operacional, pontualidade e satisfação de pacientes particulares.</p>
+              </div>
+
+              <div class="hero-score-metrics">
+                <div class="hero-mini-stat">
+                  <span>Pacientes Ativos</span>
+                  <span>354</span>
+                </div>
+                <div style="width:1px; background:rgba(255,255,255,0.15);"></div>
+                <div class="hero-mini-stat">
+                  <span>Retornos 180d</span>
+                  <span>78,5%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tabela dos Próximos Atendimentos de Hoje -->
+            <div class="trophe-table-container">
+              <div style="padding: 12px 16px; border-bottom: 1px solid var(--trophe-border); display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-weight:600; font-size:12.5px; color:var(--trophe-dark);">Consultas de Hoje · Sexta-feira</div>
+                <span class="status-pill blue" style="font-size:10.5px;">6 atendimentos restantes</span>
+              </div>
+              <table class="trophe-table">
+                <thead>
+                  <tr>
+                    <th>Horário</th>
+                    <th>Paciente</th>
+                    <th>Procedimento</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight:600; color:var(--trophe-indigo);">09:30</td>
+                    <td>
+                      <div class="patient-cell">
+                        <div class="patient-avatar-img">CL</div>
+                        <div class="patient-meta">
+                          <span class="patient-name">Carolina Lima Prado</span>
+                          <span class="patient-sub">Prontuário #4082 · 34 anos</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Consulta Particular + Avaliação</td>
+                    <td style="font-weight:600;">R$ 450,00</td>
+                    <td><span class="status-pill confirmed"><span class="dot-indicator"></span>Presença Confirmada</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600; color:var(--trophe-indigo);">10:30</td>
+                    <td>
+                      <div class="patient-cell">
+                        <div class="patient-avatar-img" style="background:#FEF3C7; color:#B45309;">MS</div>
+                        <div class="patient-meta">
+                          <span class="patient-name">Marcos Silveira Rezende</span>
+                          <span class="patient-sub">Prontuário #3911 · 48 anos</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Harmonização Facial (Sessão 2)</td>
+                    <td style="font-weight:600;">R$ 2.400,00</td>
+                    <td><span class="status-pill confirmed"><span class="dot-indicator"></span>Presença Confirmada</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600; color:var(--trophe-indigo);">11:30</td>
+                    <td>
+                      <div class="patient-cell">
+                        <div class="patient-avatar-img" style="background:#EDE9FE; color:#6D28D9;">BA</div>
+                        <div class="patient-meta">
+                          <span class="patient-name">Beatriz Albuquerque</span>
+                          <span class="patient-sub">Prontuário #4105 · 29 anos</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Retorno Clínico de 30 Dias</td>
+                    <td style="font-weight:600;">Incluso</td>
+                    <td><span class="status-pill pending"><span class="dot-indicator"></span>Em Deslocamento</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600; color:var(--trophe-indigo);">14:00</td>
+                    <td>
+                      <div class="patient-cell">
+                        <div class="patient-avatar-img" style="background:#E0F2FE; color:#0369A1;">RF</div>
+                        <div class="patient-meta">
+                          <span class="patient-name">Rodrigo Ferreira Neto</span>
+                          <span class="patient-sub">Prontuário #4112 · 42 anos</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Primeira Consulta de Implante</td>
+                    <td style="font-weight:600;">R$ 600,00</td>
+                    <td><span class="status-pill confirmed"><span class="dot-indicator"></span>Presença Confirmada</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+          <!-- COLUNA DIREITA (CALENDÁRIO TECH + MINI GRÁFICO DE DEMANDA) -->
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            
+            <!-- Calendário Mensal Sintético -->
+            <div class="card-box">
+              <div class="card-box-header">
+                <span class="card-box-title">
+                  <svg style="width:14px; height:14px; stroke:var(--trophe-indigo);" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  Março 2024
+                </span>
+                <span style="font-size:11px; font-weight:600; color:var(--trophe-slate);">Semana 12</span>
+              </div>
+
+              <!-- Mini Grid de Dias com Ortografia Perfeita (Seg Ter Qua Qui Sex Sab Dom) -->
+              <div style="display:grid; grid-template-columns:repeat(7, 1fr); text-align:center; font-size:10.5px; font-weight:600; color:var(--trophe-muted); margin-bottom:8px;">
+                <span>Seg</span>
+                <span>Ter</span>
+                <span>Qua</span>
+                <span>Qui</span>
+                <span>Sex</span>
+                <span>Sáb</span>
+                <span>Dom</span>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(7, 1fr); text-align:center; font-size:11.5px; row-gap:6px;">
+                <span style="color:var(--trophe-subtle-txt);">26</span>
+                <span style="color:var(--trophe-subtle-txt);">27</span>
+                <span style="color:var(--trophe-subtle-txt);">28</span>
+                <span style="color:var(--trophe-subtle-txt);">29</span>
+                <span>1</span>
+                <span style="color:var(--trophe-muted);">2</span>
+                <span style="color:var(--trophe-muted);">3</span>
+                
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span style="color:var(--trophe-muted);">9</span>
+                <span style="color:var(--trophe-muted);">10</span>
+
+                <span>11</span>
+                <span>12</span>
+                <span>13</span>
+                <span>14</span>
+                <!-- Dia Atual Selecionado em Indigo -->
+                <span style="background:var(--trophe-indigo); color:#FFFFFF; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; margin:0 auto; font-weight:700;">15</span>
+                <span style="color:var(--trophe-muted);">16</span>
+                <span style="color:var(--trophe-muted);">17</span>
+
+                <span>18</span>
+                <span>19</span>
+                <span>20</span>
+                <span>21</span>
+                <span>22</span>
+                <span style="color:var(--trophe-muted);">23</span>
+                <span style="color:var(--trophe-muted);">24</span>
+              </div>
+            </div>
+
+            <!-- Evolução de Consultas Mensais (Pico em Índigo) -->
+            <div class="card-box">
+              <div class="card-box-header">
+                <span class="card-box-title">Evolução de Consultas</span>
+                <span style="font-size:11px; color:var(--trophe-muted);">Últimos 6 meses</span>
+              </div>
+
+              <div class="chart-container">
+                <div class="chart-col">
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height: 45%;"></div></div>
+                  <span class="chart-label">Out</span>
+                </div>
+                <div class="chart-col">
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height: 60%;"></div></div>
+                  <span class="chart-label">Nov</span>
+                </div>
+                <div class="chart-col">
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height: 52%;"></div></div>
+                  <span class="chart-label">Dez</span>
+                </div>
+                <div class="chart-col">
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height: 75%;"></div></div>
+                  <span class="chart-label">Jan</span>
+                </div>
+                <div class="chart-col">
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height: 82%;"></div></div>
+                  <span class="chart-label">Fev</span>
+                </div>
+                <div class="chart-col peak">
+                  <div class="chart-bar-wrap"><div class="chart-bar" style="height: 98%;"></div></div>
+                  <span class="chart-label" style="color:var(--trophe-indigo); font-weight:700;">Mar</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

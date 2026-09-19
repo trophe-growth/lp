@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROPHÉ OS · Central WhatsApp & Playbook da Recepção</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./sistema-ui.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .viewport-frame {
+      width: 1200px;
+      height: 760px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      display: flex;
+      background: var(--trophe-canvas);
+    }
+    /* Grid de 3 Colunas: Lista WhatsApp / Chat Central / Playbook */
+    .whatsapp-triple-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr 280px;
+      height: 100%;
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-subtle);
+    }
+    /* Coluna 1: Lista de Contatos */
+    .wa-contacts-panel {
+      border-right: 1px solid var(--trophe-border);
+      display: flex;
+      flex-direction: column;
+      background: var(--trophe-subtle);
+    }
+    .wa-contacts-header {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--trophe-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .wa-search-mini {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--trophe-border-subtle);
+    }
+    .wa-search-input {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-sm);
+      padding: 5px 8px;
+      font-size: 11px;
+      outline: none;
+    }
+    .wa-contacts-list {
+      list-style: none;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .wa-contact-item {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--trophe-border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .wa-contact-item:hover {
+      background: #FFFFFF;
+    }
+    .wa-contact-item.active {
+      background: #FFFFFF;
+      border-left: 3px solid var(--trophe-indigo);
+    }
+    .wa-contact-text {
+      flex: 1;
+      overflow: hidden;
+    }
+    .wa-contact-name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+    .wa-contact-name {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--trophe-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .wa-contact-time {
+      font-size: 9.5px;
+      color: var(--trophe-subtle-txt);
+    }
+    .wa-contact-preview {
+      font-size: 10.5px;
+      color: var(--trophe-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Coluna 2: Chat Conversa */
+    .wa-chat-panel {
+      display: flex;
+      flex-direction: column;
+      background: #FAFCFE;
+      border-right: 1px solid var(--trophe-border);
+    }
+    .wa-chat-header {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--trophe-border);
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .wa-chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wa-msg {
+      max-width: 80%;
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      line-height: 1.4;
+      position: relative;
+    }
+    .wa-msg.inbound {
+      align-self: flex-start;
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      color: var(--trophe-dark);
+    }
+    .wa-msg.outbound {
+      align-self: flex-end;
+      background: #EFF6FF;
+      border: 1px solid var(--trophe-indigo-border);
+      color: var(--trophe-dark);
+    }
+    .wa-msg-meta {
+      font-size: 9px;
+      color: var(--trophe-muted);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 3px;
+    }
+    .wa-chat-input-bar {
+      padding: 10px 14px;
+      background: #FFFFFF;
+      border-top: 1px solid var(--trophe-border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wa-input-field {
+      flex: 1;
+      background: var(--trophe-subtle);
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-md);
+      padding: 7px 12px;
+      font-size: 12px;
+      outline: none;
+    }
+    /* Coluna 3: Playbook da Secretária */
+    .wa-playbook-panel {
+      display: flex;
+      flex-direction: column;
+      background: var(--trophe-subtle);
+      padding: 14px;
+      gap: 12px;
+      overflow-y: auto;
+    }
+    .playbook-card {
+      background: #FFFFFF;
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .playbook-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--trophe-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .playbook-btn {
+      background: var(--trophe-subtle);
+      border: 1px solid var(--trophe-border);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--trophe-slate);
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.12s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .playbook-btn:hover {
+      background: var(--trophe-indigo-soft);
+      border-color: var(--trophe-indigo);
+      color: var(--trophe-indigo);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="viewport-frame trophe-app-viewport">
+    
+    <!-- BARRA LATERAL ESQUERDA COMPLETA & PADRONIZADA -->
+    <aside class="trophe-sidebar">
+      <div>
+        <div class="trophe-sidebar-brand">
+          <img src="../images/trophe-logo-cropped.png" alt="TROPHÉ Growth">
+          <span class="brand-tag">CRM Médio</span>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Visão Geral</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  <span>Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <span>Agenda Semanal</span>
+                </div>
+                <span class="nav-badge">14</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Funil Kanban</span>
+                </div>
+                <span class="nav-badge">38</span>
+              </a>
+            </li>
+            <li class="trophe-nav-item active">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Central WhatsApp</span>
+                </div>
+                <span class="nav-badge live-dot"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="trophe-nav-group">
+          <div class="trophe-nav-label">
+            <span>Gestão Clínica</span>
+          </div>
+          <ul class="trophe-nav-list">
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                  <span>Prontuários & LTV</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Automações</span>
+                </div>
+              </a>
+            </li>
+            <li class="trophe-nav-item">
+              <a href="#">
+                <div class="nav-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>
+                  <span>Resgate de Inativos</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trophe-sidebar-footer">
+        <div class="trophe-user-card">
+          <div class="trophe-user-info">
+            <div class="trophe-user-avatar">DR</div>
+            <div class="trophe-user-text">
+              <span class="trophe-user-name">Dr. Rodrigo M.</span>
+              <span class="trophe-user-role">Clínica Matão</span>
+            </div>
+          </div>
+          <svg style="width:14px; height:14px; stroke:var(--trophe-muted);" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="trophe-main-content">
+      
+      <!-- TOPBAR SUPERIOR -->
+      <header class="trophe-topbar">
+        <div class="trophe-topbar-left">
+          <div class="trophe-breadcrumb">
+            <span class="parent">TROPHÉ OS</span>
+            <span class="sep">/</span>
+            <span class="current">Central de Atendimento WhatsApp & Playbook</span>
+          </div>
+        </div>
+
+        <div class="trophe-topbar-right">
+          <span class="status-pill confirmed"><span class="dot-indicator"></span>API Oficial Conectada</span>
+          <span style="font-size:11px; color:var(--trophe-muted);">SLA Médio: <strong>38 segundos</strong></span>
+        </div>
+      </header>
+
+      <!-- CORPO COM LAYOUT TRIPLO DE ATENDIMENTO -->
+      <div class="trophe-body-scroll" style="padding: 16px;">
+        <div class="whatsapp-triple-grid">
+          
+          <!-- COLUNA 1: LISTA DE CONVERSAS -->
+          <div class="wa-contacts-panel">
+            <div class="wa-contacts-header">
+              <span style="font-size:12px; font-weight:700; color:var(--trophe-dark);">Conversas Ativas</span>
+              <span class="status-pill blue" style="font-size:10px; padding:2px 6px;">3 não lidas</span>
+            </div>
+            <div class="wa-search-mini">
+              <input type="text" class="wa-search-input" placeholder="Buscar paciente por nome ou telefone..." readonly>
+            </div>
+            <ul class="wa-contacts-list">
+              <li class="wa-contact-item active">
+                <div class="patient-avatar-img">CL</div>
+                <div class="wa-contact-text">
+                  <div class="wa-contact-name-row">
+                    <span class="wa-contact-name">Carolina Lima</span>
+                    <span class="wa-contact-time">10:18</span>
+                  </div>
+                  <div class="wa-contact-preview">Já abri a rota no Maps! Chego em 15 min...</div>
+                </div>
+              </li>
+              <li class="wa-contact-item">
+                <div class="patient-avatar-img" style="background:#FEF3C7; color:#B45309;">MR</div>
+                <div class="wa-contact-text">
+                  <div class="wa-contact-name-row">
+                    <span class="wa-contact-name">Marcos Silveira</span>
+                    <span class="wa-contact-time">10:05</span>
+                  </div>
+                  <div class="wa-contact-preview">Perfeito, comparecerei pontualmente.</div>
+                </div>
+              </li>
+              <li class="wa-contact-item">
+                <div class="patient-avatar-img" style="background:#EDE9FE; color:#6D28D9;">VN</div>
+                <div class="wa-contact-text">
+                  <div class="wa-contact-name-row">
+                    <span class="wa-contact-name">Vanessa Nogueira</span>
+                    <span class="wa-contact-time">09:42</span>
+                  </div>
+                  <div class="wa-contact-preview">Gostaria de saber as opções de horário para...</div>
+                </div>
+              </li>
+              <li class="wa-contact-item">
+                <div class="patient-avatar-img" style="background:#E0F2FE; color:#0369A1;">LS</div>
+                <div class="wa-contact-text">
+                  <div class="wa-contact-name-row">
+                    <span class="wa-contact-name">Lucas Silveira</span>
+                    <span class="wa-contact-time">Ontem</span>
+                  </div>
+                  <div class="wa-contact-preview">Obrigado pelo esclarecimento dos implantes!</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- COLUNA 2: CHAT CONVERSA ATIVA -->
+          <div class="wa-chat-panel">
+            <div class="wa-chat-header">
+              <div class="patient-cell">
+                <div class="patient-avatar-img">CL</div>
+                <div class="patient-meta">
+                  <span class="patient-name">Carolina Lima Prado</span>
+                  <span class="patient-sub">(16) 99841-2099 · Consulta Hoje às 10:30</span>
+                </div>
+              </div>
+              <span class="status-pill confirmed">Consulta Confirmada</span>
+            </div>
+
+            <div class="wa-chat-messages">
+              <!-- Mensagem Automática 24h -->
+              <div class="wa-msg outbound">
+                Olá, Carolina! Tudo bem? Aqui é da recepção da Clínica. Lembrando da sua consulta amanhã às 10:30 com o Dr. Rodrigo.
+                <div class="wa-msg-meta">Ontem 10:30 · ✓✓ Entregue</div>
+              </div>
+
+              <!-- Resposta Paciente -->
+              <div class="wa-msg inbound">
+                Bom dia! Tudo bem sim. Está tudo confirmado, vou sim! Poderiam me reenviar a localização certinha da clínica?
+                <div class="wa-msg-meta">Hoje 09:12</div>
+              </div>
+
+              <!-- Disparo Rápido com Rota Maps -->
+              <div class="wa-msg outbound">
+                Com certeza, Carolina! Aqui está o link com a rota direta no Google Maps com vaga reservada no estacionamento: <strong>maps.app.goo.gl/clinica-matao</strong>. Qualquer dúvida estamos à disposição!
+                <div class="wa-msg-meta">Hoje 09:13 · ⚡ SLA: 38s</div>
+              </div>
+
+              <!-- Paciente Confirmando Chegada -->
+              <div class="wa-msg inbound">
+                Já abri a rota no Maps! O trânsito está tranquilo, chego em 15 minutos. Muito obrigada pelo carinho!
+                <div class="wa-msg-meta">Hoje 10:18</div>
+              </div>
+            </div>
+
+            <div class="wa-chat-input-bar">
+              <input type="text" class="wa-input-field" placeholder="Digite uma resposta ou use os botões rápidos do Playbook ao lado..." readonly>
+              <button class="trophe-btn-lime" style="padding:7px 12px;">
+                <span>Enviar</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- COLUNA 3: PLAYBOOK DA SECRETÁRIA -->
+          <div class="wa-playbook-panel">
+            <div class="playbook-card">
+              <div class="playbook-title">
+                <svg style="width:14px; height:14px; stroke:var(--trophe-indigo);" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <span>Respostas Rápidas (1 Toque)</span>
+              </div>
+              <button class="playbook-btn">
+                <span>📍 Enviar Rota Google Maps</span>
+              </button>
+              <button class="playbook-btn">
+                <span>💳 Explicar Valor sem Assustar</span>
+              </button>
+              <button class="playbook-btn">
+                <span>🛡️ Lembrete 24h com Confirmação</span>
+              </button>
+              <button class="playbook-btn">
+                <span>⭐ Solicitar Avaliação Google 5 Estrelas</span>
+              </button>
+            </div>
+
+            <div class="playbook-card">
+              <div class="playbook-title">
+                <svg style="width:14px; height:14px; stroke:#10B981;" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Diretriz Ética de Atendimento</span>
+              </div>
+              <p style="font-size:11px; color:var(--trophe-muted); line-height:1.4;">
+                Nunca responda apenas o preço isolado. Apresente o protocolo de cuidado, a autoridade médica e a garantia de acompanhamento antes do investimento.
+              </p>
+            </div>
+
+            <div class="playbook-card" style="background:var(--trophe-indigo-soft); border-color:var(--trophe-indigo-border);">
+              <div style="font-size:10.5px; font-weight:700; color:var(--trophe-indigo); text-transform:uppercase;">
+                Meta da Recepção
+              </div>
+              <div style="font-size:15px; font-weight:700; color:var(--trophe-dark); margin-top:2px;">
+                Tempo de Resposta &lt; 45s
+              </div>
+              <span style="font-size:10.5px; color:var(--trophe-muted);">Atualmente em 38s (Excelente)</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

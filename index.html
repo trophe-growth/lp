@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2.2" />
+  <link rel="stylesheet" href="style.css?v=2.3" />
   <noscript>
     <style>
       .reveal, .vtl-item--anim { opacity: 1 !important; transform: none !important; }
@@ -90,9 +90,8 @@
     <!-- Browser Chrome Window com dados simulados da clínica -->
     <div class="container" style="position:relative;z-index:2;margin-top:2.25rem;">
       <div class="browser-window reveal">
-        <div class="browser-chrome">
-          <!-- Linha 1: Pontos do Navegador + Barra de Endereço no topo -->
-          <div class="browser-chrome-top">
+        <div class="browser-chrome" style="padding:0.75rem 1.25rem;border-bottom:1px solid var(--border);background:var(--sa);">
+          <div class="browser-chrome-top" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
             <div class="browser-dots">
               <div class="browser-dot browser-dot--red"></div>
               <div class="browser-dot browser-dot--yellow"></div>
@@ -102,348 +101,15 @@
               <span class="browser-address-lock">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
-              <span class="browser-address-text">sistemaduplacamada.com/painel/matao-sp</span>
+              <span class="browser-address-text">trophe.app/sistema-clinico</span>
             </div>
-          </div>
-          <!-- Linha 2: As 3 opções navegáveis abaixo do endereço -->
-          <div class="browser-tabs">
-            <div class="browser-tab browser-tab--active" data-hero-tab="agenda">
-              <svg class="svg-icon tab-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              <span id="hero-agenda-tab-label">Agenda ativa: mês atual</span>
-            </div>
-            <div class="browser-tab" data-hero-tab="entrada">
-              <svg class="svg-icon tab-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              <span>Camada de Entrada</span>
-            </div>
-            <div class="browser-tab" data-hero-tab="retorno">
-              <svg class="svg-icon tab-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-              <span>Camada de Retorno</span>
-            </div>
+            <div style="width:48px;" aria-hidden="true"></div>
           </div>
         </div>
 
-        <div class="browser-body">
-          <!-- PAINEL 1: AGENDA ATIVA (A PROMESSA REALIZADA) -->
+        <div class="browser-body" style="padding:0 !important;background:var(--surface);overflow:hidden;">
           <div class="hero-tab-panel active" id="hero-panel-agenda">
-            <div class="hero-agenda-view">
-              <div class="mobile-swipe-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Deslize horizontalmente para ver todos os dias da semana</div>
-              <div class="agenda-header-strip">
-                <div class="agenda-strip-left">
-                  <span class="status-dot status-dot--pulse"></span>
-                  <strong id="agenda-week-label">Grade da Semana · Consultório <span class="dynamic-city">Matão</span></strong>
-                </div>
-                <div class="agenda-strip-kpis">
-                  <span class="agenda-kpi-pill agenda-kpi-pill--green">✓ 28 atendimentos confirmados</span>
-                  <span class="agenda-kpi-pill agenda-kpi-pill--dark">R$ 14.800 Faturado</span>
-                  <span class="agenda-kpi-pill agenda-kpi-pill--subtle">0 horários ociosos</span>
-                </div>
-              </div>
-
-              <!-- Seletor Mobile dos Dias da Semana com Toque e Foco no Dia Atual -->
-              <div class="agenda-day-switcher-mobile" id="agendaDaySwitcherMobile" aria-label="Navegar pelos dias da semana">
-                <button type="button" class="day-switcher-btn" data-day-index="0"><span class="btn-day-label">Seg</span><small class="btn-day-date" data-switcher-day="0">--/--</small></button>
-                <button type="button" class="day-switcher-btn" data-day-index="1"><span class="btn-day-label">Ter</span><small class="btn-day-date" data-switcher-day="1">--/--</small></button>
-                <button type="button" class="day-switcher-btn day-switcher-btn--today active" data-day-index="2"><span class="btn-day-label">Qua</span><small class="btn-day-date" data-switcher-day="2">Hoje</small></button>
-                <button type="button" class="day-switcher-btn" data-day-index="3"><span class="btn-day-label">Qui</span><small class="btn-day-date" data-switcher-day="3">--/--</small></button>
-                <button type="button" class="day-switcher-btn" data-day-index="4"><span class="btn-day-label">Sex</span><small class="btn-day-date" data-switcher-day="4">--/--</small></button>
-              </div>
-
-              <!-- Grade Semanal Segunda a Sexta -->
-              <div class="agenda-week-grid">
-                <!-- Segunda -->
-                <div class="agenda-day-col">
-                  <div class="agenda-day-head">
-                    <span class="agenda-day-name" data-day="0">Seg · --/--</span>
-                    <span class="agenda-day-count">6 atendimentos</span>
-                  </div>
-                  <div class="agenda-day-slots">
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">08:30</span>
-                        <span class="slot-badge slot-badge--particular">PARTICULAR</span>
-                      </div>
-                      <div class="slot-patient">Mariana Silveira</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">11:00</span>
-                        <span class="slot-badge slot-badge--plano">HARMONIZAÇÃO</span>
-                      </div>
-                      <div class="slot-patient">Lucas Vasconcelos</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 1.000,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">14:30</span>
-                        <span class="slot-badge slot-badge--retorno">RETORNO 45D</span>
-                      </div>
-                      <div class="slot-patient">Camila Prado</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Terça -->
-                <div class="agenda-day-col">
-                  <div class="agenda-day-head">
-                    <span class="agenda-day-name" data-day="1">Ter · --/--</span>
-                    <span class="agenda-day-count">5 atendimentos</span>
-                  </div>
-                  <div class="agenda-day-slots">
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">09:30</span>
-                        <span class="slot-badge slot-badge--particular">CONSULTA CLÍNICA</span>
-                      </div>
-                      <div class="slot-patient">Renata Moretti</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">14:00</span>
-                        <span class="slot-badge slot-badge--retorno">MANUTENÇÃO 90D</span>
-                      </div>
-                      <div class="slot-patient">Fernando Pires</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 600,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">16:30</span>
-                        <span class="slot-badge slot-badge--plano">BIOESTIMULADOR</span>
-                      </div>
-                      <div class="slot-patient">Patrícia L. Alexandre</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 1.800,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Quarta -->
-                <div class="agenda-day-col">
-                  <div class="agenda-day-head">
-                    <span class="agenda-day-name" data-day="2">Qua · --/--</span>
-                    <span class="agenda-day-count">6 atendimentos</span>
-                  </div>
-                  <div class="agenda-day-slots">
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">10:00</span>
-                        <span class="slot-badge slot-badge--particular">PARTICULAR</span>
-                      </div>
-                      <div class="slot-patient">João Maia</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">14:00</span>
-                        <span class="slot-badge slot-badge--particular">AVALIAÇÃO INICIAL</span>
-                      </div>
-                      <div class="slot-patient">Carlos Eduardo</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">16:00</span>
-                        <span class="slot-badge slot-badge--retorno">RETORNO 60D</span>
-                      </div>
-                      <div class="slot-patient">Marcos Gomes</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Quinta -->
-                <div class="agenda-day-col">
-                  <div class="agenda-day-head">
-                    <span class="agenda-day-name" data-day="3">Qui · --/--</span>
-                    <span class="agenda-day-count">6 atendimentos</span>
-                  </div>
-                  <div class="agenda-day-slots">
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">09:00</span>
-                        <span class="slot-badge slot-badge--particular">PARTICULAR</span>
-                      </div>
-                      <div class="slot-patient">Beatriz Camargo</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">14:30</span>
-                        <span class="slot-badge slot-badge--retorno">RETORNO 45D</span>
-                      </div>
-                      <div class="slot-patient">Gustavo Rossi</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">17:00</span>
-                        <span class="slot-badge slot-badge--plano">PROTOCOLO TOXINA</span>
-                      </div>
-                      <div class="slot-patient">Aline Toledo</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 1.100,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Sexta -->
-                <div class="agenda-day-col">
-                  <div class="agenda-day-head">
-                    <span class="agenda-day-name" data-day="4">Sex · --/--</span>
-                    <span class="agenda-day-count">5 atendimentos</span>
-                  </div>
-                  <div class="agenda-day-slots">
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">10:30</span>
-                        <span class="slot-badge slot-badge--particular">PARTICULAR</span>
-                      </div>
-                      <div class="slot-patient">Juliana Ferreira</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">14:00</span>
-                        <span class="slot-badge slot-badge--plano">REABILITAÇÃO</span>
-                      </div>
-                      <div class="slot-patient">Rodrigo Meirelles</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 750,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                    <div class="agenda-slot-card">
-                      <div class="agenda-slot-top">
-                        <span class="slot-time">16:00</span>
-                        <span class="slot-badge slot-badge--retorno">RETORNO 45D</span>
-                      </div>
-                      <div class="slot-patient">Vanessa Duarte</div>
-                      <div class="slot-bottom">
-                        <span class="slot-val">R$ 350,00</span>
-                        <span class="slot-status">✓ Confirmada</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- PAINEL 2: CAMADA DE ENTRADA -->
-          <div class="hero-tab-panel" id="hero-panel-entrada">
-            <div class="browser-live-grid">
-              <div class="browser-live-card">
-                <div class="live-card-top">
-                  <span class="live-card-tag">Camada de entrada ativa</span>
-                  <span class="live-pill live-pill--coral">4 novos contatos hoje</span>
-                </div>
-                <p class="live-card-title">Anúncio local segmentado: <span class="dynamic-city">Matão</span></p>
-                <p class="live-card-desc">Filtro anti-curioso ativo. Pessoas com intenção real de atendimento particular.</p>
-                <div class="live-card-metric">
-                  <span class="metric-num">32</span>
-                  <span class="metric-label">contatos qualificados este mês</span>
-                </div>
-              </div>
-
-              <div class="browser-live-card">
-                <div class="live-card-top">
-                  <span class="live-card-tag">Google Pesquisa + Maps</span>
-                  <span class="live-pill live-pill--green">Perfil 5.0 estrelas</span>
-                </div>
-                <p class="live-card-title">Captura de intenção imediata</p>
-                <p class="live-card-desc">Quem procura especialistas ou tratamentos particulares na sua cidade cai direto na triagem do consultório.</p>
-                <div class="live-card-metric">
-                  <span class="metric-num">R$ 38,40</span>
-                  <span class="metric-label">custo por paciente qualificado</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- PAINEL 3: CAMADA DE RETORNO -->
-          <div class="hero-tab-panel" id="hero-panel-retorno">
-            <div class="browser-live-grid">
-              <div class="browser-live-card">
-                <div class="live-card-top">
-                  <span class="live-card-tag">Camada de retorno blindada</span>
-                  <span class="live-pill live-pill--green">7 retornos agendados</span>
-                </div>
-                <p class="live-card-title">Ciclo de retorno e manutenção programada</p>
-                <p class="live-card-desc">Mensagens programadas com acompanhamento clínico e ciclos de retorno e manutenção periódica (30 a 180 dias).</p>
-                <div class="live-card-metric">
-                  <span class="metric-num">74%</span>
-                  <span class="metric-label">taxa de retorno consolidada</span>
-                </div>
-              </div>
-
-              <div class="browser-live-card">
-                <div class="live-card-top">
-                  <span class="live-card-tag">Garantia anti-falta 24h</span>
-                  <span class="live-pill live-pill--green">Zero faltas na semana</span>
-                </div>
-                <p class="live-card-title">Confirmação em 1 Toque via WhatsApp</p>
-                <p class="live-card-desc">Lembrete com rota no Google Maps protege os horários nobres do consultório.</p>
-                <div class="live-card-metric">
-                  <span class="metric-num">96%</span>
-                  <span class="metric-label">taxa de presença confirmada</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="browser-status-bar" style="margin-top:1.25rem;">
-            <div class="status-item">
-              <span class="status-dot status-dot--pulse"></span>
-              <span class="status-txt">Sistema Dupla Camada: 28 pacientes ativos</span>
-            </div>
-            <div class="status-item">
-              <span class="status-dot" style="background:var(--success);"></span>
-              <span class="status-txt">Meta Ads & Google Ads Matão: ativos</span>
-            </div>
-            <div class="status-item">
-              <span class="status-dot" style="background:var(--accent);"></span>
-              <span class="status-txt">Garantia de 30 dias em vigor</span>
-            </div>
+            <img src="images/screens/trophe_screen_04_agenda.png" alt="Agenda Semanal No-Show Shield TROPHÉ" style="width:100%;height:auto;display:block;" />
           </div>
         </div>
       </div>
@@ -721,7 +387,7 @@
         <span class="section-eyebrow">A conta matemática que nenhuma agência comum tem coragem de fazer com você:</span>
         <h2 class="t-title">A equação dos 3 sangramentos: onde a sua clínica perde até R$ 26.000 todo mês</h2>
         <p class="t-body" style="margin-top:.75rem;">
-          Sua agenda não oscila por falta de competência clínica. Ela oscila porque existem 3 vazamentos silenciosos no seu front-office drenando o faturamento antes mesmo de você sentar na cadeira.
+          Sua agenda não oscila por falta de competência clínica. Ela oscila porque existem 3 vazamentos silenciosos no seu <span class="u-nowrap">front-office</span> drenando o faturamento antes mesmo de você sentar na cadeira.
         </p>
       </div>
 
@@ -782,7 +448,7 @@
         <!-- Barra totalizadora -->
         <div class="eq-total-strip">
           <div class="eq-total-info">
-            <span class="eq-total-label">Prejuízo total acumulado no front-office da clínica</span>
+            <span class="eq-total-label">Prejuízo total acumulado no <span class="u-nowrap">front-office</span> da clínica</span>
             <span class="eq-total-sub">Cálculo médio sobre consultórios com faturamento de R$ 35k a R$ 100k/mês</span>
           </div>
           <div class="eq-total-nums">
@@ -797,7 +463,7 @@
       ====================================================== -->
       <div class="bleeding-self-diagnosis reveal">
         <div class="diagnosis-header">
-          <span class="diag-badge">Raio-X de front-office</span>
+          <span class="diag-badge">Raio-X de <span class="u-nowrap">front-office</span>
           <h3>Auto-diagnóstico dos 3 rombos: o teste de 60 segundos</h3>
           <p>Faça a si mesmo estas 3 perguntas sinceras sobre a rotina da sua clínica hoje:</p>
         </div>
@@ -901,10 +567,10 @@
   <section class="section" id="mecanismo-solucao">
     <div class="container">
       <div class="section-head center reveal" style="text-align:center;max-width:740px;margin:0 auto 3.5rem;">
-        <span class="section-eyebrow">A resposta para estancar os 3 sangramentos de receita do seu front-office:</span>
+        <span class="section-eyebrow">A resposta para estancar os 3 sangramentos de receita do seu <span class="u-nowrap">front-office</span>:</span>
         <h2 class="t-title">Infraestrutura <img src="images/trophe-logo-cropped.png" alt="TROPHÉ" class="headline-inline-logo" /> de receita clínica: como estancamos os vazamentos da sua operação</h2>
         <p class="t-body" style="margin-top:.75rem;">
-          Em vez de contratar peças soltas que não conversam entre si, instalamos uma infraestrutura integrada de front-office com um único dono e metodologia proprietária.
+          Em vez de contratar peças soltas que não conversam entre si, instalamos uma infraestrutura integrada de <span class="u-nowrap">front-office</span> com um único dono e metodologia proprietária.
         </p>
       </div>
 
@@ -1048,567 +714,43 @@
 
       <!-- BROWSER WINDOW WRAPPER DO CRM -->
       <div class="browser-window crm-showcase-window reveal">
-        <div class="browser-chrome">
-          <div class="browser-chrome-top">
+        <div class="browser-chrome" style="padding:0.75rem 1.25rem;border-bottom:1px solid var(--border);background:var(--sa);">
+          <div class="browser-chrome-top" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
             <div class="browser-dots">
               <div class="browser-dot browser-dot--red"></div>
               <div class="browser-dot browser-dot--yellow"></div>
               <div class="browser-dot browser-dot--green"></div>
             </div>
-            <div class="crm-top-search">
-              <svg class="svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <span>Buscar paciente, prontuário ou tag...</span>
-            </div>
             <div class="browser-address">
               <span class="browser-address-lock">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
-              <span class="browser-address-text">painel.consultorio.com/gestao-clinica</span>
+              <span class="browser-address-text">trophe.app/sistema-clinico</span>
             </div>
+            <div style="width:48px;" aria-hidden="true"></div>
           </div>
         </div>
 
-        <div class="crm-vitrine-body" style="padding:1.5rem;background:var(--canvas);">
-          
-          <!-- ABA 1: FUNIL DE PACIENTES (KANBAN COM MATEMÁTICA EXATA) -->
+        <div class="crm-vitrine-body" style="padding:0 !important;background:var(--surface);overflow:hidden;">
+          <!-- ABA 1: FUNIL DE PACIENTES (KANBAN) -->
           <div class="crm-tab-panel active" id="crm-tab-kanban">
-            <div class="crm-pipeline-header">
-              <div class="pipeline-header-left">
-                <div class="pipeline-selector">
-                  <span class="pipeline-dot"></span>
-                  <strong>Funil de consultas particulares · <span class="dynamic-city">Matão e região</span></strong>
-                </div>
-                <span class="pipeline-meta">20 pacientes ativos no ciclo · R$ 6.000 em faturamento previsto</span>
-              </div>
-              <div class="pipeline-header-right">
-                <span class="crm-add-btn">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                  <span>+ Novo paciente</span>
-                </span>
-              </div>
-            </div>
-
-            <!-- Seletor Mobile das 4 Fases do Funil Kanban -->
-            <div class="kanban-col-switcher-mobile" id="kanbanColSwitcherMobile" aria-label="Navegar pelas fases do funil">
-              <button type="button" class="kanban-switch-btn active" data-col-index="0"><span>1. Novos</span></button>
-              <button type="button" class="kanban-switch-btn" data-col-index="1"><span>2. Triagem</span></button>
-              <button type="button" class="kanban-switch-btn" data-col-index="2"><span>3. Agendada</span></button>
-              <button type="button" class="kanban-switch-btn" data-col-index="3"><span>4. Retorno</span></button>
-            </div>
-
-            <div class="crm-kanban-board">
-              <!-- Coluna 1: Novos Contatos -->
-              <div class="crm-col">
-                <div class="crm-col-head">
-                  <div class="crm-col-title-wrap">
-                    <span class="col-indicator col-indicator--entrada"></span>
-                    <span class="crm-col-name">1. Novos contatos</span>
-                  </div>
-                  <span class="crm-col-badge">18 · Qualificados</span>
-                </div>
-                <div class="crm-col-cards">
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--novo">NOVO</span>
-                      <span class="crm-tag crm-tag--origem">Meta Ads</span>
-                    </div>
-                    <div class="crm-card-title">Mariana Silveira (32 anos)</div>
-                    <div class="crm-card-objective">Harmonização facial e botox</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 1.000,00</span>
-                      <span class="crm-wa-quick">Resposta relâmpago</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--quente">QUENTE</span>
-                      <span class="crm-tag crm-tag--origem">Google Ads</span>
-                    </div>
-                    <div class="crm-card-title">Lucas Vasconcelos (28 anos)</div>
-                    <div class="crm-card-objective">Consulta particular / avaliação</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 350,00</span>
-                      <span class="crm-card-status">Preencheu triagem</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--novo">NOVO</span>
-                      <span class="crm-tag crm-tag--origem">Instagram</span>
-                    </div>
-                    <div class="crm-card-title">Juliana Ferreira (36 anos)</div>
-                    <div class="crm-card-objective">Nutrição clínica e performance</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 350,00</span>
-                      <span class="crm-card-status">Acolhimento enviado</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--qualificado">QUALIFICADO</span>
-                      <span class="crm-tag crm-tag--origem">Google Maps</span>
-                    </div>
-                    <div class="crm-card-title">Beatriz Camargo (29 anos)</div>
-                    <div class="crm-card-objective">Preenchimento labial e contorno</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 1.500,00</span>
-                      <span class="crm-card-status">Quer particular</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--novo">NOVO</span>
-                      <span class="crm-tag crm-tag--origem">Google Ads</span>
-                    </div>
-                    <div class="crm-card-title">Camila Nogueira (34 anos)</div>
-                    <div class="crm-card-objective">Consulta Médica Especializada</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 400,00</span>
-                      <span class="crm-card-status">Triagem em andamento</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Coluna 2: Triagem Realizada -->
-              <div class="crm-col">
-                <div class="crm-col-head">
-                  <div class="crm-col-title-wrap">
-                    <span class="col-indicator col-indicator--triagem"></span>
-                    <span class="crm-col-name">2. Triagem realizada</span>
-                  </div>
-                  <span class="crm-col-badge">9 · Em Agendamento</span>
-                </div>
-                <div class="crm-col-cards">
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--qualificado">QUALIFICADO</span>
-                      <span class="crm-tag crm-tag--particular">PARTICULAR</span>
-                    </div>
-                    <div class="crm-card-title">Renata Moretti (41 anos)</div>
-                    <div class="crm-card-objective">Bioestimulador de Colágeno</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 1.800,00</span>
-                      <span class="crm-card-status">Definindo horário</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--morno">MORNO</span>
-                      <span class="crm-tag crm-tag--origem">Google Maps</span>
-                    </div>
-                    <div class="crm-card-title">João Maia (35 anos)</div>
-                    <div class="crm-card-objective">Acompanhamento Clínico</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 350,00</span>
-                      <span class="crm-card-status">Follow-up ativo</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--qualificado">QUALIFICADO</span>
-                      <span class="crm-tag crm-tag--origem">Meta Ads</span>
-                    </div>
-                    <div class="crm-card-title">Carlos Eduardo (48 anos)</div>
-                    <div class="crm-card-objective">Avaliação Reabilitação Oral</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 1.000,00</span>
-                      <span class="crm-card-status">Horário reservado</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Coluna 3: Consulta Agendada -->
-              <div class="crm-col">
-                <div class="crm-col-head">
-                  <div class="crm-col-title-wrap">
-                    <span class="col-indicator col-indicator--agendado"></span>
-                    <span class="crm-col-name">3. Consulta agendada</span>
-                  </div>
-                  <span class="crm-col-badge">4 · Confirmadas</span>
-                </div>
-                <div class="crm-col-cards">
-                  <div class="crm-card crm-card--featured">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--confirmado">CONFIRMADO</span>
-                      <span class="crm-tag crm-tag--horario">Terça · 14:30</span>
-                    </div>
-                    <div class="crm-card-title">Camila Prado (29 anos)</div>
-                    <div class="crm-card-objective">1º Procedimento Estético</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 1.400,00</span>
-                      <span class="crm-card-presence">Presença Confirmada</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--confirmado">CONFIRMADO</span>
-                      <span class="crm-tag crm-tag--horario">Quarta · 16:00</span>
-                    </div>
-                    <div class="crm-card-title">Fernando Pires (44 anos)</div>
-                    <div class="crm-card-objective">Consulta Particular Especializada</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 400,00</span>
-                      <span class="crm-card-status">Lembrete OK</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--confirmado">CONFIRMADO</span>
-                      <span class="crm-tag crm-tag--horario">Quinta · 10:00</span>
-                    </div>
-                    <div class="crm-card-title">Letícia Barreto (38 anos)</div>
-                    <div class="crm-card-objective">Protocolo de Acompanhamento</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 750,00</span>
-                      <span class="crm-card-status">Confirmado WhatsApp</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Coluna 4: Retorno Blindado -->
-              <div class="crm-col">
-                <div class="crm-col-head">
-                  <div class="crm-col-title-wrap">
-                    <span class="col-indicator col-indicator--retorno"></span>
-                    <span class="crm-col-name">4. Retorno Blindado</span>
-                  </div>
-                  <span class="crm-col-badge">2 · Reativados</span>
-                </div>
-                <div class="crm-col-cards">
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--retorno">MANUTENÇÃO 120D</span>
-                      <span class="crm-tag crm-tag--reativado">REATIVADA</span>
-                    </div>
-                    <div class="crm-card-title">Patrícia L. Alexandre</div>
-                    <div class="crm-card-objective">Retoque / Renovação Preventiva</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 1.100,00</span>
-                      <span class="crm-card-status">Agendado p/ Sexta</span>
-                    </div>
-                  </div>
-
-                  <div class="crm-card">
-                    <div class="crm-card-top">
-                      <span class="crm-tag crm-tag--cliente">CLIENTE FIEL</span>
-                      <span class="crm-tag crm-tag--plano">ACOMPANHAMENTO</span>
-                    </div>
-                    <div class="crm-card-title">Marcos Gomes</div>
-                    <div class="crm-card-objective">Consulta de Manutenção Periódica</div>
-                    <div class="crm-card-bottom">
-                      <span class="crm-card-val">R$ 350,00</span>
-                      <span class="crm-card-status">Receita Previsível</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img src="images/screens/trophe_screen_02_kanban.png" alt="Funil Kanban de Pacientes TROPHÉ" style="width:100%;height:auto;display:block;" loading="lazy" />
           </div>
 
           <!-- ABA 2: AUTOMAÇÕES DE WHATSAPP -->
           <div class="crm-tab-panel" id="crm-tab-automacoes">
-            <div class="crm-report-card" style="padding:1.5rem;">
-              <div class="report-head" style="margin-bottom:1.5rem;">
-                <div class="report-icon-box" style="background:rgba(34,197,94,0.12);color:var(--success);">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <div>
-                  <h4 style="font-size:1.15rem;font-weight:700;color:var(--ink);">Fluxo ativo de automação no WhatsApp da clínica</h4>
-                  <span class="report-sub">Triagem instantânea, proteção anti-falta e ciclos programados de retorno e manutenção</span>
-                </div>
-              </div>
-
-              <div class="workflow-diagram">
-                <div class="workflow-node">
-                  <div class="node-step-badge">1</div>
-                  <div class="node-content-box">
-                    <span class="node-tag node-tag--gatilho">GATILHO DE ENTRADA</span>
-                    <strong style="color:var(--ink);display:block;margin:4px 0 2px;">Anúncio Local em <span class="dynamic-city">Matão</span> (Meta Ads ou Google Ads)</strong>
-                    <p style="font-size:0.8rem;color:var(--muted);margin:0;">Paciente clica e preenche as 3 perguntas de triagem prévia (filtro anti-curioso).</p>
-                  </div>
-                </div>
-
-                <div class="workflow-connector">
-                  <div class="connector-line"></div>
-                  <div class="connector-plus">+</div>
-                  <div class="connector-line"></div>
-                </div>
-
-                <div class="workflow-node">
-                  <div class="node-step-badge">2</div>
-                  <div class="node-content-box">
-                    <span class="node-tag node-tag--acao">RESPOSTA RELÂMPAGO (&lt; 1 MIN)</span>
-                    <strong style="color:var(--ink);display:block;margin:4px 0 2px;">Acolhimento Automático &amp; Grade de Horários Livres</strong>
-                    <p style="font-size:0.8rem;color:var(--muted);margin:0;">Paciente recebe saudação elegante e escolhe o melhor dia/horário antes de esfriar.</p>
-                  </div>
-                </div>
-
-                <div class="workflow-connector">
-                  <div class="connector-line"></div>
-                  <div class="connector-plus">+</div>
-                  <div class="connector-line"></div>
-                </div>
-
-                <div class="workflow-node">
-                  <div class="node-step-badge">3</div>
-                  <div class="node-content-box">
-                    <span class="node-tag node-tag--acao" style="background:#e0f2fe;color:#0284c7;">ANTI-FALTA (48H E 24H ANTES)</span>
-                    <strong style="color:var(--ink);display:block;margin:4px 0 2px;">Confirmação de Presença + Localização no Maps</strong>
-                    <p style="font-size:0.8rem;color:var(--muted);margin:0;">Confirmação em 1 clique via botão rápido. Protege os horários clínicos nobres.</p>
-                  </div>
-                </div>
-
-                <div class="workflow-connector">
-                  <div class="connector-line"></div>
-                  <div class="connector-plus">+</div>
-                  <div class="connector-line"></div>
-                </div>
-
-                <div class="workflow-node">
-                  <div class="node-step-badge">4</div>
-                  <div class="node-content-box node-content-box--coral">
-                    <span class="node-tag node-tag--coral">CAMADA DE RETORNO (30 A 180 DIAS)</span>
-                    <strong style="color:var(--ink);display:block;margin:4px 0 2px;">Convocação com Pretexto Clínico de Retorno / Manutenção</strong>
-                    <p style="font-size:0.8rem;color:var(--muted);margin:0;">Mensagem afetuosa lembrando o paciente de revisão, retoque ou reavaliação. Reativação contínua.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img src="images/screens/trophe_screen_05_automacoes.png" alt="Construtor Visual de Automações TROPHÉ" style="width:100%;height:auto;display:block;" loading="lazy" />
           </div>
 
-          <!-- ABA 3: RELATÓRIOS & INTELIGÊNCIA DE DADOS (DATA PLAYER DASHBOARD) -->
+          <!-- ABA 3: RELATÓRIOS & INTELIGÊNCIA DE DADOS -->
           <div class="crm-tab-panel" id="crm-tab-relatorios">
-            <!-- 8 KPIs Executivos do Consultório -->
-            <div class="data-player-kpis-grid">
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">Faturamento Mensal</span>
-                <span class="data-kpi-val">R$ 14.700</span>
-                <span class="data-kpi-delta data-kpi-delta--up">↑ +68% MoM</span>
-              </div>
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">MRR (Recorrência Retornos)</span>
-                <span class="data-kpi-val">R$ 8.100</span>
-                <span class="data-kpi-delta data-kpi-delta--up">55% do Faturamento</span>
-              </div>
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">CAC (Custo por Paciente)</span>
-                <span class="data-kpi-val">R$ 38,40</span>
-                <span class="data-kpi-delta data-kpi-delta--up">↓ -42% vs mercado</span>
-              </div>
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">LTV Médio do Paciente</span>
-                <span class="data-kpi-val">R$ 1.280</span>
-                <span class="data-kpi-delta data-kpi-delta--sub">Média 3.8 consultas/ano</span>
-              </div>
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">LTV / CAC Ratio</span>
-                <span class="data-kpi-val">33.3x</span>
-                <span class="data-kpi-delta data-kpi-delta--up">Alta Eficiência</span>
-              </div>
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">Taxa de Retenção (45d)</span>
-                <span class="data-kpi-val">74%</span>
-                <span class="data-kpi-delta data-kpi-delta--up">Benchmark: 28%</span>
-              </div>
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">Comparecimento (Anti-Falta)</span>
-                <span class="data-kpi-val">96,4%</span>
-                <span class="data-kpi-delta data-kpi-delta--up">Apenas 1 falta em 28</span>
-              </div>
-              <div class="data-kpi-card">
-                <span class="data-kpi-label">ROAS das Campanhas</span>
-                <span class="data-kpi-val">7.8x</span>
-                <span class="data-kpi-delta data-kpi-delta--up">Retorno s/ anúncio</span>
-              </div>
-            </div>
-
-            <!-- Gráfico Donut + Breakdown -->
-            <div class="crm-reports-grid">
-              <div class="crm-report-card">
-                <div class="report-head">
-                  <div class="report-icon-box">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
-                  </div>
-                  <div>
-                    <h5>Composição da Receita Clínica</h5>
-                    <span class="report-sub">28 Consultas Realizadas no Mês · <span class="dynamic-city">Matão e região</span></span>
-                  </div>
-                </div>
-                <div class="report-pie-box" style="height:140px;">
-                  <svg viewBox="0 0 36 36" class="pie-svg" style="width:105px;height:105px;">
-                    <path class="pie-segment" stroke="#1E5E3A" stroke-dasharray="68, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    <path class="pie-segment" stroke="#50AD25" stroke-dasharray="24, 100" stroke-dashoffset="-68" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    <path class="pie-segment" stroke="#CBD5E1" stroke-dasharray="8, 100" stroke-dashoffset="-92" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  </svg>
-                  <div class="pie-legend">
-                    <div class="pie-leg-row">
-                      <span class="pie-color-box" style="background:#1E5E3A;"></span>
-                      <strong style="color:var(--ink);">68% Retornos Blindados (R$ 8.100)</strong>
-                    </div>
-                    <div class="pie-leg-row">
-                      <span class="pie-color-box" style="background:#50AD25;"></span>
-                      <span>24% Novos Particulares (R$ 5.400)</span>
-                    </div>
-                    <div class="pie-leg-row">
-                      <span class="pie-color-box" style="background:#CBD5E1;"></span>
-                      <span>8% Protocolos & Avaliações Pontuais (R$ 1.000)</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="crm-toast-box" style="margin-top:1rem;width:100%;">
-                  <div class="toast-icon-won">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  </div>
-                  <div class="toast-content">
-                    <strong>Previsibilidade Atingida 🎉</strong>
-                    <span>R$ 8.100 garantidos todo mês exclusivamente com a Camada de Retorno.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="crm-reports-divider"></div>
-
-              <!-- Tabela de Coorte Trimestral -->
-              <div class="crm-report-card">
-                <div class="report-head">
-                  <div class="report-icon-box" style="background:rgba(0,102,204,0.1);color:#0066cc;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                  </div>
-                  <div>
-                    <h5>Evolução Trimestral de Dados</h5>
-                    <span class="report-sub">Comparativo antes e depois da implementação</span>
-                  </div>
-                </div>
-
-                <div class="crm-table-scroll-wrapper">
-                  <table class="cohort-table">
-                    <thead>
-                      <tr>
-                        <th>Período</th>
-                        <th>Consultas</th>
-                        <th>Faturamento</th>
-                        <th>Retenção</th>
-                        <th>Faltas</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Mês -1 (Sem sistema)</td>
-                        <td>11</td>
-                        <td>R$ 3.300</td>
-                        <td>22%</td>
-                        <td style="color:#dc2626;">34%</td>
-                      </tr>
-                      <tr>
-                        <td>Mês 01 (Ativação)</td>
-                        <td>19</td>
-                        <td>R$ 5.700</td>
-                        <td>48%</td>
-                        <td>12%</td>
-                      </tr>
-                      <tr class="cohort-highlight-row">
-                        <td><strong>Mês 02 (Dupla Camada)</strong></td>
-                        <td><strong>28</strong></td>
-                        <td><strong>R$ 14.700</strong></td>
-                        <td style="color:#15803d;"><strong>74%</strong></td>
-                        <td style="color:#15803d;"><strong>3.6%</strong></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+            <img src="images/screens/trophe_screen_01_dashboard.png" alt="Dashboard Executivo & Score Clínico TROPHÉ" style="width:100%;height:auto;display:block;" loading="lazy" />
           </div>
 
-          <!-- ABA 4: BASE DE PACIENTES COM TAGS -->
+          <!-- ABA 4: BASE DE PACIENTES COM PRONTUÁRIO & LTV -->
           <div class="crm-tab-panel" id="crm-tab-base">
-            <div class="crm-report-card" style="padding:1.25rem;">
-              <div class="report-head" style="margin-bottom:1rem;">
-                <div class="report-icon-box" style="background:rgba(242,128,93,0.15);color:var(--accent);">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <div>
-                  <h5>Prontuário Ativo & Segmentação por Tags</h5>
-                  <span class="report-sub">Histórico clínico e ações em 1 clique via WhatsApp</span>
-                </div>
-              </div>
-
-              <div class="crm-table-mobile-hint">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                <span>Deslize a tabela para o lado para ver todos os dados</span>
-              </div>
-
-              <div class="crm-table-scroll-wrapper">
-                <table class="cohort-table">
-                  <thead>
-                    <tr>
-                      <th>Paciente</th>
-                      <th>Etiqueta / Status</th>
-                      <th>Bairro (Matão)</th>
-                      <th>Contato WhatsApp</th>
-                      <th>LTV Acumulado</th>
-                      <th>Ação Rápida</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Mariana Silveira</strong></td>
-                      <td><span class="slot-badge slot-badge--particular">NOVO PARTICULAR</span></td>
-                      <td>Centro</td>
-                      <td>(16) 99724-****</td>
-                      <td>R$ 300,00</td>
-                      <td><span style="color:#15803d;font-weight:600;cursor:pointer;">WhatsApp ➔</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Marcos Gomes</strong></td>
-                      <td><span class="slot-badge slot-badge--retorno">CLIENTE FIEL · TRIMESTRAL</span></td>
-                      <td>Residencial Las Palmas</td>
-                      <td>(16) 99181-****</td>
-                      <td>R$ 900,00</td>
-                      <td><span style="color:#15803d;font-weight:600;cursor:pointer;">WhatsApp ➔</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Patrícia L. Alexandre</strong></td>
-                      <td><span class="slot-badge slot-badge--retorno">RETORNO 45D REATIVADA</span></td>
-                      <td>Nova Matão</td>
-                      <td>(16) 99612-****</td>
-                      <td>R$ 600,00</td>
-                      <td><span style="color:#15803d;font-weight:600;cursor:pointer;">WhatsApp ➔</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Camila Prado</strong></td>
-                      <td><span class="slot-badge slot-badge--particular">CONFIRMADA TERÇA</span></td>
-                      <td>Jardim Paraíso</td>
-                      <td>(16) 99341-****</td>
-                      <td>R$ 300,00</td>
-                      <td><span style="color:#15803d;font-weight:600;cursor:pointer;">WhatsApp ➔</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Renata Moretti</strong></td>
-                      <td><span class="slot-badge slot-badge--plano">PLANO 60D</span></td>
-                      <td>Centro</td>
-                      <td>(16) 99690-****</td>
-                      <td>R$ 700,00</td>
-                      <td><span style="color:#15803d;font-weight:600;cursor:pointer;">WhatsApp ➔</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <img src="images/screens/trophe_screen_06_prontuario.png" alt="Prontuário Médico, Sinais Vitais & LTV TROPHÉ" style="width:100%;height:auto;display:block;" loading="lazy" />
           </div>
-
         </div>
       </div>
     </div>
@@ -2147,26 +1289,11 @@
             </div>
             <h3 class="vtl-title">Resgate da base antiga</h3>
             <p class="vtl-desc">Rodamos a campanha de reativação ética na sua lista de pacientes antigos, gerando atendimentos imediatos sem gastar R$ 1 em anúncios.</p>
-            <div class="vtl-result-row">
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">+6</span>
-                <span class="vtl-kpi-lbl">Pacientes reativados</span>
-              </div>
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">R$ 2.400+</span>
-                <span class="vtl-kpi-lbl">Receita imediata</span>
-              </div>
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">R$ 0</span>
-                <span class="vtl-kpi-lbl">Em anúncios</span>
-              </div>
+            <div class="vtl-milestone-pills">
+              <span class="vtl-mini-pill vtl-mini-pill--green">Reativação ética da base</span>
+              <span class="vtl-mini-pill vtl-mini-pill--green">Primeiros agendamentos no WhatsApp</span>
+              <span class="vtl-mini-pill">Receita imediata sem custos de anúncio</span>
             </div>
-            <div class="vtl-time-badge">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <strong>Seu tempo:</strong> Zero — automação pronta
-            </div>
-          </div>
-        </div>
 
         <!-- Fase 03 -->
         <div class="vtl-item vtl-item--anim">
@@ -2181,26 +1308,11 @@
             </div>
             <h3 class="vtl-title">Lançamento da captação ativa</h3>
             <p class="vtl-desc">Subimos as campanhas geolocalizadas no Meta e Google Ads com foco na sua região, atraindo pacientes particulares com garantia anti-falta.</p>
-            <div class="vtl-result-row">
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">100%</span>
-                <span class="vtl-kpi-lbl">Geolocalizado</span>
-              </div>
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">&lt; 4%</span>
-                <span class="vtl-kpi-lbl">Taxa de faltas</span>
-              </div>
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">Diário</span>
-                <span class="vtl-kpi-lbl">Novos agendamentos</span>
-              </div>
+            <div class="vtl-milestone-pills">
+              <span class="vtl-mini-pill vtl-mini-pill--accent">Campanhas locais no Meta e Google Ads</span>
+              <span class="vtl-mini-pill vtl-mini-pill--accent">Filtro anti-curioso ativo 24x7</span>
+              <span class="vtl-mini-pill">Confirmações automáticas anti-falta</span>
             </div>
-            <div class="vtl-time-badge">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <strong>Seu tempo:</strong> Zero — gestão 100% por nós
-            </div>
-          </div>
-        </div>
 
         <!-- Fase 04 -->
         <div class="vtl-item vtl-item--anim vtl-item--last">
@@ -2214,21 +1326,11 @@
             </div>
             <h3 class="vtl-title">Retorno blindado e 20 pacientes</h3>
             <p class="vtl-desc">A Camada de Retorno entra em ação automática, transformando atendimentos isolados em receita mensal garantida e superando a meta de 20 pacientes particulares.</p>
-            <div class="vtl-result-row">
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">20+</span>
-                <span class="vtl-kpi-lbl">Particulares qualificados</span>
-              </div>
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">74%</span>
-                <span class="vtl-kpi-lbl">Taxa de retorno e manutenção</span>
-              </div>
-              <div class="vtl-kpi">
-                <span class="vtl-kpi-num">R$ 10k+</span>
-                <span class="vtl-kpi-lbl">Receita previsível</span>
-              </div>
+            <div class="vtl-milestone-pills">
+              <span class="vtl-mini-pill vtl-mini-pill--green">Meta de 20+ novos particulares</span>
+              <span class="vtl-mini-pill vtl-mini-pill--green">Ciclos de retorno de 30 a 180 dias</span>
+              <span class="vtl-mini-pill">Receita recorrente e agenda consolidada</span>
             </div>
-          </div>
         </div>
 
       </div>
@@ -2240,103 +1342,82 @@
 
   <section class="section" id="investimento">
     <div class="container">
-      <div class="section-head center reveal" style="text-align:center;max-width:680px;margin:0 auto 3rem;">
-        <span class="section-eyebrow">Uma fração mínima do prejuízo anual de R$ 312.000 que a sua clínica estanca:</span>
-        <h2 class="t-title">Investimento claro, ancorado no retorno financeiro gerado para a sua cadeira.</h2>
+      <div class="section-head center reveal" style="text-align:center;max-width:740px;margin:0 auto 3rem;">
+        <span class="section-eyebrow">Uma fração mínima do prejuízo anual que o seu consultório estanca:</span>
+        <h2 class="t-title">Investimento transparente, estruturado para se pagar logo no primeiro ciclo.</h2>
         <p class="t-body" style="margin-top:.6rem;">
-          Você sabe exatamente o que está pagando para implantar a infraestrutura proprietária e quanto custa para manter todo o front-office rodando com previsibilidade.
+          Você não contrata horas avulsas de agência. Instalamos e operamos uma infraestrutura proprietária de <span class="u-nowrap">front-office</span> com dono único, metodologia validada e acompanhamento direto.
         </p>
       </div>
 
-      <!-- CARD ÚNICO: Financial Ledger Receipt Card -->
+      <!-- CARD ÚNICO: Financial Ledger Receipt Card Alinhado à Nota de Orçamento -->
       <div class="ledger-receipt-card reveal">
         <div class="receipt-header">
           <div class="receipt-brand">
             <svg class="svg-icon svg-accent" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;"><circle cx="12" cy="12" r="10"></circle></svg>
             <strong>TROPHÉ · INFRAESTRUTURA DE RECEITA CLÍNICA</strong>
-            <span class="receipt-sub">Implantação Proprietária de Front-Office Clínico</span>
+            <span class="receipt-sub">Implantação Proprietária de <span class="u-nowrap">Front-Office</span> Clínico</span>
           </div>
           <div class="receipt-condition-pill">
-            Condição especial para a 1ª cliente parceira em <span class="dynamic-city">Matão e região</span>
+            Programa de Aceleração · <span class="dynamic-city">Matão e região</span>
           </div>
         </div>
 
-        <div class="receipt-table">
-          <div class="receipt-row receipt-row--head">
-            <span>Camada da infraestrutura</span>
-            <span>Valor de mercado</span>
-          </div>
-          <div class="receipt-row">
-            <span>Camada 01: máquina de demanda local (Meta Ads + Google Ads + Maps)</span>
-            <span class="price-striked">R$ 3.000</span>
-          </div>
-          <div class="receipt-row">
-            <span>Camada 02: triagem inteligente e filtro anti-curioso 24x7</span>
-            <span class="price-striked">R$ 2.000</span>
-          </div>
-          <div class="receipt-row">
-            <span>Camada 03: processo comercial da recepção e protocolo anti-falta</span>
-            <span class="price-striked">R$ 1.500</span>
-          </div>
-          <div class="receipt-row">
-            <span>Camada 04: motor de LTV, retenção e campanha de resgate na base</span>
-            <span class="price-striked">R$ 1.500</span>
-          </div>
-          <div class="receipt-row receipt-row--total">
-            <span>Valor de tabela se contratado separadamente</span>
-            <span class="total-striked">R$ 8.000</span>
-          </div>
-        </div>
-
-        <!-- Divisor picotado característico -->
-        <div class="receipt-tear-line"></div>
-
-        <div class="receipt-proposal-box">
-          <!-- Coluna 1: Setup -->
+        <div class="receipt-proposal-box" style="margin-top:1.5rem;">
+          <!-- Coluna 1: O Que Está Incluso -->
           <div class="proposal-col">
-            <span class="proposal-type">ETAPA 1: SETUP DE IMPLANTAÇÃO</span>
-            <h3 class="proposal-title">Instalação completa da infraestrutura</h3>
+            <span class="proposal-type">ETAPA 1: IMPLANTAÇÃO DA INFRAESTRUTURA (14 DIAS)</span>
+            <h3 class="proposal-title">Instalação e configuração completa</h3>
             <p class="proposal-desc">
-              Montamos todas as automações de resposta relâmpago, criamos os anúncios locais no Meta e Google Ads, estruturamos o filtro anti-curioso e rodamos a Campanha de Resgate na sua base já na primeira semana.
+              Você não precisa se preocupar com aspectos técnicos. Configuramos toda a esteira de captação, blindagem e retenção para o seu consultório:
             </p>
-            <div class="proposal-price-box">
-              <span class="price-from">Tabela oficial: R$ 8.000 por</span>
-              <span class="price-main">R$ 2.500</span>
-              <span class="price-installment">em até 12x no cartão de crédito</span>
-              <span class="price-obs">Taxa única de implantação da infraestrutura</span>
-
-              <!-- Informação minimalista no design do bloco, sem card separado -->
-              <div class="pricing-pix-inline">
-                <div class="pix-inline-row">
-                  <span class="pix-inline-price">Condição especial para a 1ª cliente: <strong>R$ 2.000 à vista</strong> no PIX</span>
-                </div>
-                <div class="pix-inline-deadline">
-                  Exclusivo para o primeiro consultório fechado neste ciclo em <span class="dynamic-city">Matão</span> (em troca de validação de métricas e depoimento para o case).
-                </div>
-              </div>
-            </div>
+            <ul style="list-style:none;margin-top:1.25rem;display:flex;flex-direction:column;gap:10px;font-size:0.86rem;color:var(--ink);">
+              <li style="display:flex;align-items:flex-start;gap:8px;">
+                <span style="color:var(--success);font-weight:700;">✓</span>
+                <span><strong>Esteira de Atração Local:</strong> anúncios geolocalizados no Meta e Google Ads segmentados para procedimentos particulares nobres.</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:8px;">
+                <span style="color:var(--success);font-weight:700;">✓</span>
+                <span><strong>Triagem &amp; Filtro Anti-Curioso:</strong> qualificação automática 24x7 no WhatsApp antes de passar os contatos para a recepção.</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:8px;">
+                <span style="color:var(--success);font-weight:700;">✓</span>
+                <span><strong>No-Show Shield (Anti-Falta):</strong> confirmações automáticas 48h e 24h antes com rota direta no Google Maps.</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:8px;">
+                <span style="color:var(--success);font-weight:700;">✓</span>
+                <span><strong>Motor de Resgate Ético:</strong> campanha estruturada de retorno na sua base antiga logo nos primeiros dias de implantação.</span>
+              </li>
+            </ul>
           </div>
 
-          <!-- Coluna 2: Recorrência -->
+          <!-- Coluna 2: Nota de Orçamento Executiva -->
           <div class="proposal-col proposal-col--recorr">
-            <span class="proposal-type">ETAPA 2: GESTÃO & INTELIGÊNCIA CONTÍNUA</span>
-            <h3 class="proposal-title">Operação contínua das 4 camadas</h3>
+            <span class="proposal-type">PROCESSO DE SELEÇÃO &amp; ORÇAMENTO</span>
+            <h3 class="proposal-title">Nota de Orçamento Executiva</h3>
             <p class="proposal-desc">
-              Otimizamos as campanhas semanalmente, mantemos a garantia de comparecimento ativa e acionamos as convocações periódicas da sua base de pacientes para manter a agenda preenchida.
+              A proposta financeira é formalizada de forma individual e transparente, ancorada na realidade e capacidade de atendimento da sua clínica.
             </p>
-            <div class="proposal-price-box">
-              <span class="price-from">Tabela oficial: R$ 2.500/mês</span>
-              <span class="price-main">R$ 1.000<small>/mês</small></span>
-              <span class="price-obs">Sem fidelidade abusiva ou carência. Com apenas 1 ou 2 atendimentos no mês a infraestrutura se paga por completo.</span>
+
+            <div class="proposal-price-box" style="margin-top:1.25rem;">
+              <div style="font-size:0.86rem;color:var(--ink-soft);line-height:1.55;margin-bottom:1.25rem;">
+                A implantação é conduzida pessoalmente pelo fundador <strong>Lucas Fernandes</strong>. Limitamos a entrada a no máximo <strong>3 novas clínicas por mês</strong> por região. O acordo é mês a mês, sem fidelidade abusiva nem carência contratual.
+              </div>
+
+              <a href="https://wa.me/5511957622191?text=Oi%20Lucas!%20Quero%20agendar%20a%20Auditoria%20dos%203%20Sangramentos%20de%2015%20minutos%20e%20solicitar%20a%20Nota%20de%20Or%C3%A7amento%20para%20o%20meu%20consult%C3%B3rio." target="_blank" rel="noopener" class="btn-ink btn-ink--lg" style="width:100%;justify-content:center;text-align:center;box-sizing:border-box;">
+                <svg class="svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span>Solicitar Auditoria &amp; Nota de Orçamento</span>
+              </a>
+              <span class="price-obs" style="margin-top:0.75rem;display:block;text-align:center;">Diagnóstico gratuito de 15 minutos via WhatsApp</span>
             </div>
           </div>
         </div>
 
-        <!-- Explicação honesta sobre a verba de anúncios diretamente no Meta -->
-        <div class="receipt-adspend-note">
+        <!-- Explicação transparente sobre a verba de anúncios -->
+        <div class="receipt-adspend-note" style="margin-top:1.5rem;">
           <svg class="svg-icon svg-accent" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           <div class="adspend-text">
-            <strong>Sobre a verba de anúncios:</strong> sugerimos um investimento de R$ 600 a R$ 1.000 por mês diretamente nas plataformas (Meta e Google Ads). Esse valor é pago direto para as ferramentas, fica no seu cartão corporativo e não passa por mim. Você tem total transparência de cada centavo aplicado.
+            <strong>Sobre a verba de mídia:</strong> o investimento em anúncios é pago diretamente para as plataformas (Meta e Google Ads) através do seu cartão corporativo. Não cobramos taxa sobre a sua verba. Você tem 100% de clareza de cada real investido.
           </div>
         </div>
       </div>
@@ -2620,7 +1701,7 @@
             <img src="images/lucas-fernandes.jpg?v=foto_setembro" alt="Lucas Fernandes - Consultoria de Aquisição Clínica" class="profile-photo-img" />
             <div class="profile-status-badge">
               <span class="status-dot"></span>
-              <span>Disponível para <span class="dynamic-city">Matão e região</span></span>
+              <span>Disponível para <span class="dynamic-city">Matão e região</span>
             </div>
           </div>
           <h3 class="profile-name">Lucas Fernandes</h3>
@@ -2636,7 +1717,7 @@
         </div>
 
         <div class="profile-col-right">
-          <span class="profile-eyebrow">Por trás dos números: um compromisso ético com os profissionais de <span class="dynamic-city">Matão e região</span></span>
+          <span class="profile-eyebrow">Por trás dos números: um compromisso ético com os profissionais de <span class="dynamic-city">Matão e região</span>
           <h4 class="profile-manifesto-title">Eu não atendo qualquer tipo de negócio. Eu escolhi me aprofundar exclusivamente em consultórios e clínicas particulares.</h4>
           <p class="profile-manifesto-p">
             Eu vejo excelentes profissionais da nossa região que investiram anos de faculdade, especializações caras e montaram um consultório impecável, mas continuam reféns da incerteza do boca a boca ou de repasses baixos de convênios que desvalorizam a sua hora clínica.
@@ -2661,13 +1742,13 @@
       <div class="omnibar-prompt-card reveal">
         <div class="omnibar-badge">
           <svg class="svg-icon svg-accent" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;"><circle cx="12" cy="12" r="10"></circle></svg>
-          <span>Última etapa · Condição especial para a primeira clínica em <span class="dynamic-city">Matão e região</span></span>
+          <span>Última etapa · Condição especial para a primeira clínica em <span class="dynamic-city">Matão e região</span>
         </div>
 
         <h2 class="omnibar-title">Pronto para estancar os sangramentos e blindar a sua agenda?</h2>
 
         <p class="omnibar-desc">
-          Como estamos abrindo esta condição especial para o primeiro consultório a iniciar em Matão neste ciclo, o setup de R$ 2.000 no PIX (ou 12x no cartão) e a mensalidade de R$ 1.000 sem nenhuma fidelidade contratual são exclusivos para esse primeiro projeto. Me mande uma mensagem no WhatsApp para tirarmos qualquer dúvida e combinarmos os detalhes do início.
+          Como a implantação é conduzida pessoalmente pelo fundador Lucas Fernandes, limitamos a entrada a no máximo 3 novas clínicas por mês em <span class="dynamic-city">Matão e região</span>. O acordo é mês a mês, sem fidelidade contratual. Me mande uma mensagem no WhatsApp para realizarmos o diagnóstico de 15 minutos e combinarmos o início.
         </p>
 
         <!-- Command Input Style WhatsApp Trigger -->

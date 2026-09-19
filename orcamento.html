@@ -249,6 +249,121 @@
       margin-bottom: 0.85rem;
     }
 
+    /* DEMONSTRAÇÃO KELVIN CLETO */
+    .kelvin-cleto-box {
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      background: #F8FAFC;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .kelvin-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.71rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.45rem;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 0.3rem;
+    }
+
+    .kelvin-badge {
+      margin-left: auto;
+      font-size: 0.60rem;
+      font-weight: 600;
+      background: #EEF2FF;
+      color: #4F46E5;
+      padding: 0.12rem 0.4rem;
+      border-radius: 9999px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .kelvin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+
+    .kelvin-col {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.67rem;
+    }
+
+    .kelvin-col--highlight {
+      border-color: #C7D2FE;
+      background: #FAF5FF;
+    }
+
+    .kelvin-col-title {
+      display: block;
+      font-size: 0.64rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
+      margin-bottom: 0.3rem;
+      border-bottom: 1px dashed #E2E8F0;
+      padding-bottom: 0.15rem;
+    }
+
+    .kelvin-col--highlight .kelvin-col-title {
+      color: #7E22CE;
+      border-bottom-color: #E9D5FF;
+    }
+
+    .kelvin-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.18rem;
+      color: var(--ink-secondary);
+      font-size: 0.66rem;
+    }
+
+    .kelvin-item strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .kelvin-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.3rem;
+      padding-top: 0.25rem;
+      border-top: 1px solid #E2E8F0;
+      font-weight: 700;
+      font-size: 0.68rem;
+      color: var(--ink);
+    }
+
+    .kelvin-break-even {
+      margin-top: 0.35rem;
+      padding: 0.3rem 0.45rem;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      color: #065F46;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+      line-height: 1.35;
+    }
+
+    .kelvin-break-even svg {
+      flex-shrink: 0;
+      color: #10B981;
+      margin-top: 1px;
+    }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -541,8 +656,8 @@
       </div>
       <div class="doc-meta">
         <strong>PROPOSTA Nº #TRP-2026-001</strong><br />
-        <span>Emissão: 16 de Setembro de 2026 · Validade: 48h</span><br />
-        <span class="doc-tag">Condição Especial · 1ª Clínica em Matão</span>
+        <span id="emission-date">Emissão: 18 de Setembro de 2026 · Validade: 48h</span><br />
+        <span class="doc-tag">Programa de Aceleração Clínica · <span class="orc-dynamic-city">Matão</span></span>
       </div>
     </header>
 
@@ -558,7 +673,7 @@
       </div>
       <div class="client-field">
         <label>Praça / Cidade</label>
-        <span contenteditable="true">Matão e Região - SP</span>
+        <span contenteditable="true" class="orc-client-city">Matão e Região - SP</span>
       </div>
     </section>
 
@@ -582,29 +697,29 @@
         <tbody>
           <tr>
             <td>
-              <strong>1. Captação de Novos Pacientes Particulares</strong>
-              <p>Campanhas ativas no Instagram, Facebook e Google focadas no público de alto padrão de Matão e região.</p>
+              <strong>1. Implantação da Infraestrutura & Motor de Atração</strong>
+              <p>Instalação do software de gestão executiva, funil de procedimentos particulares e conexão direta com as campanhas de Meta/Google Ads.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 3.000</span></td>
           </tr>
           <tr>
             <td>
-              <strong>2. Triagem e Qualificação no WhatsApp</strong>
-              <p>Perguntas automáticas para filtrar convênio e curiosos de preço antes de repassar o contato para a recepção.</p>
+              <strong>2. Agente de Triagem & IA Conversacional no WhatsApp</strong>
+              <p>Automação inteligente com filtro anti-curioso, formulário/quiz de qualificação e entrega de contatos quentes para a recepção.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 2.000</span></td>
           </tr>
           <tr>
             <td>
-              <strong>3. Treinamento da Recepção & Prevenção de Faltas</strong>
-              <p>Scripts humanizados de acolhimento rápido para a secretária e confirmação com mapa de rota para evitar faltas.</p>
+              <strong>3. Protocolo Anti-Falta No-Show Shield & Treinamento da Equipe</strong>
+              <p>Régua automatizada de lembretes com rota Google Maps sincronizada + capacitação da secretária para a gestão diária.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
           </tr>
           <tr>
             <td>
-              <strong>4. Resgate da Base Antiga & Retornos Periódicos</strong>
-              <p>Ação direta nos pacientes inativos há mais de 6 meses (dinheiro rápido no caixa) + rotina de retornos periódicos.</p>
+              <strong>4. Motor de Automação & Resgate Contínuo de Inativos</strong>
+              <p>Sistema configurado com réguas automáticas de disparo para a base inativa, pesquisas NPS e acompanhamento preventivo semestral.</p>
             </td>
             <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
           </tr>
@@ -619,7 +734,36 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
           Investimento · Escolha Como Prefere Iniciar:
         </h2>
-        <span class="sec-note">Taxa única de início (setup) + acompanhamento mensal a partir do 2º mês</span>
+        <span class="sec-note">Setup e implantação completa (60 dias) + acompanhamento mensal a partir do 3º mês</span>
+      </div>
+
+      <!-- DEMONSTRAÇÃO DE VIABILIDADE FINANCEIRA (METODOLOGIA KELVIN CLETO) -->
+      <div class="kelvin-cleto-box">
+        <div class="kelvin-header">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Equação de Viabilidade & Retorno sobre o Investimento</span>
+          <span class="kelvin-badge">Lógica Kelvin Cleto</span>
+        </div>
+        <div class="kelvin-grid">
+          <div class="kelvin-col">
+            <span class="kelvin-col-title">Custo de Equipe Interna Equivalente</span>
+            <div class="kelvin-item"><span>Gestor de Anúncios Dedicado</span><strong>R$ 2.500/mês</strong></div>
+            <div class="kelvin-item"><span>Estrategista de Scripts de WhatsApp</span><strong>R$ 2.000/mês</strong></div>
+            <div class="kelvin-item"><span>Software CRM, API Cloud & Servidor</span><strong>R$ 800/mês</strong></div>
+            <div class="kelvin-item"><span>Consultoria de Processos Clínicos</span><strong>R$ 3.200/mês</strong></div>
+            <div class="kelvin-total"><span>Custo Total de Mercado:</span><strong class="price-strike">R$ 8.500/mês</strong></div>
+          </div>
+          <div class="kelvin-col kelvin-col--highlight">
+            <span class="kelvin-col-title">Investimento Estruturado TROPHÉ</span>
+            <div class="kelvin-item"><span>Setup de Implantação (60 dias)</span><strong>R$ 3.500,00</strong></div>
+            <div class="kelvin-item"><span>Acompanhamento a partir do 3º mês</span><strong>R$ 1.500/mês</strong></div>
+            <div class="kelvin-item"><span>Contrato de Fidelidade / Multa</span><strong>Zero (Mês a Mês)</strong></div>
+            <div class="kelvin-break-even">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Ponto de Equilíbrio:</strong> Apenas <strong>2 tratamentos particulares</strong> (ex: 1 implante ou 2 harmonizações) já pagam 100% da infraestrutura nos primeiros dias.</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="pricing-grid">
@@ -629,20 +773,20 @@
           <div>
             <div class="card-top-tag">
               <span class="tag-badge tag-badge--green">Opção 01 · À Vista via PIX</span>
-              <span class="card-savings">R$ 500 de Desconto</span>
+              <span class="card-savings">R$ 400 de Desconto</span>
             </div>
-            <div class="price-main-val">R$ 2.000,00</div>
-            <div class="price-main-sub">Taxa única de início e configuração da estrutura</div>
+            <div class="price-main-val">R$ 3.500,00</div>
+            <div class="price-main-sub">Setup, implementação completa e acompanhamento ativo de 60 dias</div>
           </div>
 
           <div class="card-instructions">
             <strong>Dados para Transferência Imediata:</strong>
-            Chave PIX (CPF): <span class="pix-code">450.297.108.17</span><br />
+            Chave PIX (E-mail): <span class="pix-code">trophegrowth@gmail.com</span><br />
             Favorecido: Lucas Fernandes · Enviar comprovante no WhatsApp.
           </div>
 
           <div class="recurr-reminder">
-            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.000/mês a partir do 2º mês (sem carência, contrato mês a mês).
+            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.500/mês a partir do 3º mês (sem carência, contrato mês a mês).
           </div>
         </div>
 
@@ -653,20 +797,31 @@
               <span class="tag-badge">Opção 02 · Cartão de Crédito</span>
               <span style="font-size:0.65rem;color:var(--ink-muted);">Em até 12 vezes</span>
             </div>
-            <div class="price-main-val">12x de R$ 248,80</div>
-            <div class="price-main-sub">Ou R$ 2.500 no cartão corporativo da clínica</div>
+            <div class="price-main-val">12x de R$ 348,00</div>
+            <div class="price-main-sub">Ou R$ 3.900 no cartão corporativo da clínica</div>
           </div>
 
           <div class="card-instructions">
             <strong>Pagamento Seguro via Mercado Pago:</strong>
-            Link oficial gerado pelo <strong>Mercado Pago</strong> com liberação instantânea. Solicite o link no WhatsApp.
+            Link oficial gerado pelo <strong>Mercado Pago</strong> com parcelamento flexível. Solicite o link no WhatsApp.
           </div>
 
           <div class="recurr-reminder">
-            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.000/mês a partir do 2º mês (sem carência, contrato mês a mês).
+            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.500/mês a partir do 3º mês (sem carência, contrato mês a mês).
           </div>
         </div>
-
+      </div>
+      
+      <!-- TRANSPARÊNCIA SOBRE A VERBA DE ANÚNCIOS & CAPACIDADE -->
+      <div style="margin-top: 0.65rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 0.55rem;">
+        <div style="padding: 0.5rem 0.75rem; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 5px; font-size: 0.68rem; color: #92400E; display: flex; align-items: flex-start; gap: 0.4rem; line-height: 1.35;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span><strong>Transparência financeira:</strong> a verba de anúncios (R$ 600 a R$ 1.000/mês) é paga diretamente ao Meta/Google Ads no cartão da clínica, sem intermediação.</span>
+        </div>
+        <div style="padding: 0.5rem 0.75rem; background: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 5px; font-size: 0.68rem; color: #334155; display: flex; align-items: flex-start; gap: 0.4rem; line-height: 1.35;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>Capacidade operacional real:</strong> atendimento limitado a <strong>3 novas clínicas por mês</strong> para garantir acompanhamento pessoal do fundador.</span>
+        </div>
       </div>
     </section>
 
@@ -681,20 +836,20 @@
         </div>
         <div class="timeline-steps">
           <div class="t-step">
-            <span class="t-day">01 a 15d</span>
-            <div class="t-desc"><strong>Onboarding & Resgate:</strong> <span>alinhamento, acessos e disparo na base antiga.</span></div>
+            <span class="t-day">01 a 14d</span>
+            <div class="t-desc"><strong>Implantação da Infraestrutura:</strong> <span>parametrização do software, automações e liberação dos acessos para a equipe da clínica.</span></div>
           </div>
           <div class="t-step">
-            <span class="t-day">16 a 30d</span>
-            <div class="t-desc"><strong>Anúncios no Ar:</strong> <span>campanhas no Instagram e Google ativadas para a cidade.</span></div>
+            <span class="t-day">15 a 30d</span>
+            <div class="t-desc"><strong>Ativação dos Motores:</strong> <span>campanhas locais Meta/Google ativas com triagem automática e resgate na base.</span></div>
           </div>
           <div class="t-step">
             <span class="t-day">31 a 45d</span>
-            <div class="t-desc"><strong>Ajustes de Triagem:</strong> <span>calibração de mensagens e confirmação anti-falta.</span></div>
+            <div class="t-desc"><strong>Calibração da Recepção:</strong> <span>ajustes no No-Show Shield e acompanhamento semanal da taxa de presença.</span></div>
           </div>
           <div class="t-step">
             <span class="t-day">46 a 60d</span>
-            <div class="t-desc"><strong>Consolidação:</strong> <span>rotina de retornos periódicos e prestação de contas.</span></div>
+            <div class="t-desc"><strong>Consolidação & Retenção:</strong> <span>rotina de retornos periódicos, prestação de contas executiva e previsibilidade.</span></div>
           </div>
         </div>
       </div>
@@ -732,5 +887,85 @@
 
   </main>
 
+  <script>
+    (function () {
+      // 1. Data de emissão dinâmica
+      const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = months[now.getMonth()];
+      const year = now.getFullYear();
+      const el = document.getElementById('emission-date');
+      if (el) {
+        el.textContent = 'Emissão: ' + day + ' de ' + month + ' de ' + year + ' · Validade: 48h';
+      }
+
+      // 2. Cidade dinâmica via parâmetro URL ?cidade=X ou sessionStorage ou IP
+      const cityAccents = {
+        'matao': 'Matão',
+        'matão': 'Matão',
+        'sao paulo': 'São Paulo',
+        'são paulo': 'São Paulo',
+        'sao carlos': 'São Carlos',
+        'são carlos': 'São Carlos',
+        'ribeirao preto': 'Ribeirão Preto',
+        'ribeirão preto': 'Ribeirão Preto',
+        'taquaritinga': 'Taquaritinga',
+        'araraquara': 'Araraquara',
+        'sertaozinho': 'Sertãozinho',
+        'sertãozinho': 'Sertãozinho',
+        'jaboticabal': 'Jaboticabal',
+        'ibate': 'Ibaté',
+        'ibaté': 'Ibaté'
+      };
+
+      function normalizeCity(rawName) {
+        if (!rawName) return 'Matão';
+        const clean = rawName.trim();
+        const lower = clean.toLowerCase();
+        if (cityAccents[lower]) {
+          return cityAccents[lower];
+        }
+        return clean.replace(/\b\w/g, l => l.toUpperCase());
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      let cityParam = urlParams.get('cidade') || urlParams.get('city');
+      if (!cityParam) {
+        cityParam = sessionStorage.getItem('lead_user_city');
+      }
+
+      function applyOrcamentoCity(cityName) {
+        if (!cityName) return;
+        const normalized = normalizeCity(cityName);
+        document.querySelectorAll('.orc-dynamic-city').forEach(node => {
+          node.textContent = normalized;
+        });
+        const clientCityEl = document.querySelector('.orc-client-city');
+        if (clientCityEl) {
+          clientCityEl.textContent = normalized + ' e Região - SP';
+        }
+        const docTag = document.querySelector('.doc-tag');
+        if (docTag) {
+          docTag.textContent = 'Programa de Aceleração Clínica · ' + normalized;
+        }
+      }
+
+      if (cityParam) {
+        applyOrcamentoCity(cityParam);
+      } else {
+        const controller = new AbortController();
+        setTimeout(() => controller.abort(), 1500);
+        fetch('https://ipapi.co/json/', { signal: controller.signal })
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.city) {
+              applyOrcamentoCity(data.city);
+            }
+          })
+          .catch(() => {});
+      }
+    })();
+  </script>
 </body>
 </html>
