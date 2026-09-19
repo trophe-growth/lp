@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nota de Orçamento Executiva · TROPHÉ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4F4F6;
+      --card-bg: #FFFFFF;
+      --ink: #111113;
+      --ink-secondary: #3F3F46;
+      --ink-muted: #71717A;
+      --border: #E4E4E7;
+      --border-subtle: #F4F4F5;
+      --accent: #18181B;
+      --success-dark: #065F46;
+      --success-bg: #F0FDF4;
+      --success-border: #BBF7D0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.35;
+      padding: 1.2rem 1rem;
+      -webkit-font-smoothing: antialiased;
+      font-size: 11px;
+    }
+
+    /* BARRA SUPERIOR (APENAS NA TELA) */
+    .toolbar {
+      max-width: 794px;
+      margin: 0 auto 0.8rem auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toolbar-info {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--ink);
+      color: #FFFFFF;
+      border: 1px solid var(--ink);
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-print:hover {
+      background: #27272A;
+    }
+
+    /* FOLHA A4 ÚNICA (794px = 210mm a 96DPI) */
+    .proposal-sheet {
+      max-width: 794px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.8rem 2.2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-logo {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .brand-sub {
+      font-size: 0.68rem;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .doc-meta {
+      text-align: right;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    .doc-meta strong {
+      color: var(--ink);
+      font-size: 0.78rem;
+    }
+
+    .doc-tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      background: #FAFAFA;
+      color: var(--ink-secondary);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-top: 0.15rem;
+    }
+
+    /* CLIENT BAR */
+    .client-bar {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.5rem 0.8rem;
+      margin-bottom: 0.8rem;
+      display: grid;
+      grid-template-columns: 1.3fr 1.2fr 1fr;
+      gap: 0.8rem;
+      background: #FAFAFB;
+    }
+
+    .client-field label {
+      display: block;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin-bottom: 0.05rem;
+    }
+
+    .client-field span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .client-field span[contenteditable="true"]:hover {
+      background: #FFFFFF;
+      box-shadow: 0 0 0 1px #CBD5E1;
+      border-radius: 2px;
+    }
+
+    /* SECTIONS */
+    .sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .sec-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .sec-note {
+      font-size: 0.68rem;
+      color: var(--ink-muted);
+    }
+
+    /* TABELA DE ESCOPO */
+    .table-scope {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0.85rem;
+      font-size: 0.74rem;
+    }
+
+    .table-scope th {
+      text-align: left;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      padding: 0.25rem 0.3rem;
+      border-bottom: 1px solid var(--ink);
+      font-weight: 600;
+    }
+
+    .table-scope td {
+      padding: 0.35rem 0.3rem;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+    }
+
+    .table-scope td strong {
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .table-scope td p {
+      font-size: 0.70rem;
+      color: var(--ink-secondary);
+      line-height: 1.3;
+      margin: 0.05rem 0 0 0;
+    }
+
+    .table-scope .col-price {
+      text-align: right;
+      white-space: nowrap;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+    }
+
+    .price-strike {
+      text-decoration: line-through;
+      color: #A1A1AA;
+    }
+
+    /* INVESTIMENTO: OS 2 CARDS DE PAGAMENTO CLAROS */
+    .pricing-container {
+      margin-bottom: 0.85rem;
+    }
+
+    /* DEMONSTRAÇÃO KELVIN CLETO */
+    .kelvin-cleto-box {
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      background: #F8FAFC;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .kelvin-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.71rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.45rem;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 0.3rem;
+    }
+
+    .kelvin-badge {
+      margin-left: auto;
+      font-size: 0.60rem;
+      font-weight: 600;
+      background: #EEF2FF;
+      color: #4F46E5;
+      padding: 0.12rem 0.4rem;
+      border-radius: 9999px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .kelvin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+
+    .kelvin-col {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.67rem;
+    }
+
+    .kelvin-col--highlight {
+      border-color: #C7D2FE;
+      background: #FAF5FF;
+    }
+
+    .kelvin-col-title {
+      display: block;
+      font-size: 0.64rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
+      margin-bottom: 0.3rem;
+      border-bottom: 1px dashed #E2E8F0;
+      padding-bottom: 0.15rem;
+    }
+
+    .kelvin-col--highlight .kelvin-col-title {
+      color: #7E22CE;
+      border-bottom-color: #E9D5FF;
+    }
+
+    .kelvin-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.18rem;
+      color: var(--ink-secondary);
+      font-size: 0.66rem;
+    }
+
+    .kelvin-item strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .kelvin-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.3rem;
+      padding-top: 0.25rem;
+      border-top: 1px solid #E2E8F0;
+      font-weight: 700;
+      font-size: 0.68rem;
+      color: var(--ink);
+    }
+
+    .kelvin-break-even {
+      margin-top: 0.35rem;
+      padding: 0.3rem 0.45rem;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      color: #065F46;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+      line-height: 1.35;
+    }
+
+    .kelvin-break-even svg {
+      flex-shrink: 0;
+      color: #10B981;
+      margin-top: 1px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.35rem;
+    }
+
+    .pricing-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      background: #FAFAFA;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pricing-card--highlight {
+      border-color: #A7F3D0;
+      background: #F0FDF4;
+    }
+
+    .card-top-tag {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .tag-badge {
+      font-size: 0.64rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      background: #E4E4E7;
+      color: var(--ink);
+    }
+
+    .tag-badge--green {
+      background: #DCFCE7;
+      color: var(--success-dark);
+    }
+
+    .card-savings {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--success-dark);
+    }
+
+    .price-main-val {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 0.15rem;
+    }
+
+    .price-main-sub {
+      font-size: 0.68rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-instructions {
+      border-top: 1px solid var(--border);
+      padding-top: 0.45rem;
+      font-size: 0.70rem;
+      line-height: 1.4;
+      color: var(--ink-secondary);
+    }
+
+    .pricing-card--highlight .card-instructions {
+      border-top-color: #BBF7D0;
+    }
+
+    .card-instructions strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .pix-code {
+      display: inline-block;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0.1rem 0;
+    }
+
+    .recurr-reminder {
+      margin-top: 0.4rem;
+      padding: 0.35rem 0.5rem;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.68rem;
+      color: var(--ink-secondary);
+    }
+
+    .recurr-reminder strong {
+      color: var(--ink);
+    }
+
+    /* GRID INFERIOR: CRONOGRAMA & GARANTIA */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .bottom-card {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.65rem 0.8rem;
+      background: #FFFFFF;
+    }
+
+    .bottom-title {
+      font-size: 0.70rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* CRONOGRAMA */
+    .timeline-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+    }
+
+    .t-step {
+      display: flex;
+      gap: 0.4rem;
+      align-items: flex-start;
+      line-height: 1.3;
+    }
+
+    .t-day {
+      background: #F4F4F5;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.62rem;
+      padding: 0.08rem 0.3rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      color: var(--ink);
+    }
+
+    .t-desc strong {
+      color: var(--ink);
+    }
+
+    .t-desc span {
+      color: var(--ink-secondary);
+    }
+
+    /* GARANTIA */
+    .guarantee-content {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .guarantee-content svg {
+      color: var(--ink);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .guarantee-text h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+    }
+
+    .guarantee-text p {
+      font-size: 0.67rem;
+      color: var(--ink-secondary);
+      line-height: 1.35;
+    }
+
+    /* FOOTER */
+    .proposal-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 0.65rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 0.68rem;
+      color: var(--ink-muted);
+    }
+
+    .signature-area {
+      text-align: right;
+    }
+
+    .signature-line {
+      width: 160px;
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: 0.2rem;
+      display: inline-block;
+    }
+
+    .sign-name {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.74rem;
+    }
+
+    .sign-role {
+      font-size: 0.65rem;
+      color: var(--ink-muted);
+    }
+
+    /* IMPRESSÃO PERFEITA EM 1 PÁGINA A4 */
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+
+    @media print {
+      html, body {
+        background: #FFFFFF !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .toolbar {
+        display: none !important;
+      }
+
+      .proposal-sheet {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+      }
+
+      .btn-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE AÇÕES NA TELA -->
+  <div class="toolbar">
+    <div class="toolbar-info">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Nota de Orçamento Executiva · Layout Exclusivo de 1 Página A4
+    </div>
+    <button class="btn-print" onclick="window.print()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Salvar em PDF / Imprimir
+    </button>
+  </div>
+
+  <!-- DOCUMENTO OFICIAL A4 -->
+  <main class="proposal-sheet">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div>
+        <img src="../images/trophe-logo.png" alt="TROPHÉ" class="brand-logo" />
+        <span class="brand-sub">Sistema de Atração e Retenção para Clínicas</span>
+      </div>
+      <div class="doc-meta">
+        <strong>PROPOSTA Nº #TRP-2026-001</strong><br />
+        <span id="emission-date">Emissão: 18 de Setembro de 2026 · Validade: 48h</span><br />
+        <span class="doc-tag">Programa de Aceleração Clínica · <span class="orc-dynamic-city">Matão</span></span>
+      </div>
+    </header>
+
+    <!-- CLIENTE -->
+    <section class="client-bar">
+      <div class="client-field">
+        <label>Consultório / Clínica</label>
+        <span contenteditable="true">Clínica & Consultório Particular</span>
+      </div>
+      <div class="client-field">
+        <label>Profissional Responsável</label>
+        <span contenteditable="true">Dra. / Dr. Responsável</span>
+      </div>
+      <div class="client-field">
+        <label>Praça / Cidade</label>
+        <span contenteditable="true" class="orc-client-city">Matão e Região - SP</span>
+      </div>
+    </section>
+
+    <!-- ESCOPO DO SERVIÇO -->
+    <section>
+      <div class="sec-header">
+        <h2 class="sec-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Escopo dos Serviços Inclusos
+        </h2>
+        <span class="sec-note">Tabela de referência: R$ 8.000 se contratado avulso</span>
+      </div>
+
+      <table class="table-scope">
+        <thead>
+          <tr>
+            <th style="width: 78%;">Módulo & Entregáveis Técnicos</th>
+            <th style="width: 22%; text-align: right;">Valor Avulso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>1. Implantação da Infraestrutura & Motor de Atração</strong>
+              <p>Instalação do software de gestão executiva, funil de procedimentos particulares e conexão direta com as campanhas de Meta/Google Ads.</p>
+            </td>
+            <td class="col-price"><span class="price-strike">R$ 3.000</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>2. Agente de Triagem & IA Conversacional no WhatsApp</strong>
+              <p>Automação inteligente com filtro anti-curioso, formulário/quiz de qualificação e entrega de contatos quentes para a recepção.</p>
+            </td>
+            <td class="col-price"><span class="price-strike">R$ 2.000</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>3. Protocolo Anti-Falta No-Show Shield & Treinamento da Equipe</strong>
+              <p>Régua automatizada de lembretes com rota Google Maps sincronizada + capacitação da secretária para a gestão diária.</p>
+            </td>
+            <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>4. Motor de Automação & Resgate Contínuo de Inativos</strong>
+              <p>Sistema configurado com réguas automáticas de disparo para a base inativa, pesquisas NPS e acompanhamento preventivo semestral.</p>
+            </td>
+            <td class="col-price"><span class="price-strike">R$ 1.500</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- INVESTIMENTO & AS 2 OPÇÕES DE PAGAMENTO CLARAS -->
+    <section class="pricing-container">
+      <div class="sec-header">
+        <h2 class="sec-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          Investimento · Escolha Como Prefere Iniciar:
+        </h2>
+        <span class="sec-note">Setup e implantação completa (60 dias) + acompanhamento mensal a partir do 3º mês</span>
+      </div>
+
+      <!-- DEMONSTRAÇÃO DE VIABILIDADE FINANCEIRA (METODOLOGIA KELVIN CLETO) -->
+      <div class="kelvin-cleto-box">
+        <div class="kelvin-header">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Equação de Viabilidade & Retorno sobre o Investimento</span>
+          <span class="kelvin-badge">Lógica Kelvin Cleto</span>
+        </div>
+        <div class="kelvin-grid">
+          <div class="kelvin-col">
+            <span class="kelvin-col-title">Custo de Equipe Interna Equivalente</span>
+            <div class="kelvin-item"><span>Gestor de Anúncios Dedicado</span><strong>R$ 2.500/mês</strong></div>
+            <div class="kelvin-item"><span>Estrategista de Scripts de WhatsApp</span><strong>R$ 2.000/mês</strong></div>
+            <div class="kelvin-item"><span>Software CRM, API Cloud & Servidor</span><strong>R$ 800/mês</strong></div>
+            <div class="kelvin-item"><span>Consultoria de Processos Clínicos</span><strong>R$ 3.200/mês</strong></div>
+            <div class="kelvin-total"><span>Custo Total de Mercado:</span><strong class="price-strike">R$ 8.500/mês</strong></div>
+          </div>
+          <div class="kelvin-col kelvin-col--highlight">
+            <span class="kelvin-col-title">Investimento Estruturado TROPHÉ</span>
+            <div class="kelvin-item"><span>Setup de Implantação (60 dias)</span><strong>R$ 3.500,00</strong></div>
+            <div class="kelvin-item"><span>Acompanhamento a partir do 3º mês</span><strong>R$ 1.500/mês</strong></div>
+            <div class="kelvin-item"><span>Contrato de Fidelidade / Multa</span><strong>Zero (Mês a Mês)</strong></div>
+            <div class="kelvin-break-even">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Ponto de Equilíbrio:</strong> Apenas <strong>2 tratamentos particulares</strong> (ex: 1 implante ou 2 harmonizações) já pagam 100% da infraestrutura nos primeiros dias.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        
+        <!-- OPÇÃO 1: PIX À VISTA -->
+        <div class="pricing-card pricing-card--highlight">
+          <div>
+            <div class="card-top-tag">
+              <span class="tag-badge tag-badge--green">Opção 01 · À Vista via PIX</span>
+              <span class="card-savings">R$ 400 de Desconto</span>
+            </div>
+            <div class="price-main-val">R$ 3.500,00</div>
+            <div class="price-main-sub">Setup, implementação completa e acompanhamento ativo de 60 dias</div>
+          </div>
+
+          <div class="card-instructions">
+            <strong>Dados para Transferência Imediata:</strong>
+            Chave PIX (E-mail): <span class="pix-code">trophegrowth@gmail.com</span><br />
+            Favorecido: Lucas Fernandes · Enviar comprovante no WhatsApp.
+          </div>
+
+          <div class="recurr-reminder">
+            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.500/mês a partir do 3º mês (sem carência, contrato mês a mês).
+          </div>
+        </div>
+
+        <!-- OPÇÃO 2: MERCADO PAGO CARTÃO -->
+        <div class="pricing-card">
+          <div>
+            <div class="card-top-tag">
+              <span class="tag-badge">Opção 02 · Cartão de Crédito</span>
+              <span style="font-size:0.65rem;color:var(--ink-muted);">Em até 12 vezes</span>
+            </div>
+            <div class="price-main-val">12x de R$ 348,00</div>
+            <div class="price-main-sub">Ou R$ 3.900 no cartão corporativo da clínica</div>
+          </div>
+
+          <div class="card-instructions">
+            <strong>Pagamento Seguro via Mercado Pago:</strong>
+            Link oficial gerado pelo <strong>Mercado Pago</strong> com parcelamento flexível. Solicite o link no WhatsApp.
+          </div>
+
+          <div class="recurr-reminder">
+            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.500/mês a partir do 3º mês (sem carência, contrato mês a mês).
+          </div>
+        </div>
+      </div>
+      
+      <!-- TRANSPARÊNCIA SOBRE A VERBA DE ANÚNCIOS & CAPACIDADE -->
+      <div style="margin-top: 0.65rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 0.55rem;">
+        <div style="padding: 0.5rem 0.75rem; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 5px; font-size: 0.68rem; color: #92400E; display: flex; align-items: flex-start; gap: 0.4rem; line-height: 1.35;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span><strong>Transparência financeira:</strong> a verba de anúncios (R$ 600 a R$ 1.000/mês) é paga diretamente ao Meta/Google Ads no cartão da clínica, sem intermediação.</span>
+        </div>
+        <div style="padding: 0.5rem 0.75rem; background: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 5px; font-size: 0.68rem; color: #334155; display: flex; align-items: flex-start; gap: 0.4rem; line-height: 1.35;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span><strong>Capacidade operacional real:</strong> atendimento limitado a <strong>3 novas clínicas por mês</strong> para garantir acompanhamento pessoal do fundador.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRONOGRAMA & GARANTIA LADO A LADO -->
+    <div class="bottom-grid">
+      
+      <!-- CRONOGRAMA 60 DIAS -->
+      <div class="bottom-card">
+        <div class="bottom-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Cronograma dos 60 Dias com Acompanhamento
+        </div>
+        <div class="timeline-steps">
+          <div class="t-step">
+            <span class="t-day">01 a 14d</span>
+            <div class="t-desc"><strong>Implantação da Infraestrutura:</strong> <span>parametrização do software, automações e liberação dos acessos para a equipe da clínica.</span></div>
+          </div>
+          <div class="t-step">
+            <span class="t-day">15 a 30d</span>
+            <div class="t-desc"><strong>Ativação dos Motores:</strong> <span>campanhas locais Meta/Google ativas com triagem automática e resgate na base.</span></div>
+          </div>
+          <div class="t-step">
+            <span class="t-day">31 a 45d</span>
+            <div class="t-desc"><strong>Calibração da Recepção:</strong> <span>ajustes no No-Show Shield e acompanhamento semanal da taxa de presença.</span></div>
+          </div>
+          <div class="t-step">
+            <span class="t-day">46 a 60d</span>
+            <div class="t-desc"><strong>Consolidação & Retenção:</strong> <span>rotina de retornos periódicos, prestação de contas executiva e previsibilidade.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GARANTIA SEM FIDELIDADE -->
+      <div class="bottom-card" style="border-left: 3px solid var(--ink);">
+        <div class="bottom-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Garantia Sem Fidelidade: Contrato Mês a Mês
+        </div>
+        <div class="guarantee-content">
+          <div class="guarantee-text">
+            <h4>Sem amarras de 6 ou 12 meses</h4>
+            <p>
+              Diferente de agências que amarram a clínica em contratos longos, nosso acordo é <strong>mês a mês</strong>. Se no primeiro mês você não estiver satisfeito com o nosso atendimento ou movimento gerado, você pode encerrar a qualquer momento, <strong>sem nenhuma multa de cancelamento</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER & ASSINATURAS -->
+    <footer class="proposal-footer">
+      <div>
+        <strong>TROPHÉ TECNOLOGIA & ATRAÇÃO CLÍNICA</strong><br />
+        Lucas Fernandes · Matão - SP · WhatsApp: (11) 95762-2191
+      </div>
+      <div class="signature-area">
+        <div class="signature-line"></div><br />
+        <span class="sign-name">Lucas Fernandes</span><br />
+        <span class="sign-role">Responsável pelo Projeto · TROPHÉ</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      // 1. Data de emissão dinâmica
+      const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = months[now.getMonth()];
+      const year = now.getFullYear();
+      const el = document.getElementById('emission-date');
+      if (el) {
+        el.textContent = 'Emissão: ' + day + ' de ' + month + ' de ' + year + ' · Validade: 48h';
+      }
+
+      // 2. Cidade dinâmica via parâmetro URL ?cidade=X ou sessionStorage ou IP
+      const cityAccents = {
+        'matao': 'Matão',
+        'matão': 'Matão',
+        'sao paulo': 'São Paulo',
+        'são paulo': 'São Paulo',
+        'sao carlos': 'São Carlos',
+        'são carlos': 'São Carlos',
+        'ribeirao preto': 'Ribeirão Preto',
+        'ribeirão preto': 'Ribeirão Preto',
+        'taquaritinga': 'Taquaritinga',
+        'araraquara': 'Araraquara',
+        'sertaozinho': 'Sertãozinho',
+        'sertãozinho': 'Sertãozinho',
+        'jaboticabal': 'Jaboticabal',
+        'ibate': 'Ibaté',
+        'ibaté': 'Ibaté'
+      };
+
+      function normalizeCity(rawName) {
+        if (!rawName) return 'Matão';
+        const clean = rawName.trim();
+        const lower = clean.toLowerCase();
+        if (cityAccents[lower]) {
+          return cityAccents[lower];
+        }
+        return clean.replace(/\b\w/g, l => l.toUpperCase());
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      let cityParam = urlParams.get('cidade') || urlParams.get('city');
+      if (!cityParam) {
+        cityParam = sessionStorage.getItem('lead_user_city');
+      }
+
+      function applyOrcamentoCity(cityName) {
+        if (!cityName) return;
+        const normalized = normalizeCity(cityName);
+        document.querySelectorAll('.orc-dynamic-city').forEach(node => {
+          node.textContent = normalized;
+        });
+        const clientCityEl = document.querySelector('.orc-client-city');
+        if (clientCityEl) {
+          clientCityEl.textContent = normalized + ' e Região - SP';
+        }
+        const docTag = document.querySelector('.doc-tag');
+        if (docTag) {
+          docTag.textContent = 'Programa de Aceleração Clínica · ' + normalized;
+        }
+      }
+
+      if (cityParam) {
+        applyOrcamentoCity(cityParam);
+      } else {
+        const controller = new AbortController();
+        setTimeout(() => controller.abort(), 1500);
+        fetch('https://ipapi.co/json/', { signal: controller.signal })
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.city) {
+              applyOrcamentoCity(data.city);
+            }
+          })
+          .catch(() => {});
+      }
+    })();
+  </script>
+</body>
+</html>

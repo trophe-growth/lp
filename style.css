@@ -5388,27 +5388,68 @@ h1, h2, h3, h4, h5 {
     background: radial-gradient(circle at center top, transparent 0%, rgba(250,250,248,0.3) 60%, var(--canvas) 92%) !important;
   }
 
+  /* Otimização de largura de tela e margens laterais compactas (iPhone XR / iOS / Android) */
+  .container {
+    padding-left: 0.95rem !important;
+    padding-right: 0.95rem !important;
+    max-width: 100% !important;
+  }
+
   .hero-content {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    max-width: 100% !important;
   }
 
   .hero-headline {
-    font-size: clamp(1.6rem, 5.5vw, 2rem) !important;
-    line-height: 1.15 !important;
+    font-size: clamp(1.4rem, 5.2vw, 1.85rem) !important;
+    line-height: 1.18 !important;
     letter-spacing: -0.03em !important;
-    margin-bottom: 1rem !important;
-    padding: 0 0.5rem !important;
+    margin-bottom: 0.85rem !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    text-wrap: balance !important;
   }
 
   .hero-sub {
-    font-size: 0.9rem !important;
+    font-size: 0.92rem !important;
     line-height: 1.5 !important;
     letter-spacing: -0.01em !important;
     color: #4B5563 !important;
-    max-width: 90% !important;
-    margin: 0 auto 1.5rem !important;
+    max-width: 100% !important;
+    margin: 0 auto 1.35rem !important;
     padding: 0 !important;
+    text-wrap: pretty !important;
+  }
+
+  /* Headlines de seções: ocupam a tela toda com margens pequenas e máximo 2-3 linhas */
+  .section-head {
+    padding: 0 !important;
+    max-width: 100% !important;
+    margin-bottom: 1.85rem !important;
+  }
+
+  .t-title, .section-head h2, h2.t-title {
+    font-size: clamp(1.3rem, 4.8vw, 1.7rem) !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.025em !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    text-wrap: balance !important;
+  }
+
+  .t-body, .section-head p {
+    max-width: 100% !important;
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+    padding: 0 !important;
+    text-wrap: pretty !important;
+  }
+
+  /* Prevenção de texto em caixa alta no dossiê de Lucas Fernandes */
+  .profile-manifesto-title,
+  .profile-manifesto-p {
+    text-transform: none !important;
   }
 
   /* Hero microproof: independent minimalist badges on mobile */
@@ -6073,801 +6114,42 @@ h1, h2, h3, h4, h5 {
 
 .diagnosis-header {
   text-align: center;
-  max-width: 700px;
+  max-width: 680px;
   margin: 0 auto 2.25rem;
 }
 
 .diagnosis-header .diag-badge {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.02em;
   color: var(--accent);
-  background: rgba(242, 128, 93, 0.15);
-  padding: 4px 12px;
+  background: rgba(242, 128, 93, 0.12);
+  border: 1px solid rgba(242, 128, 93, 0.25);
+  padding: 4px 14px;
   border-radius: var(--r-pill);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
 }
 
 .diagnosis-header h3 {
-  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #fff;
-  line-height: 1.3;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  line-height: 1.25;
+  text-transform: none;
+  margin: 0 auto;
 }
 
 .diagnosis-header p {
-  font-size: 0.95rem;
-  color: #DDD6CE;
-  margin-top: 0.5rem;
-}
-
-.diagnosis-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-
-.diagnosis-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: var(--r-lg);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.25rem;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.diagnosis-card:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(242, 128, 93, 0.4);
-}
-
-.diag-card-top {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.diag-q-pill {
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: #fff;
-  background: var(--accent);
-  padding: 2px 7px;
-  border-radius: var(--r-sm);
-}
-
-.diag-q-topic {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #DDD6CE;
-  letter-spacing: 0.02em;
-}
-
-.diag-question {
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: #FFFDF9;
-  font-weight: 500;
-}
-
-.diag-danger-box {
-  padding: 0.75rem 0.9rem;
-  background: rgba(239, 67, 67, 0.12);
-  border-left: 3px solid #EF4343;
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
-  font-size: 0.82rem;
-  color: #FCA5A5;
-  line-height: 1.45;
-}
-
-/* Transição de Esperança (Substitui botão de CTA) */
-.diagnosis-hope-box {
-  margin-top: 2.25rem;
-  padding: 2rem 2.25rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--r-lg);
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
-
-.hope-badge-row {
-  display: flex;
-  align-items: center;
-}
-
-.hope-pill {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--success);
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  padding: 3px 10px;
-  border-radius: var(--r-pill);
-}
-
-.hope-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #FFFDF9;
-  letter-spacing: -0.02em;
-  line-height: 1.35;
-}
-
-.hope-desc {
   font-size: 0.92rem;
   color: #DDD6CE;
-  line-height: 1.65;
-}
-
-.hope-desc-accent {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #FFFDF9;
-  line-height: 1.6;
-}
-
-.hope-scroll-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.03em;
-  animation: bounceDown 2s infinite ease-in-out;
-}
-
-@keyframes bounceDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-@media (max-width: 900px) {
-  .eq-grid-trio {
-    grid-template-columns: 1fr;
-  }
-  .eq-col {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 1.75rem 1.5rem;
-  }
-  .eq-col:last-child {
-    border-bottom: none;
-  }
-  .eq-total-strip {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.5rem;
-  }
-  .eq-total-nums {
-    align-items: flex-start;
-  }
-  .diagnosis-cards-grid {
-    grid-template-columns: 1fr;
-  }
-  .bleeding-self-diagnosis {
-    padding: 1.75rem 1.25rem;
-  }
-  .diagnosis-hope-box {
-    padding: 1.5rem 1.25rem;
-  }
-}
-
-/* ============================================================
-   AJUSTES FINOS DE IDENTIDADE & ESTÉTICA
-============================================================ */
-.bp-badge svg {
-  color: inherit !important;
-  fill: currentColor !important;
-}
-
-.headline-inline-logo {
-  height: 1.15em;
-  width: auto;
-  vertical-align: -0.22em;
-  display: inline-block;
-  margin: 0 0.20em 0 0.15em;
-  object-fit: contain;
-  /* Pure transparent rendering without fake box shadows */
-  filter: none;
-}
-
-/* ============================================================
-   FUTURE PACING: A PONTE PARA O CONSULTÓRIO PREVISÍVEL
-   Design System: Alto contraste visual e emocional (Antes vs Depois)
-============================================================ */
-.future-pacing-section {
-  padding: 5.5rem 0;
-  background: linear-gradient(180deg, rgba(244, 239, 234, 0.4) 0%, rgba(255, 252, 250, 1) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.fp-header {
-  text-align: center;
-  max-width: 820px;
-  margin: 0 auto 3.5rem;
-}
-
-.fp-eyebrow-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: #FFFFFF;
-  border: 1px solid var(--border-s);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink);
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 1.25rem;
-}
-
-.fp-eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--trophe-lime-dark);
-  box-shadow: 0 0 10px var(--trophe-lime);
-}
-
-.fp-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin: 0 auto 3.5rem;
-  max-width: 1200px;
-  width: 100%;
-  justify-content: center;
-}
-
-.fp-card {
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 2rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.fp-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(37, 37, 34, 0.2);
-}
-
-.fp-time-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.fp-time-badge svg {
-  color: var(--ink);
-}
-
-.fp-card-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.35;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
-}
-
-.fp-state-box {
-  border-radius: 14px;
-  padding: 1.15rem;
-  margin-bottom: 1.25rem;
-  position: relative;
-}
-
-.fp-state-box--before {
-  background: rgba(239, 68, 68, 0.04);
-  border: 1px dashed rgba(239, 68, 68, 0.25);
-}
-
-.fp-state-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.6rem;
-}
-
-.fp-state-tag--before {
-  color: #DC2626;
-}
-
-.fp-state-text--before {
-  font-size: 0.88rem;
-  color: #5A5A55;
-  line-height: 1.55;
-}
-
-.fp-bridge-connector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 0.5rem 0;
-  margin-bottom: 1rem;
-}
-
-.fp-bridge-line {
-  flex: 1;
-  height: 1px;
-  background: var(--border-s);
-}
-
-.fp-bridge-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: #1A1A18;
-  color: var(--trophe-lime);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.fp-state-box--after {
-  background: rgba(34, 197, 94, 0.05);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  margin-bottom: 1.5rem;
-}
-
-.fp-state-tag--after {
-  color: #16A34A;
-}
-
-.fp-state-text--after {
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.55;
-}
-
-.fp-metric-chip {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0.85rem 1rem;
-  border-radius: 12px;
-  background: var(--sa);
-  border: 1px solid var(--border);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.fp-metric-chip svg {
-  color: #16A34A;
-  flex-shrink: 0;
-}
-
-/* Banner de Destaque da Transformação */
-.fp-highlight-banner {
-  background: #1A1A18;
-  color: #FFFFFF;
-  border-radius: 24px;
-  padding: 2.75rem 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2.5rem;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
-.fp-highlight-banner::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -10%;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(230, 232, 2, 0.15) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.fp-highlight-content {
-  max-width: 680px;
-  position: relative;
-  z-index: 1;
-}
-
-.fp-highlight-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--trophe-lime);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.fp-highlight-title {
-  font-size: 1.65rem;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #FFFFFF;
-  margin-bottom: 0.85rem;
-  letter-spacing: -0.02em;
-}
-
-.fp-highlight-stat {
-  flex-shrink: 0;
-  text-align: center;
-  padding: 1.5rem 2rem;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 1;
-}
-
-.fp-highlight-num {
-  display: block;
-  font-size: 2.75rem;
-  font-weight: 800;
-  color: var(--trophe-lime);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 0.4rem;
-}
-
-.fp-highlight-num-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #A09E95;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-@media (max-width: 1140px) {
-  .fp-cards-grid {
-    gap: 1.15rem;
-  }
-  .fp-card {
-    padding: 1.6rem 1.3rem;
-  }
-}
-
-@media (max-width: 960px) {
-  .fp-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    max-width: 580px;
-    margin: 0 auto 3rem;
-  }
-  .fp-highlight-banner {
-    flex-direction: column;
-    text-align: center;
-    padding: 2rem 1.5rem;
-  }
-  .fp-highlight-content {
-    max-width: 100%;
-  }
-  .fp-highlight-stat {
-    width: 100%;
-  }
-}
-
-.u-nowrap {
-  white-space: nowrap !important;
-}
-
-/* ========================================================
-   PREVENÇÃO DE QUEBRA DE LINHA EM FRASES CURTAS (<= 3 PALAVRAS)
-   ======================================================== */
-.micro-badge,
-.fp-time-badge,
-.fp-metric-chip,
-.tile-tag,
-.tile-val,
-.calc-val-pill,
-.editorial-pill,
-.receipt-condition-pill,
-.price-tag-pill,
-.proof-channel-badge,
-.deck-fp-tag,
-.bleed-num-tag,
-.tag-badge {
-  white-space: nowrap !important;
-  flex-shrink: 0;
-}
-
-/* ========================================================
-   INSTAGRAM DIRECT MESSAGE MOCKUP (DARK MODE NATIVO)
-   Fidelidade cirúrgica à referência visual do chat
-   ======================================================== */
-.ig-dm-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.75rem;
-  max-width: 820px;
-  margin: 1.5rem auto 0;
-}
-
-.ig-dm-phone {
-  background: #000000;
-  color: #FFFFFF;
-  border-radius: 26px;
-  border: 1px solid #262626;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  text-align: left;
-}
-
-.ig-dm-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  border-bottom: 1px solid #1c1c1c;
-  background: #000000;
-}
-
-.ig-dm-header-left {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.ig-dm-back-icon {
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-}
-
-.ig-dm-avatar-sm {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.ig-dm-header-title {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.2;
-}
-
-.ig-dm-header-sub {
-  font-size: 0.65rem;
-  color: #8E8E8E;
-}
-
-.ig-dm-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #FFFFFF;
-}
-
-.ig-dm-body {
-  padding: 14px 12px;
-  background: #000000;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.ig-dm-profile-banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 8px 0 14px;
-  border-bottom: 1px solid #1c1c1c;
-  margin-bottom: 12px;
-}
-
-.ig-dm-avatar-lg {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 6px;
-}
-
-.ig-dm-profile-name {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 2px;
-}
-
-.ig-dm-profile-stats {
-  font-size: 0.70rem;
-  color: #8E8E8E;
-  margin-bottom: 3px;
-}
-
-.ig-dm-profile-follow {
-  font-size: 0.67rem;
-  color: #737373;
-  margin-bottom: 8px;
-}
-
-.ig-dm-view-profile-btn {
-  background: #262626;
-  color: #FFFFFF;
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.ig-dm-timestamp {
-  text-align: center;
-  font-size: 0.65rem;
-  color: #737373;
-  margin: 4px 0 10px;
-  font-weight: 500;
-}
-
-.ig-dm-msg-cluster {
-  display: flex;
-  align-items: flex-end;
-  gap: 7px;
-  margin-bottom: 10px;
-}
-
-.ig-dm-msg-avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  margin-bottom: 2px;
-}
-
-.ig-dm-bubbles-list {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  max-width: 84%;
-}
-
-.ig-dm-bubble {
-  background: #262626;
-  color: #FFFFFF;
-  padding: 8px 12px;
-  border-radius: 17px;
-  font-size: 0.80rem;
-  line-height: 1.35;
-  word-break: break-word;
-}
-
-.ig-dm-footer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-top: 1px solid #1c1c1c;
-  background: #000000;
-}
-
-.ig-dm-cam-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #0095F6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  flex-shrink: 0;
-}
-
-.ig-dm-input-fake {
-  flex: 1;
-  background: #262626;
-  border-radius: 18px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #8E8E8E;
-  font-size: 0.74rem;
-}
-
-.ig-dm-input-actions {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #8E8E8E;
-}
-
-@media (max-width: 768px) {
-  .ig-dm-container {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-}
-
-/* ============================================================
-   DESIGN SYSTEM G-MED · COMPONENTES DE APP BAR E STATS NO INDEX
-   - Paleta: Slate (#F1F3F9), Lime (#DAFB59), Indigo (#6179FA), Onyx (#1B1E27)
-   ============================================================ */
-.gmed-browser-appbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.65rem 0.25rem 0.2rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.gmed-appbar-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.gmed-app-logo {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
-
-.gmed-pill-nav {
-  display: inline-flex;
-  align-items: center;
-  background: #FFFFFF;
-  border: 1px solid #CBD1E1;
-  border-radius: 999px;
-  padding: 3px;
-  gap: 4px;
+  margin-top: 0.65rem;
+  line-height: 1.5;
+  text-transform: none;
 }
 
 .gmed-nav-pill {

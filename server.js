@@ -24,13 +24,13 @@ const server = http.createServer((req, res) => {
     reqPath = '/index.html';
   }
 
-  const filePath = path.join(ROOT, reqPath);
+  let filePath = path.join(ROOT, reqPath);
 
-  // Security check to avoid directory traversal
-  if (!filePath.startsWith(ROOT)) {
-    res.writeHead(403);
-    res.end('Forbidden');
-    return;
+  // Clean URL resolution: if directory, look for index.html; if no ext, look for .html
+  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+    filePath = path.join(filePath, 'index.html');
+  } else if (!path.extname(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath = filePath + '.html';
   }
 
   fs.stat(filePath, (err, stats) => {
