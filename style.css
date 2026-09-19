@@ -6287,3 +6287,258 @@ p, .t-body, .hero-sub {
 }
 
 
+
+
+/* ============================================================
+   BRAND PILL & INLINE LOGO FIX (DESKTOP & MOBILE)
+============================================================ */
+.headline-brand-pill {
+  display: inline-block;
+  font-weight: 800;
+  color: #1B1E27;
+  background: var(--trophe-lime);
+  padding: 3px 12px;
+  border-radius: 8px;
+  letter-spacing: -0.01em;
+  vertical-align: 0.05em;
+  font-size: 0.9em;
+  line-height: 1.15;
+  margin: 0 4px;
+  box-shadow: 0 2px 8px rgba(230, 232, 2, 0.35);
+}
+
+.headline-inline-logo {
+  height: 1.1em;
+  max-height: 32px;
+  width: auto;
+  vertical-align: -0.15em;
+  display: inline-block;
+  margin: 0 0.25em;
+  object-fit: contain;
+  filter: none;
+}
+
+/* ============================================================
+   DIAGNOSIS CARDS GRID: DESIGN SYSTEM PREMIUM & RESPONSIVO
+============================================================ */
+.diagnosis-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.diagnosis-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r-xl);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.diagnosis-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(242, 128, 93, 0.35);
+}
+
+.diag-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.diag-q-pill {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--trophe-lime);
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.diag-q-topic {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #DDD6CE;
+}
+
+.diag-question {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.diag-danger-box {
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #FECACA;
+}
+
+.diag-danger-box strong {
+  color: #FF8080;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Copy de Esperança */
+.diagnosis-hope-box {
+  margin-top: 2.75rem;
+  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-xl);
+  text-align: center;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hope-badge-row {
+  margin-bottom: 1.15rem;
+}
+
+.hope-pill {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--success);
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 4px 14px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hope-title {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  margin-bottom: 1rem;
+}
+
+.hope-desc {
+  font-size: 0.94rem;
+  color: #DDD6CE;
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hope-desc-accent {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--trophe-lime);
+  line-height: 1.6;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+}
+
+.hope-scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.hope-scroll-indicator svg {
+  animation: bounceDown 1.8s infinite;
+}
+
+/* ============================================================
+   RESPONSIVIDADE MOBILE ESPECÍFICA (3 SANGRAMENTOS E AUTO-DIAGNÓSTICO)
+============================================================ */
+@media (max-width: 900px) {
+  /* 3 Sangramentos: Empilhamento vertical fluido com respiro */
+  .eq-grid-trio {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .eq-col {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 1.75rem 1.25rem !important;
+    width: 100% !important;
+  }
+  
+  .eq-col:last-child {
+    border-bottom: none !important;
+  }
+
+  .eq-col-title {
+    font-size: 1.15rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .eq-col-logic {
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .eq-total-strip {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.15rem !important;
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  /* Auto-Diagnóstico: 1 coluna limpa no mobile sem aperto de texto */
+  .bleeding-self-diagnosis {
+    padding: 1.75rem 1.15rem !important;
+  }
+
+  .diagnosis-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .diagnosis-card {
+    padding: 1.35rem 1.15rem !important;
+    gap: 1.15rem !important;
+  }
+
+  .diag-question {
+    font-size: 0.94rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .diag-danger-box {
+    padding: 0.85rem 1rem !important;
+    font-size: 0.86rem !important;
+  }
+
+  .diagnosis-hope-box {
+    padding: 1.75rem 1.15rem !important;
+    margin-top: 2rem !important;
+  }
+}
