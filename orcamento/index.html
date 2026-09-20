@@ -460,18 +460,144 @@
       margin: 0.1rem 0;
     }
 
-    .recurr-reminder {
-      margin-top: 0.4rem;
-      padding: 0.35rem 0.5rem;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 0.68rem;
+    /* 1. SELEÇÃO DA FORMA DE PAGAMENTO DO SETUP */
+    .setup-step-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .setup-step-label span.step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #FFFFFF;
+      font-size: 0.58rem;
+      font-weight: 700;
+    }
+
+    /* 2. CARD DE ACOMPANHAMENTO MENSAL (SERVIÇO À PARTE) */
+    .monthly-service-card {
+      margin-top: 0.6rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      background: #F8FAFC;
+      padding: 0.6rem 0.8rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .monthly-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .monthly-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .monthly-badge {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #0369A1;
+      background: #E0F2FE;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    .monthly-title {
+      font-size: 0.80rem;
+      font-weight: 750;
+      color: var(--ink);
+      margin: 0.05rem 0 0 0;
+      letter-spacing: -0.01em;
+    }
+
+    .monthly-subtitle {
+      font-size: 0.66rem;
+      color: var(--ink-secondary);
+      line-height: 1.25;
+    }
+
+    .monthly-price-block {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .monthly-price-val {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .monthly-price-per {
+      font-size: 0.70rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .monthly-price-note {
+      display: block;
+      font-size: 0.60rem;
+      color: #059669;
+      font-weight: 600;
+      margin-top: 0.15rem;
+    }
+
+    .monthly-deliv-title {
+      display: block;
+      font-size: 0.63rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .monthly-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3rem 0.75rem;
+    }
+
+    .monthly-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+      font-size: 0.67rem;
+      line-height: 1.3;
       color: var(--ink-secondary);
     }
 
-    .recurr-reminder strong {
+    .monthly-item svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #10B981;
+    }
+
+    .monthly-item strong {
       color: var(--ink);
+      font-weight: 600;
     }
 
     /* GRID INFERIOR: CRONOGRAMA & GARANTIA */
@@ -755,7 +881,7 @@
           </div>
           <div class="kelvin-col kelvin-col--highlight">
             <span class="kelvin-col-title">Investimento Estruturado TROPHÉ</span>
-            <div class="kelvin-item"><span>Setup de Implantação (60 dias)</span><strong>R$ 3.500,00</strong></div>
+            <div class="kelvin-item"><span>Setup de Implantação (60 dias)</span><strong>R$ 3.500,00 (ou R$ 3.000 no PIX)</strong></div>
             <div class="kelvin-item"><span>Acompanhamento a partir do 3º mês</span><strong>R$ 1.500/mês</strong></div>
             <div class="kelvin-item"><span>Contrato de Fidelidade / Multa</span><strong>Zero (Mês a Mês)</strong></div>
             <div class="kelvin-break-even">
@@ -766,27 +892,29 @@
         </div>
       </div>
 
+      <!-- 1. ESCOLHA DA FORMA DE PAGAMENTO DA IMPLANTAÇÃO -->
+      <div class="setup-step-label">
+        <span class="step-num">1</span>
+        <span>Formas de Pagamento da Implantação (Setup de 60 Dias):</span>
+      </div>
+
       <div class="pricing-grid">
         
-        <!-- OPÇÃO 1: PIX À VISTA -->
+        <!-- OPÇÃO 1: PIX À VISTA COM R$ 500 DE DESCONTO -->
         <div class="pricing-card pricing-card--highlight">
           <div>
             <div class="card-top-tag">
               <span class="tag-badge tag-badge--green">Opção 01 · À Vista via PIX</span>
-              <span class="card-savings">R$ 400 de Desconto</span>
+              <span class="card-savings">R$ 500 de Desconto</span>
             </div>
-            <div class="price-main-val">R$ 3.500,00</div>
-            <div class="price-main-sub">Setup, implementação completa e acompanhamento ativo de 60 dias</div>
+            <div class="price-main-val">R$ 3.000,00</div>
+            <div class="price-main-sub">De <span class="price-strike">R$ 3.500,00</span> por R$ 3.000,00 à vista (economia real de R$ 500)</div>
           </div>
 
           <div class="card-instructions">
             <strong>Dados para Transferência Imediata:</strong>
             Chave PIX (E-mail): <span class="pix-code">trophegrowth@gmail.com</span><br />
             Favorecido: Lucas Fernandes · Enviar comprovante no WhatsApp.
-          </div>
-
-          <div class="recurr-reminder">
-            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.500/mês a partir do 3º mês (sem carência, contrato mês a mês).
           </div>
         </div>
 
@@ -795,19 +923,56 @@
           <div>
             <div class="card-top-tag">
               <span class="tag-badge">Opção 02 · Cartão de Crédito</span>
-              <span style="font-size:0.65rem;color:var(--ink-muted);">Em até 12 vezes</span>
+              <span style="font-size:0.65rem;color:var(--ink-muted);font-weight:600;">Em até 12 vezes</span>
             </div>
             <div class="price-main-val">12x de R$ 348,00</div>
-            <div class="price-main-sub">Ou R$ 3.900 no cartão corporativo da clínica</div>
+            <div class="price-main-sub">Ou R$ 3.500,00 à vista no cartão corporativo da clínica</div>
           </div>
 
           <div class="card-instructions">
             <strong>Pagamento Seguro via Mercado Pago:</strong>
-            Link oficial gerado pelo <strong>Mercado Pago</strong> com parcelamento flexível. Solicite o link no WhatsApp.
+            Link oficial gerado pelo <strong>Mercado Pago</strong> com parcelamento flexível em até 12x. Solicite o link no WhatsApp.
           </div>
+        </div>
+      </div>
 
-          <div class="recurr-reminder">
-            <strong>Mensalidade de Acompanhamento:</strong> R$ 1.500/mês a partir do 3º mês (sem carência, contrato mês a mês).
+      <!-- 2. MENSALIDADE DE ACOMPANHAMENTO (SERVIÇO À PARTE) -->
+      <div class="monthly-service-card">
+        <div class="monthly-header">
+          <div class="monthly-title-group">
+            <span class="monthly-badge">Serviço à Parte · A partir do 3º Mês</span>
+            <h3 class="monthly-title">Mensalidade de Acompanhamento & Gestão Contínua</h3>
+            <span class="monthly-subtitle">Inicia após o ciclo de 60 dias de setup · Contrato mês a mês sem fidelidade nem carência</span>
+          </div>
+          <div class="monthly-price-block">
+            <div class="monthly-price-val">R$ 1.500<span class="monthly-price-per">/mês</span></div>
+            <span class="monthly-price-note">Sem multa de cancelamento</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="monthly-deliv-title">Entregáveis inclusos na mensalidade de R$ 1.500/mês:</span>
+          <div class="monthly-grid">
+            <div class="monthly-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Gestão Ativa de Tráfego:</strong> <span>otimização semanal dos motores Meta e Google Ads com foco em procedimentos de alto valor.</span></div>
+            </div>
+            <div class="monthly-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Auditoria de Front-Office:</strong> <span>análise contínua das conversões no WhatsApp e calibração semanal de scripts com a secretária.</span></div>
+            </div>
+            <div class="monthly-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Infraestrutura & Servidores 24/7:</strong> <span>manutenção técnica do software, API oficial do WhatsApp e automação No-Show Shield ativa.</span></div>
+            </div>
+            <div class="monthly-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Motor de Retorno & Resgate:</strong> <span>réguas periódicas programadas para reativação de pacientes inativos e ciclo semestral.</span></div>
+            </div>
+            <div class="monthly-item" style="grid-column: 1 / -1; border-top: 1px dashed #E2E8F0; padding-top: 0.25rem; margin-top: 0.1rem;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Prestação de Contas & Relatório Executivo:</strong> <span>reunião mensal de alinhamento estratégico com o fundador para análise de CAC e ROI real.</span></div>
+            </div>
           </div>
         </div>
       </div>
